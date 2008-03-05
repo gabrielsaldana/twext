@@ -1,0 +1,70 @@
+.twext-box {
+	position:absolute;
+	padding: 0px;
+	margin:0px;
+	top:0px;
+	width:100%;
+}
+.twext-para {
+	margin-bottom: 2em;
+	width: 100%;
+}
+.twext-line {
+	text-align: center;
+	clear:both;
+}
+.twext-chunk {
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+.twext-chunk tr td {
+	padding:0px;
+	margin:0px;
+}
+.twext-text {
+	font: normal bolder 12pt Arial;
+	color: #F05000;
+}
+.twext-twxt {
+	font: normal 10pt Arial;
+	color: #505000;
+}
+
+textarea {margin: 0px; padding: 0px;}
+
+.tab-collapse .tabbertab {
+	overflow-y: scroll;
+	height: 300px;
+}
+
+.xcroll {
+	height:500px;
+	padding:0px;
+	margin:0px;
+	border: solid 1px;
+	overflow:hidden;
+	position:relative;
+}
+.xcroll-left, .xcroll-right {
+	height: 50%;
+	overflow: scroll;
+	border:0px;
+	position:absolute;
+	width:50%;
+	bottom:0px;
+}
+.xcroll-left {
+	left:0px;
+	text-align: right;
+}
+.xcroll-right {
+	right:0px;
+	text-align: left;
+}
+.xcroll-preview {
+	border-bottom: solid 1px;
+	position:absolute;
+	left:0px; width:100%; top:0px; bottom:50%;
+	margin:0px; padding:0px;
+}

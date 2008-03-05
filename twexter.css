@@ -1,0 +1,86 @@
+/* the twext-* classes are for the preview*/
+
+.twext-box {
+	position:absolute;
+	padding: 0px;
+	margin:0px;
+	top:0px;
+	width:100%;
+}
+.twext-para {
+	margin:10px;
+	margin-bottom:20px;
+	margin-top:20px;
+	text-align: center;
+}
+.twext-line {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:auto;
+	text-align: center;
+	clear:both;
+	position: relative;
+	height:26px; /* this can be changed to modify the spacing between lines*/
+}
+.twext-chunk { /* chunks should have been inline blocks or tables, but firefox doesn't support that :( */
+	display: inline;
+	text-align:center;
+}
+.twext-chunk span {
+	padding:0px;
+	display:table-row;
+	text-align:center;
+}
+span.twext-text {
+	display:inline;
+	font: normal bolder 14pt Arial;
+	color: #000033;
+}
+span.twext-twxt {
+	display:inline;
+	font: normal 10pt Arial;
+	color: #cccc99;
+	position:relative;
+	top:-8px; /* this can be change to modify the spacing between text/twxt */
+}
+
+textarea {margin: 0px; padding: 0px;}
+
+/*.tab-collapse .tabbertab {
+	overflow-y: scroll;
+	height: 300px;
+}*/
+
+/* xcroll classes are for the xcroll :) */
+
+.xcroll {
+	min-height:300px;
+	padding:0px;
+	margin:0px;
+	border: solid 1px;
+	overflow:hidden;
+	position:relative;
+}
+.xcroll-left, .xcroll-right {
+	height: 50%;
+	overflow: scroll;
+	border:0px;
+	position:absolute;
+	width:50%;
+	bottom:0px;
+}
+.xcroll-left {
+	left:0px;
+	text-align: right;
+}
+.xcroll-right {
+	right:0px;
+	text-align: left;
+}
+.xcroll-preview {
+	border-bottom: solid 1px;
+	position:absolute;
+	left:0px; width:100%; top:0px; bottom:50%;
+	margin:0px; padding:0px;
+}
