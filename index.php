@@ -15,52 +15,40 @@ require('twext.php');
 $text1 = $post['text1'];
 $text2 = $post['text2'];
 $twext = twext_parse($text1, $text2);
-
 ?>
 <html>
-	<head>
-		<title>test twext with firefox, javascript enabled</title>
-		<script src='jquery.js'></script>
-		<script src='twexter.js'></script>
-		<link rel="stylesheet" href="twexter.css" type="text/css">
-		<link rel="stylesheet" href="tabber.css" type="text/css">
-		<script src='tabber.js'></script>
-	</head>
-	<body style='font-family: arial; padding:0px; margin:0px;'>
-		<!--div id='intro' style='position:fixed; top:0px; bottom:0px; left:0px; right:0px; background:darkGray; padding:10%; z-index:100'>
-			<h1 id='intro-header' align="center" style="top:20%; position:relative; color:white;font-family:Verdana,Tahoma">twexter</h1>
-		</div-->
-		<div style='width:100%; height:100%; position:absolute;'>
-		
-			<table><tr><td align=right valign=bottom>
-			<img src="xx.gif">
-			</td><td valign=bottom align=right><font size="-2" face="verdana,tahoma" color="gray">
-			 <font color="red">please use the <b> 
-			FIREFOX BROWSER</font></b> to test this twexter otherwise don't bother, thanks<br> <a href="http://mozilla.org/firefox">firefox</a> test 
-			zeen twexter <a	href="../go/test">feedback</a> . <a href="../faq.html">faq</a> <a href="../go/">news</a> twext™ © 2007, <a href="http://license.read.fm">read.fm</a> 
-			some rights reserved <a href="http://sf.net/projects/twexter">improve twexter</a> <a href="http://wiki.laptop.org/go/WiXi">for 
-			<b>wixi</b></a></font></td></tr></table>
-			<!--<h1 style='height:15px; margin:10px;'>twexter</h1>-->
-			<form action='./' method='post'>
-				<div class='tabber' style='position:absolute; top:40px; height:auto; left:10px; right:10px; bottom:10px;'>
-					<div class='tabbertab'>
-						<h2>input twext</h2>
-						<div style='height:90%; position:relative;'>
-							<div class='xcroll' style='position:absolute; width:100%; top:0px; bottom:30px;'>
-								<div class='xcroll-preview'><!--?php echo twext_html($twext);?--></div>
-								<textarea name='text2' class='xcroll-left' WRAP='OFF'><?php echo htmlspecialchars($post['text2']);?></textarea>
-								<textarea name='text1' class='xcroll-right' WRAP='OFF'><?php echo htmlspecialchars($post['text1']);?></textarea>
-							</div>
-							<div align='center' style='position:absolute; width:100%; bottom:0px;'><input type='submit' value='twext me'/></div>
-							<!--
-								<div align='center' style='postion:abolute; width:100% bottom:0px;'>
-								<font size="-2" color="silver"><b>© 2007, <a href=http://license.read.fm>read.fm</a><br>some rights reserved</font></b>
-								</DIV>
-								-->
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</body>
+  <head>
+    <title>test twext with firefox, javascript enabled</title>
+    <script src='jquery.js'></script>
+    <script src='twexter.js'></script>
+    <link rel="stylesheet" href="twexter.css" type="text/css">
+    <link rel="stylesheet" href="tabber.css" type="text/css">
+    <script src='tabber.js'></script>
+  </head>
+  <body style='font-family: arial; padding:0px; margin:0px;'>
+    <div style='width:100%; height:100%; position:absolute;'>
+     
+      <table><tr><td align=right valign=bottom>
+	    <img src="xx.gif">
+	  </td><td valign=bottom align=right><span style:"size: -2px;
+	      font-family: verdana,tahoma; color:gray;"><span style="color:#ff0000;">please use the <strong>FIREFOX BROWSER</span></strong> to test this twexter otherwise don't bother,
+	      thanks<br> <a href="http://mozilla.org/firefox">firefox</a>
+	      test zeen twexter <a href="../go/test">feedback</a> . <a href="../faq.html">faq</a> <a href="../go/">news</a> twext&trade; &copy; 2007, <a href="http://license.read.fm">read.fm</a> some rights reserved <a href="http://sf.net/projects/twexter">improve twexter</a> <a href="http://wiki.laptop.org/go/WiXi">for <strong>wixi</strong></a></span></td></tr></table>
+      <form action='./' method='post'>
+	<div class='tabber' style='position:absolute; top:40px; height:auto; left:10px; right:10px; bottom:10px;'>
+	  <div class='tabbertab'>
+	    <h2>input twext</h2>
+	    <div style='height:90%; position:relative;'>
+	      <div class='xcroll' style='position:absolute; width:100%; top:0px; bottom:30px;'>
+		<div class='xcroll-preview'><!--?php echo twext_html($twext);?--></div>
+		<textarea name='text2' class='xcroll-left' WRAP='OFF'><?php echo htmlspecialchars($post['text2']);?></textarea>
+		<textarea name='text1' class='xcroll-right' WRAP='OFF'><?php echo htmlspecialchars($post['text1']);?></textarea>
+	      </div>
+	      <div align='center' style='position:absolute; width:100%; bottom:0px;'><input type='submit' value='twext me'/></div>
+	    </div>
+	  </div>
+	</div>
+      </form>
+    </div>
+  </body>
 </html>

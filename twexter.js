@@ -2,13 +2,22 @@
 var scroll1 = 0; var scroll2 = 0;
 
 // string trim function
-function trim(str) {
-	var first = -1;
-	for (var i = 0; i < str.length; i++) if (str[i] > ' ') {first = i; break;}
-	if (first == -1) return '';
-	for (var i = str.length-1; i >= 0; i--) if (str[i] > ' ') return str.substring(first, i+1);
-}
+// function trim(str) {
+// 	var first = -1;
+// 	for (var i = 0; i < str.length; i++) if (str[i] > ' ') {first = i; break;}
+// 	if (first == -1) return '';
+// 	for (var i = str.length-1; i >= 0; i--) if (str[i] > ' ') return str.substring(first, i+1);
+// }
 
+// better and faster trim function
+// taken from http://blog.stevenlevithan.com/archives/faster-trim-javascript
+function trim(str) {
+	var	str = str.replace(/^\s\s*/, ''),
+		ws = /\s/,
+		i = str.length;
+	while (ws.test(str.charAt(--i)));
+	return str.slice(0, i + 1);
+}
 // parses twext into a tree
 function twext_parse(left, right) {
 	var text1 = left.split("\n");
