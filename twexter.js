@@ -1,13 +1,4 @@
-
 var scroll1 = 0; var scroll2 = 0;
-
-// string trim function
-// function trim(str) {
-// 	var first = -1;
-// 	for (var i = 0; i < str.length; i++) if (str[i] > ' ') {first = i; break;}
-// 	if (first == -1) return '';
-// 	for (var i = str.length-1; i >= 0; i--) if (str[i] > ' ') return str.substring(first, i+1);
-// }
 
 // better and faster trim function
 // taken from http://blog.stevenlevithan.com/archives/faster-trim-javascript
@@ -25,7 +16,7 @@ function twext_parse(left, right) {
 	var count1 = text1.length;
 	var count2 = text2.length;
 	var count = Math.max(count1, count2);
-	
+
 	var paras = [];
 	var para = false;
 	var line = false;
@@ -92,7 +83,6 @@ function scrollTo(to, from) {
 // scrolls twxt/text according to text/twxt scroll position
 function _scrollTo(to, from) {
 	var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
-	//$("#status").text("percent:" + percent + " fcheight:" + from.clientHeight + " tcheight:" + to.clientHeight);
 	return to.scrollTop = percent * (to.scrollHeight - to.clientHeight) / 100;
 }
 
@@ -151,7 +141,6 @@ function fixXcrolls() {
 			leftText.onscroll = leftText.onmousemove = leftText.onkeypress = leftFunc;
 			rightText.onscroll = rightText.onmousemove = rightText.onkeypress = rightFunc;
 			var scrollPos = 0, leftStr, rightStr;
-			//$("#status").text("installed");
 			// a timer to check for any kind of modification. this is needed because firefox doesn't support the onscroll event for textareas
 			// a workaround could be using an editable element other than a textarea, but that would require consideration of rich text copy/pasting
 			var timer = setInterval(function() {
@@ -171,7 +160,6 @@ function fixXcrolls() {
 					preview.html(twext_html(twext_parse(rightStr = right.val(), leftStr = left.val())));
 					solveTablesProblem(div);
 					scrollTo(preview.children(".twext-box").get(0), leftText);
-					//$("#status").text("preview update; " + new Date());
 				}
 			}, 100);
 			// hook tabbing. searches the line with the cursor, and moves to the same line in the other textarea
@@ -193,9 +181,4 @@ function fixXcrolls() {
 // initial function, called when document is loaded
 $(document).ready(function(){
 	fixXcrolls();
-	/*$("#intro-header").fadeIn("slow", function() {
-		$("#intro-header").fadeOut("slow", function() {
-			$("#intro").fadeOut("slow");
-		});
-	});*/
 });
