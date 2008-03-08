@@ -1,12 +1,5 @@
 <?php
 
-/*if (version_compare(phpversion(), '5.0.0', '>=')) {
-	require('twext.xsl.php5');
-} else {
-	require('twext.xsl.php4');
-}*/
-// the above commented include versions use xsl, but thats slow
-// the following include does everything though php
 require('twext.neutral.php');
 
 // this is a twext parser. it parses the text/twxt into a tree
@@ -55,4 +48,3 @@ function twext_parse($text1, $text2) {
     }
     return twext_dom($paras);
 }
-?>
