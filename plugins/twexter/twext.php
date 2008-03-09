@@ -5,8 +5,11 @@
 } else {
 	require('twext.xsl.php4');
 }*/
+// the above commented include versions use xsl, but that's slow
+// the following include does everything though php
 require('twext.neutral.php');
 
+// this is a twext parser. it parses the text/twxt into a tree
 function twext_parse($text1, $text2) {
 	$text1 = explode("\n", $text1);
 	$text2 = explode("\n", $text2);

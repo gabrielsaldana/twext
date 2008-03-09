@@ -1,6 +1,8 @@
 
 var scroll1 = 0; var scroll2 = 0;
+var loaded = false;
 
+// string trim function
 function trim(str) {
 	var first = -1;
 	for (var i = 0; i < str.length; i++) if (str[i] > ' ') {first = i; break;}
@@ -8,6 +10,7 @@ function trim(str) {
 	for (var i = str.length-1; i >= 0; i--) if (str[i] > ' ') return str.substring(first, i+1);
 }
 
+// parses twext into a tree
 function twext_parse(left, right) {
 	var text1 = left.split("\n");
 	var text2 = right.split("\n");
@@ -46,42 +49,46 @@ function twext_parse(left, right) {
 	}
 	return paras;
 }
+// takes twext, and generates html for preview
 function twext_html(twext) {
 	var span = document.createElement("span");
 	var xml = "<div class='twext-box'>\n";
 	for (var i = 0; i < twext.length; i++) {
 		var para = twext[i];
-		xml += "  <table class='twext-para'>\n";
+		xml += "  <div class='twext-para'>\n";
 		for (var j = 0; j < para.length; j++) {
 			var line = para[j];
-			xml += "    <tr><td class='twext-line'>\n";
+			xml += "    <div class='twext-line'>\n";
 			for (var k = 0; k < line.length; k++) {
 				var chunk = line[k];
-				xml += "      <table class='twext-chunk'>\n";
+				xml += "      <span class='twext-chunk'>\n";
 				span.textContent = chunk[0];
-				xml += "        <tr><td><center><span class='twext-text'><nobr>"+span.innerHTML+"</nobr></span></center></td></tr>\n";
+				xml += "        <span><span class='twext-text'>"+span.innerHTML+"</span></span>\n";
 				span.textContent = chunk[1];
-				xml += "        <tr><td><center><span class='twext-twxt'><nobr>"+span.innerHTML+"</nobr></span></center></td></tr>\n";
-				xml += "      </table>\n";
+				xml += "        <span><span class='twext-twxt'>"+span.innerHTML+"</span></span>\n";
+				xml += "      </span>\n";
 			}
-			xml += "    </td></tr>\n";
+			xml += "    </div>\n";
 		}
-		xml += "  </table>\n";
+		xml += "  </div>\n";
 	}
 	xml += "</div>\n";
 	return xml;
 }
 
+// scrolls preview according to text/twxt scroll position
 function scrollTo(to, from) {
 	var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
 	to.style.top = (percent * (from.clientHeight - to.clientHeight) / 100) + "px";
 }
+// scrolls twxt/text according to text/twxt scroll position
 function _scrollTo(to, from) {
 	var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
 	//$("#status").text("percent:" + percent + " fcheight:" + from.clientHeight + " tcheight:" + to.clientHeight);
 	return to.scrollTop = percent * (to.scrollHeight - to.clientHeight) / 100;
 }
 
+// fixes tables problem by calculating and setting negative right margins for chunks
 function solveTablesProblem(xcroll) {
 	$(".twext-line", xcroll).each(function() {
 		var chunks = $(".twext-chunk", this);
@@ -97,13 +104,15 @@ function solveTablesProblem(xcroll) {
 				var cdiff = Math.max(a_text, a_twxt) + Math.max(b_text, b_twxt);
 				var fdiff = Math.max(a_text + b_text, a_twxt + b_twxt);
 				var diff = cdiff - fdiff;
-				chunks.eq(i).css('margin-right', '-' + diff + 'px');
+				chunks.eq(i).css('margin-right', '-' + (diff-1) + 'px');
 			}
 		}
 	});
 }
 
+// main xcroll setup function
 function fixXcrolls() {
+	// loop over all xcrolls
 	$(".xcroll").each(function() {
 		var div = $(this);
 		var preview = div.children(".xcroll-preview");
@@ -119,7 +128,7 @@ function fixXcrolls() {
 		right.css("margin-right", -scrollBarWidth);
 		totalWidth = div.width();
 		// hook text areas
-		if (leftText.onscroll == null) {
+		if (leftText.onscroll == null) { // this only runs once, it basically does function hookup
 			var leftFunc = function() {
 				scrollTo(preview.children(".twext-box").get(0), leftText);
 				return _scrollTo(rightText, leftText);
@@ -128,34 +137,58 @@ function fixXcrolls() {
 				scrollTo(preview.children(".twext-box").get(0), rightText);
 				return _scrollTo(leftText, rightText);
 			}
+			// install scroll hooks
 			left.scroll(leftFunc);
 			right.scroll(rightFunc);
 			leftText.onscroll = leftText.onmousemove = leftText.onkeypress = leftFunc;
 			rightText.onscroll = rightText.onmousemove = rightText.onkeypress = rightFunc;
 			var scrollPos = 0, leftStr, rightStr;
-			$("#status").text("installed");
+			//$("#status").text("installed");
+			// a timer to check for any kind of modification. this is needed because firefox doesn't support the onscroll event for textareas
+			// a workaround could be using an editable element other than a textarea, but that would require consideration of rich text copy/pasting
 			var timer = setInterval(function() {
+				// check if width changed
 				if (totalWidth != div.width()) {
 					fixXcrolls();
 					totalWidth = div.width();
 				}
+				// check if scroll position changed
 				if (leftText.scrollTop != scrollPos) {
 					scrollPos = leftFunc();
 				} else if (rightText.scrollTop != scrollPos) {
 					scrollPos = rightFunc();
 				}
-				// hook for live preview
-				if (left.val() != leftStr || right.val() != rightStr) {
-					preview.html(twext_html(twext_parse(rightStr = right.val(), leftStr = left.val())));
+				// hook for live preview; check if text/twxt changed
+				if (!loaded && (left.val() != leftStr || right.val() != rightStr)) {
+					preview.html(twext_html(twext_parse(rightStr = right.val(), leftStr = left.val())));					
 					solveTablesProblem(div);
 					scrollTo(preview.children(".twext-box").get(0), leftText);
 					//$("#status").text("preview update; " + new Date());
+					loaded = true;
 				}
 			}, 100);
+			// hook tabbing. searches the line with the cursor, and moves to the same line in the other textarea
+			var tab = function(from, to) {
+				var line = from.val().substring(0, from.get(0).selectionEnd).split("\n").length-1;
+				var str = to.val().split("\n");
+				var pos = 0;
+				for (var i = 0; i < line; i++) pos += str[i].length + 1;
+				to.get(0).selectionEnd = to.get(0).selectionStart = pos;
+				to.focus();
+				return false;
+			}
+			left.keydown(function(x) {if (x.keyCode == 9) return tab(left, right);});
+			right.keydown(function(x) {if (x.keyCode == 9) return tab(right, left);});
 		}
 	});
 }
 
+// initial function, called when document is loaded
 $(document).ready(function(){
 	fixXcrolls();
+	/*$("#intro-header").fadeIn("slow", function() {
+		$("#intro-header").fadeOut("slow", function() {
+			$("#intro").fadeOut("slow");
+		});
+	});*/
 });
