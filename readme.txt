@@ -1,38 +1,37 @@
 ===================
-twexter 0.01 demo 
+Twexter 0.3 demo
 ===================
 
-about
+Features
 -------------------
 twexter 0.01 demos basic twexter functions
 * chunk twext output
 * xcroll input, including
 * live preview
 
-install
+Install
 -------------------
 unpack files in /twexter/ directory
-* index.php
-* jquery.js
-* tabber.css
-* tabber.js
-* twext.neutral.php
-* twext.php
-* twext.xsl.php4
-* twext.xsl.php5
-* twext_tables.xsl
-* twexter.css
-* twexter.js
-* xx.gif
 
-place directory in php enabled url ie
+Edit config.php with appropiate database information (MySQL only for now)
+
+Dump twexter.sql into your database.
+mysql -u root -p database_name < twexter.sql
+
+Place directory in your web server's public directory.
+In Debian/Ubuntu is: /var/www/
+
+Visit the project's url
 http://yourwebsite.url/twexter
 
-demo
+Demo
 -------------------
 currently working w/ latest firefox only
 
-beta test 
+Default user: zura
+Default password: pass
+
+Beta test
 -------------------
 http://twext.cc/go/18 describes multilingual
 twexter beta-testing in early june, including:
