@@ -94,7 +94,7 @@ if($_POST['filename']){
 								<textarea name='text1' class='xcroll-left' WRAP='OFF'><?php echo htmlspecialchars($post['text1']);?></textarea>
 								<textarea name='text2' class='xcroll-right' WRAP='OFF'><?php echo htmlspecialchars($post['text2']);?></textarea>
 							</div>
-							<div align='center' style='position:absolute; width:100%; bottom:0px;'><input type='submit' value='twext me'/></div>
+							<div align='center' style='position:absolute; width:100%; bottom:0px;'><input type='button' value='twext me' onclick="javascript:twext_text();"/></div>
 							<!--
 								<div align='center' style='postion:abolute; width:100% bottom:0px;'>
 								<font size="-2" color="silver"><b>© 2007, <a href=http://license.read.fm>read.fm</a><br>some rights reserved</font></b>

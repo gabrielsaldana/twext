@@ -12,33 +12,33 @@ function trim(str) {
 }
 // parses twext into a tree
 function twext_parse(left, right) {
-  var text1 = left.split("\n");
-  var text2 = right.split("\n");
-  var count1 = text1.length;
-  var count2 = text2.length;
-  var count = Math.max(count1, count2);
+  var text_left = left.split("\n");
+  var text_right = right.split("\n");
+  var total_lines_text_left = text_left.length;
+  var total_lines_text_right = text_right.length;
+  var max_lines = Math.max(total_lines_text_left, total_lines_text_right);
 
-  var paras = [];
+  var paragraphs = [];
   var para = false;
   var line = false;
-  for (var i = 0; i <= count; i++) {
-    var a1 = i < count1 ? trim(text1[i]) : '';
-    var a2 = i < count2 ? trim(text2[i]) : '';
-    if (a1 == '' && a2 == '') { // if its a blank line on both sides
-      if (line !== false) {
-	if (para === false) para = [];
+  for (var i = 0; i <= max_lines; i++) {
+    var chunk_left = i < total_lines_text_left ? trim(text_left[i]) : '';
+    var chunk_right = i < total_lines_text_right ? trim(text_right[i]) : '';
+    if (!chunk_left && !chunk_right) { // if its a blank line on both sides
+      if (line) {
+	if (!para) para = [];
 	para[para.length] = line;
 	line = false;
-      } else if (para !== false) {
-	paras[paras.length] = para;
+      } else if (para) {
+	paragraphs[paragraphs.length] = para;
 	para = false;
       }
     } else {
-      if (line === false) line = [];
-      line[line.length] = [a1, a2];
+      if (!line) line = [];
+      line[line.length] = [chunk_left, chunk_right];
     }
   }
-  return paras;
+  return paragraphs;
 }
 // takes twext, and generates html for preview
 function twext_html(twext) {
@@ -75,7 +75,6 @@ function scrollTo(to, from) {
 // scrolls twxt/text according to text/twxt scroll position
 function _scrollTo(to, from) {
   var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
-  //$("#status").text("percent:" + percent + " fcheight:" + from.clientHeight + " tcheight:" + to.clientHeight);
   return to.scrollTop = percent * (to.scrollHeight - to.clientHeight) / 100;
 }
 
@@ -149,15 +148,16 @@ function fixXcrolls() {
 	    } else if (rightText.scrollTop != scrollPos) {
 	      scrollPos = rightFunc();
 	    }
-	    // hook for live preview; check if text/twxt changed
-	    if (!loaded && (left.val() != leftStr || right.val() != rightStr)) {
-	      preview.html(twext_html(twext_parse(rightStr = right.val(), leftStr = left.val())));
-	      solveTablesProblem(div);
-	      scrollTo(preview.children(".twext-box").get(0), leftText);
-	      //$("#status").text("preview update; " + new Date());
-	      loaded = true;
-	    }
-	  }, 100);
+	  }, 1000);
+	// hook to update preview
+	if (!loaded && (left.val() != leftStr || right.val() != rightStr)) {
+	  preview.html(twext_html(twext_parse(rightStr = right.val(), leftStr = left.val())));
+	  solveTablesProblem(div);
+	  scrollTo(preview.children(".twext-box").get(0), leftText);
+	  //$("#status").text("preview update; " + new Date());
+	  loaded = true;
+	}
+
 	// hook tabbing. searches the line with the cursor, and moves to the same line in the other textarea
 	var tab = function(from, to) {
 	  var line = from.val().substring(0, from.get(0).selectionEnd).split("\n").length-1;
@@ -175,8 +175,12 @@ function fixXcrolls() {
 }
 function twext_text()
 {
-  var left = div.children(".xcroll-left"), right = div.children(".xcroll-right");
-  twext_html(twext_parse(left.val(),right.val()));
+   $(".xcroll").each(function() {
+       var left = $(this).children(".xcroll-left");
+       var right = $(this).children(".xcroll-right");
+       var preview = $(this).children(".xcroll-preview");
+       preview.html(twext_html(twext_parse(left.val(),right.val())));
+     });
 }
 // initial function, called when document is loaded
 $(document).ready(function(){
