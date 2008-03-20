@@ -1,5 +1,4 @@
 <?php
-
 class TUser {
 		
 	function TUser() {
@@ -59,8 +58,5 @@ class TUser {
 	function getUserEmail() {
 		return $_SESSION['email'];
 	}
-
-
 }
-
 ?>

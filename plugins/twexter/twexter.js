@@ -43,30 +43,52 @@ function twext_parse(left, right) {
 // takes twext, and generates html for preview
 function twext_html(twext) {
   var span = document.createElement("span");
-  var xml = "<div class='twext-box'>\n";
+  var html = "<div class='twext-box'>\n";
   for (var i = 0; i < twext.length; i++) {
     var para = twext[i];
-    xml += "  <div class='twext-para'>\n";
+    html += "  <div class='twext-para'>\n";
     for (var j = 0; j < para.length; j++) {
       var line = para[j];
-      xml += "    <div class='twext-line'>\n";
+      html += "    <div class='twext-line'>\n";
       for (var k = 0; k < line.length; k++) {
 	var chunk = line[k];
-	xml += "      <span class='twext-chunk'>\n";
+	html += "      <span class='twext-chunk'>\n";
 	span.textContent = chunk[0];
-	xml += "        <span><span class='twext-text'>"+span.innerHTML+"</span></span>\n";
+	html += "        <span><span class='twext-text'>"+span.innerHTML+"</span></span>\n";
 	span.textContent = chunk[1];
-	xml += "        <span><span class='twext-twxt'>"+span.innerHTML+"</span></span>\n";
-	xml += "      </span>\n";
+	html += "        <span><span class='twext-twxt'>"+span.innerHTML+"</span></span>\n";
+	html += "      </span>\n";
       }
-      xml += "    </div>\n";
+      html += "    </div>\n";
     }
-    xml += "  </div>\n";
+    html += "  </div>\n";
   }
-  xml += "</div>\n";
+  html += "</div>\n";
+  return html;
+}
+//takes twext, and generates xml for preview
+function twext_xml(twext) {
+  var xml = "<twext>\n";
+  for(var i=0;i < twext.length;i++) {
+    var para = twext[i];
+    xml += "  <para>\n";
+    for(var j=0;j < para.length;j++) {
+      var line = para[j];
+      xml += "    <line>\n";
+      for(var k=0;k< line.length;k++) {
+	var chunk = line[k];
+	xml += "      <chunk>\n";
+	xml += "        <text>"+chunk[0]+"</text>\n";
+	xml += "        <twxt>"+chunk[1]+"</twxt>\n";
+	xml += "      </chunk>\n";
+      }
+      xml += "    </line>\n";
+    }
+    xml += "  </para>\n";
+  }
+  xml += "</twext>\n";
   return xml;
 }
-
 // scrolls preview according to text/twxt scroll position
 function scrollTo(to, from) {
   var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);

@@ -1,18 +1,5 @@
 <?php
 
-require_once('../config.php');
-require_once('../core/main.inc.php');
-require_once('../core/database.inc.php');
-require_once('../core/user.inc.php');
-
-$main = new TMain();
-$db = new TDatabase();
-$user = new TUser();
-
-if(!$user->loggedin()) {
-	$main->redirect('../index.php');
-}
-
 // just a helper function to get a posted value, or a default
 function getPost($label, $default) {
 	return isset($_POST[$label]) ?
@@ -34,8 +21,6 @@ require('twexter/twext.php');
 
 $text1 = $post['text1'];
 $text2 = $post['text2'];
-// php twexter is no longer needed. Everything is now executed with javascript.
-#$twext = twext_parse($text1, $text2);
 
 //Save XML
 // TODO: replace this with javascript
@@ -49,84 +34,74 @@ if($_POST['filename']){
 
 ?>
 <html>
-	<head>
-		<title>test twext with firefox, javascript enabled</title>
-		<script src='twexter/jquery.js' language="javascript" type="text/javascript"></script>
-		<script src='twexter/twexter.js' language="javascript" type="text/javascript"></script>
-		<link rel="stylesheet" href="twexter/twexter.css" type="text/css">
-		<link rel="stylesheet" href="twexter/tabber.css" type="text/css">
-		<style>
-		<!--
-			span.twext-text {
-				font: <?php echo $post["twixt-text-font"]; ?>;
-				color: <?php echo $post["twixt-text-color"]; ?>;
-			}
-			span.twext-twxt {
-				font: <?php echo $post["twixt-twxt-font"]; ?>;
-				color: <?php echo $post["twixt-twxt-color"]; ?>;
-			}
-		-->
-		</style>
-		<script src='twexter/tabber.js'></script>
-	</head>
-	<body style='font-family: arial; padding:0px; margin:0px;'>
-		<!--div id='intro' style='position:fixed; top:0px; bottom:0px; left:0px; right:0px; background:darkGray; padding:10%; z-index:100'>
-			<h1 id='intro-header' align="center" style="top:20%; position:relative; color:white;font-family:Verdana,Tahoma">twexter</h1>
-		</div-->
-		<div style='width:100%; height:100%; position:absolute;'>
-
-			<table><tr><td align=right valign=bottom>
-			<img src="twexter/xx.gif">
-			</td><td valign=bottom align=right><font size="-2" face="verdana,tahoma" color="gray">
-			 <font color="red">please use the <b>
-			FIREFOX BROWSER</font></b> to test this twexter otherwise don't bother, thanks<br> <a href="http://mozilla.org/firefox">firefox</a> test
-			zeen twexter <a	href="../go/test">feedback</a> . <a href="../faq.html">faq</a> <a href="../go/">news</a> twext™ © 2007, <a href="http://license.read.fm">read.fm</a>
-			some rights reserved <a href="http://sf.net/projects/twexter">improve twexter</a> <a href="http://wiki.laptop.org/go/WiXi">for
-			<b>wixi</b></a></font></td></tr></table>
-			<!--<h1 style='height:15px; margin:10px;'>twexter</h1>-->
-			<form action='javascript:void(0);' method='post'>
-				<div class='tabber' style='position:absolute; top:40px; height:auto; left:10px; right:10px; bottom:10px;'>
-					<div class='tabbertab'>
-						<h2>input twext</h2>
-						<div style='height:90%; position:relative;'>
-							<div class='xcroll' style='position:absolute; width:100%; top:0px; bottom:30px;'>
-								<div class='xcroll-preview'></div>
-								<textarea name='text1' class='xcroll-left' WRAP='OFF'><?php echo htmlspecialchars($post['text1']);?></textarea>
-								<textarea name='text2' class='xcroll-right' WRAP='OFF'><?php echo htmlspecialchars($post['text2']);?></textarea>
-							</div>
-							<div align='center' style='position:absolute; width:100%; bottom:0px;'><input type='button' value='twext me' onclick="javascript:twext_text();"/></div>
-							<!--
-								<div align='center' style='postion:abolute; width:100% bottom:0px;'>
-								<font size="-2" color="silver"><b>© 2007, <a href=http://license.read.fm>read.fm</a><br>some rights reserved</font></b>
-								</DIV>
-								-->
-						</div>
-					</div>
-					<div class='tabbertab' style="height:700px;overflow:auto">
-						<h2>tweXML</h2>
-						<fieldset>
-							<legend>Save twexml</legend>
-							<form method="post">
-								File Name (without extension) &nbsp;<input type="text" name="filename">
-								<input type="submit" value="save">
-							</form>
-						</fieldset>
-						<pre><?php echo htmlentities(twext_xml($twext));?></pre>
-					</div>
-					<div class='tabbertab'>
-						<h3>style twext</h3>
-						<table width="100%"><tr><td align="center">
-						<table><tr><td align="right"><font size="+1" color="000033">TEXT</font><br />
-						font <input type='text' name='twixt-text-font' value='<?php echo $post["twixt-text-font"]; ?>' /><br />
-						color <input type='text' name='twixt-text-color' value='<?php echo $post["twixt-text-color"] ?>' /><br />
-						</td><td valign="center" align="center"><img src="twexter/xx.gif"></td><td>
-						<font color="cccc99"><b>twxt</font></b><br />
-						<input type='text' name='twixt-twxt-font' value='<?php echo $post["twixt-twxt-font"]; ?>' />font<br />
-						<input type='text' name='twixt-twxt-color' value='<?php echo $post["twixt-twxt-color"]; ?>' />color<br />
-						</td></tr></table></td></tr></table>
-					</div>
-				</div>
-			</form>
-		</div>
-	</body>
+  <head>
+    <title>Twexter</title>
+    <script src='twexter/jquery.js' language="javascript" type="text/javascript"></script>
+    <script src='twexter/twexter.js' language="javascript" type="text/javascript"></script>
+    <link rel="stylesheet" href="twexter/twexter.css" type="text/css">
+    <link rel="stylesheet" href="twexter/tabber.css" type="text/css">
+    <style>
+      <!--
+	  span.twext-text {
+	  font: <?php echo $post["twixt-text-font"]; ?>;
+	  color: <?php echo $post["twixt-text-color"]; ?>;
+	  }
+	  span.twext-twxt {
+	  font: <?php echo $post["twixt-twxt-font"]; ?>;
+	  color: <?php echo $post["twixt-twxt-color"]; ?>;
+	  }
+	-->
+    </style>
+    <script src='twexter/tabber.js'></script>
+  </head>
+  <body style='font-family: arial; padding:0px; margin:0px;'>
+    <div style='width:100%; height:100%; position:absolute;'>
+      <table><tr><td align=right valign=bottom>
+	    <img src="twexter/xx.gif">
+	  </td><td valign=bottom align=right><font size="-2" face="verdana,tahoma" color="gray">
+	      <font color="red">please use the <b>
+		  FIREFOX BROWSER</font></b> to test this twexter otherwise don't bother, thanks<br> <a href="http://mozilla.org/firefox">firefox</a> test
+	      zeen twexter <a	href="../go/test">feedback</a> . <a href="../faq.html">faq</a> <a href="../go/">news</a> twext™ © 2007, <a href="http://license.read.fm">read.fm</a>
+	      some rights reserved <a href="http://sf.net/projects/twexter">improve twexter</a> <a href="http://wiki.laptop.org/go/WiXi">for
+		<b>wixi</b></a></font></td></tr></table>
+      <form action='javascript:void(0);' method='post'>
+	<div class='tabber' style='position:absolute; top:40px; height:auto; left:10px; right:10px; bottom:10px;'>
+	  <div class='tabbertab'>
+	    <h2>input twext</h2>
+	    <div style='height:90%; position:relative;'>
+	      <div class='xcroll' style='position:absolute; width:100%; top:0px; bottom:30px;'>
+		<div class='xcroll-preview'></div>
+		<textarea name='text1' class='xcroll-left' WRAP='OFF'><?php echo htmlspecialchars($post['text1']);?></textarea>
+		<textarea name='text2' class='xcroll-right' WRAP='OFF'><?php echo htmlspecialchars($post['text2']);?></textarea>
+	      </div>
+	      <div align='center' style='position:absolute; width:100%; bottom:0px;'><input type='button' value='twext me' onclick="javascript:twext_text();"/></div>
+	    </div>
+	  </div>
+	  <div class='tabbertab' style="height:700px;overflow:auto">
+	    <h2>tweXML</h2>
+	    <fieldset>
+	      <legend>Save twexml</legend>
+	      <form method="post" action="javascript:void(0);">
+		File Name (without extension) &nbsp;<input type="text" name="filename">
+		<input type="submit" value="save">
+	      </form>
+	    </fieldset>
+	    <pre>Coming soon... javascript only...</pre>
+	  </div>
+	  <div class='tabbertab'>
+	    <h3>style twext</h3>
+	    <table width="100%"><tr><td align="center">
+		  <table><tr><td align="right"><font size="+1" color="000033">TEXT</font><br />
+			font <input type='text' name='twixt-text-font' value='<?php echo $post["twixt-text-font"]; ?>' /><br />
+			color <input type='text' name='twixt-text-color' value='<?php echo $post["twixt-text-color"] ?>' /><br />
+		      </td><td valign="center" align="center"><img src="twexter/xx.gif"></td><td>
+			<font color="cccc99"><b>twxt</font></b><br />
+			<input type='text' name='twixt-twxt-font' value='<?php echo $post["twixt-twxt-font"]; ?>' />font<br />
+			<input type='text' name='twixt-twxt-color' value='<?php echo $post["twixt-twxt-color"]; ?>' />color<br />
+	    </td></tr></table></td></tr></table>
+	  </div>
+	</div>
+      </form>
+    </div>
+  </body>
 </html>

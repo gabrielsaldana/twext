@@ -1,9 +1,5 @@
 <?php
-
 class TMain {
-
-	
-
 	function TMain() {
 		session_start();
 	}
@@ -41,5 +37,4 @@ class TMain {
 		header("Location: ".$path);
 	}
 }
-
 ?>
