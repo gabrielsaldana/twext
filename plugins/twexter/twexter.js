@@ -157,7 +157,7 @@ function fixXcrolls() {
 	      //$("#status").text("preview update; " + new Date());
 	      loaded = true;
 	    }
-	  }, 100);
+	  }, 250);
 	// hook tabbing. searches the line with the cursor, and moves to the same line in the other textarea
 	var tab = function(from, to) {
 	  var line = from.val().substring(0, from.get(0).selectionEnd).split("\n").length-1;
