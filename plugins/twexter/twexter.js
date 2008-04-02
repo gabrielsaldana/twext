@@ -3,8 +3,8 @@ var loaded = false;
 
 // better and faster trim function
 // taken from http://blog.stevenlevithan.com/archives/faster-trim-javascript
-function trim(str) {
-  var str = str.replace(/^\s\s*/, ''),
+function trim(string) {
+  var str = string.replace(/^\s\s*/, ''),
     ws = /\s/,
     i = str.length;
   while (ws.test(str.charAt(--i)));
