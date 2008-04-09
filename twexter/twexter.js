@@ -3,8 +3,8 @@ var loaded = false;
 
 // better and faster trim function
 // taken from http://blog.stevenlevithan.com/archives/faster-trim-javascript
-function trim(str) {
-  var str = str.replace(/^\s\s*/, ''),
+function trim(string) {
+  var str = string.replace(/^\s\s*/, ''),
     ws = /\s/,
     i = str.length;
   while (ws.test(str.charAt(--i)));
@@ -99,7 +99,6 @@ function _scrollTo(to, from) {
   var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
   return to.scrollTop = percent * (to.scrollHeight - to.clientHeight) / 100;
 }
-
 // fixes tables problem by calculating and setting negative right margins for chunks
 function solveTablesProblem(xcroll) {
   $(".twext-line", xcroll).each(function() {
@@ -121,7 +120,6 @@ function solveTablesProblem(xcroll) {
       }
     });
 }
-
 // main xcroll setup function
 function fixXcrolls() {
   // loop over all xcrolls
@@ -179,7 +177,6 @@ function fixXcrolls() {
 	  //$("#status").text("preview update; " + new Date());
 	  loaded = true;
 	}
-
 	// hook tabbing. searches the line with the cursor, and moves to the same line in the other textarea
 	var tab = function(from, to) {
 	  var line = from.val().substring(0, from.get(0).selectionEnd).split("\n").length-1;
@@ -197,8 +194,8 @@ function fixXcrolls() {
 }
 function twext_text()
 {
-   $(".xcroll").each(function() {
-       var left = $(this).children(".xcroll-left");
+  $(".xcroll").each(function() {
+    var left = $(this).children(".xcroll-left");
        var right = $(this).children(".xcroll-right");
        var preview = $(this).children(".xcroll-preview");
        preview.html(twext_html(twext_parse(left.val(),right.val())));
@@ -206,6 +203,6 @@ function twext_text()
 }
 // initial function, called when document is loaded
 $(document).ready(function(){
-    fixXcrolls();
-    twext_text;
-  });
+		    fixXcrolls();
+		    twext_text;
+		  });
