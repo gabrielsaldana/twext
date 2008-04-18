@@ -1,0 +1,19 @@
+textarea {
+    width: 49.8%;
+    height: 90%;
+    overflow: hidden;
+    border: none;
+}
+#xscroll-left {
+    text-align: right;
+    float:left;
+    color: white;
+    background: black;
+    font-weight: bold;
+}
+#xscroll-right {
+    text-align: left;
+    float:right;
+    background: white;
+    color: black;
+}
