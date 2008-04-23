@@ -194,12 +194,13 @@ function fixXcrolls() {
 }
 function twext_text()
 {
-  $(".xcroll").each(function() {
-    var left = $(this).children(".xcroll-left");
-       var right = $(this).children(".xcroll-right");
-       var preview = $(this).children(".xcroll-preview");
-       preview.html(twext_html(twext_parse(left.val(),right.val())));
-     });
+//   $(".xcroll").each(function() {
+//     var left = $(this).children(".xcroll-left");
+//        var right = $(this).children(".xcroll-right");
+//        var preview = $(this).children(".xcroll-preview");
+//        preview.html(twext_html(twext_parse(left.val(),right.val())));
+//      });
+preview.innerHTML = twext_html(twext_parse(left.value,right.value));
 }
 // initial function, called when document is loaded
 $(document).ready(function(){
