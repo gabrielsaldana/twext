@@ -11,7 +11,6 @@
     <textarea name='text2' id='xscroll-right' onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"><?php echo htmlspecialchars($post['text2']);?></textarea>
     <input type='button' value='twext me' onclick="javascript:twext_text();"/>
   </body>
-    <script src="twexter/jquery.js" language="javascript" type="text/javascript"></script>
     <script src="example.js" language="javascript" type="text/javascript"></script>
     <script src="twexter.js" language="javascript" type="text/javascript"></script>
 </html>
