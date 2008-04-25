@@ -6,14 +6,20 @@ right.value = text2;
 
 left.style.height = left.scrollHeight + 25 + 'px';
 right.style.height = right.scrollHeight +25 + 'px';
-
+//write to file twexted text in json format
+function saveTwext(filename,twexted_text)
+{
+   // parse twexted text string to json
+   // write json to file
+}
+//dynamically grow both textareas depending on content
 function growTextAreas(thistextarea,othertextarea)
 {
-  var thistextarea = document.getElementById(thistextarea);
+  var thistext = document.getElementById(thistextarea);
   var other = document.getElementById(othertextarea);
 
-  thistextarea.style.height = thistextarea.scrollHeight + 'px';
-  other.style.height = thistextarea.style.height;
+  thistext.style.height = thistextarea.scrollHeight + 'px';
+  other.style.height = thistext.style.height;
 }
 
 // better and faster trim function
@@ -91,6 +97,7 @@ function _scrollTo(to, from) {
   var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
   return to.scrollTop = percent * (to.scrollHeight - to.clientHeight) / 100;
 }
+// Present twexted text into preview area
 function twext_text()
 {
    preview.innerHTML = twext_html(twext_parse(left.value,right.value));
