@@ -1,16 +1,19 @@
 var left = document.getElementById('xscroll-left');
 var right = document.getElementById('xscroll-right');
 var preview = document.getElementById('preview');
+var twexted = '';
 left.value = text1;
 right.value = text2;
 
+
 left.style.height = left.scrollHeight + 25 + 'px';
 right.style.height = right.scrollHeight +25 + 'px';
-//write to file twexted text in json format
-function saveTwext(filename,twexted_text)
+//write twexted text in json format
+function saveTwext(twexted_text)
 {
    // parse twexted text string to json
-   // write json to file
+   var saved = JSON.stringify(twexted_text);
+   return saved;
 }
 //dynamically grow both textareas depending on content
 function growTextAreas(thistextarea,othertextarea)
@@ -100,5 +103,13 @@ function _scrollTo(to, from) {
 // Present twexted text into preview area
 function twext_text()
 {
-   preview.innerHTML = twext_html(twext_parse(left.value,right.value));
+   twexted = twext_parse(left.value,right.value);
+   preview.innerHTML = twext_html(twexted);
 }
+// Load the preview with example at startup
+if(window.addEventListener)
+   window.addEventListener('load', twext_text, false);
+else if(window.attachEvent)
+   window.attachEvent('onload',twext_text);
+else
+window.onload = twext_text();
