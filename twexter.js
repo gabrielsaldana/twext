@@ -20,6 +20,13 @@ var exceptions_befo = ['as a', 'as the' 'ave.' 'dr.' 'in effect', 'mr.', 'mrs.']
 //----------
 // Chunkster
 //----------
+function process_chunkster(text)
+{
+   var chunked = filter_befo(text);
+   chunked = filter_afte(chunked);
+   chunked = filter_both(chunked);
+   return chunked;
+}
 // apply befo filters and exceptions
 function filter_befo(text)
 {
@@ -142,7 +149,7 @@ function _scrollTo(to, from) {
 // Present twexted text into preview area
 function twext_text()
 {
-   twexted = twext_parse(left.value,right.value);
+   twexted = twext_parse(process_chunkster(left.value),process_chunkster(right.value));
    preview.innerHTML = twext_html(twexted);
 }
 // Load the preview with example at startup
