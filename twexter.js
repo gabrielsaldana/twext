@@ -17,6 +17,36 @@ var both = ['after', 'and', 'based on', 'before', 'but', 'for', 'if', 'or', 'tha
 // exceptions filter list
 var exceptions_befo = ['as a', 'as the' 'ave.' 'dr.' 'in effect', 'mr.', 'mrs.'];
 
+//----------
+// Chunkster
+//----------
+// apply befo filters and exceptions
+function filter_befo(text)
+{
+   for(var word in befo)
+   {
+      var filter = new RegExp("\\b(" + word + ")\\b", "g");
+      text.replace(filter, "\n" + word);
+   }
+}
+// apply afte filters and exceptions
+function filter_afte(text)
+{
+   for(var word in afte)
+   {
+      var filter = new RegExp("\\b(" + word + ")\\b", "g");
+      text.replace(filter, word + "\n");
+   }
+}
+// apply both filters and exceptions
+function filter_both(text)
+{
+   for(var word in befo)
+   {
+      var filter = new RegExp("\\b(" + word + ")\\b", "g");
+      text.replace(filter, "\n" + word + "\n");
+   }
+}
 //write twexted text in json format
 function saveTwext(twexted_text)
 {
