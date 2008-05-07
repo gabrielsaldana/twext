@@ -9,13 +9,13 @@ left.style.height = left.scrollHeight + 25 + 'px';
 right.style.height = right.scrollHeight +25 + 'px';
 
 // befo filter list
-var befo = ['(', 'a', 'are','as','at','be','by','can','could','eight'];
+var befo = ['(','a', 'are','as','at','be','by','can','could','eight'];
 // afte filter list
 var afte = [')',',',';'];
 // both filter list
 var both = ['after', 'and', 'based on', 'before', 'but', 'for', 'if', 'or', 'that', 'with'];
 // exceptions filter list
-var exceptions_befo = ['as a', 'as the' 'ave.' 'dr.' 'in effect', 'mr.', 'mrs.'];
+var exceptions_befo = ['as a', 'as the', 'ave.', 'dr.', 'in effect', 'mr.', 'mrs.'];
 
 //----------
 // Chunkster
@@ -30,29 +30,37 @@ function process_chunkster(text)
 // apply befo filters and exceptions
 function filter_befo(text)
 {
-   for(var word in befo)
+   for(var i in befo)
    {
-      var filter = new RegExp("\\b(" + word + ")\\b", "g");
-      text.replace(filter, "\n" + word);
+      var word = befo[i];
+      if(word == '\(') word = "\\(";
+      var filter = new RegExp("\\b" + word + "\\b","gim");
+      text = text.replace(filter, "\n" + word);
    }
+   return text;
 }
 // apply afte filters and exceptions
 function filter_afte(text)
 {
-   for(var word in afte)
+   for(var i in afte)
    {
-      var filter = new RegExp("\\b(" + word + ")\\b", "g");
-      text.replace(filter, word + "\n");
+      var word = afte[i];
+      if(word == '\)') word = "\\)";
+      var filter = new RegExp("\\b(" + word + ")\\b", "gim");
+      text = text.replace(filter, word + "\n");
    }
+   return text;
 }
 // apply both filters and exceptions
 function filter_both(text)
 {
-   for(var word in befo)
+   for(var i in both)
    {
-      var filter = new RegExp("\\b(" + word + ")\\b", "g");
-      text.replace(filter, "\n" + word + "\n");
+      var word = both[i];
+      var filter = new RegExp("\\b(" + word + ")\\b", "gim");
+      text = text.replace(filter, "\n" + word + "\n");
    }
+   return text;
 }
 //write twexted text in json format
 function saveTwext(twexted_text)
