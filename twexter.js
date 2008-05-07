@@ -2,8 +2,8 @@ var left = document.getElementById('xscroll-left');
 var right = document.getElementById('xscroll-right');
 var preview = document.getElementById('preview');
 var twexted = '';
-left.value = text1;
-right.value = text2;
+left.value = process_chunkster(text1);
+right.value = process_chunkster(text2);
 
 left.style.height = left.scrollHeight + 25 + 'px';
 right.style.height = right.scrollHeight +25 + 'px';
