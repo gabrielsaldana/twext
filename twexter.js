@@ -5,9 +5,18 @@ var twexted = '';
 left.value = text1;
 right.value = text2;
 
-
 left.style.height = left.scrollHeight + 25 + 'px';
 right.style.height = right.scrollHeight +25 + 'px';
+
+// befo filter list
+var befo = ['(', 'a', 'are','as','at','be','by','can','could','eight'];
+// afte filter list
+var afte = [')',',',';'];
+// both filter list
+var both = ['after', 'and', 'based on', 'before', 'but', 'for', 'if', 'or', 'that', 'with'];
+// exceptions filter list
+var exceptions_befo = ['as a', 'as the' 'ave.' 'dr.' 'in effect', 'mr.', 'mrs.'];
+
 //write twexted text in json format
 function saveTwext(twexted_text)
 {
