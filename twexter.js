@@ -157,8 +157,12 @@ function _scrollTo(to, from) {
 // Present twexted text into preview area
 function twext_text()
 {
-   twexted = twext_parse(process_chunkster(left.value),process_chunkster(right.value));
+   var chunksted_left = process_chunkster(left.value);
+   var chunksted_right = process_chunkster(right.value);
+   twexted = twext_parse(chunksted_left,chunksted_right);
    preview.innerHTML = twext_html(twexted);
+   left.value(chunksted_left);
+   right.value(chunksted_right);
 }
 // Load the preview with example at startup
 if(window.addEventListener)
