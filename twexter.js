@@ -15,8 +15,8 @@ var preview = document.getElementById('preview');
  */
 var twexted = '';
 
-left.value = process_chunkster(text1);
-right.value = process_chunkster(text2);
+// left.value = process_chunkster(text1);
+// right.value = process_chunkster(text2);
 
 left.style.height = left.scrollHeight + 25 + 'px';
 right.style.height = right.scrollHeight +25 + 'px';
@@ -51,17 +51,15 @@ google.load("language", "1");
  */
 function translate(text, origin_language, desired_language)
 {
-   var translated = '';
-google.language.translate(text, origin_language, desired_language, function(result) {
+   var translated = 'haa';
+   translated = google.language.translate(text, origin_language, desired_language, function(result) {
   if (!result.error) {
-    var container = document.getElementById("translation");
-    translated = result.translation;
+     translated = result.translation;
   }
 });
+   alert(translated);
    return translated;
 }
-
-
 //----------
 // Chunkster
 //----------
@@ -151,7 +149,6 @@ function growTextAreas(thistextarea,othertextarea)
   thistext.style.height = thistextarea.scrollHeight + 'px';
   other.style.height = thistext.style.height;
 }
-
 /**
  *  better and faster trim function
  *  taken from http://blog.stevenlevithan.com/archives/faster-trim-javascript
@@ -251,17 +248,19 @@ function _scrollTo(to, from) {
  */
 function twext_text()
 {
-   var chunksted_left = process_chunkster(left.value);
-   var chunksted_right = process_chunkster(right.value);
+//    var chunksted_left = process_chunkster(left.value);
+//    var chunksted_right = process_chunkster(translate(chunksted_left));
+   var chunksted_left = left.value;
+   var chunksted_right = translate(chunksted_left, "es","en");
    twexted = twext_parse(chunksted_left,chunksted_right);
    preview.innerHTML = twext_html(twexted);
-   left.value(chunksted_left);
-   right.value(chunksted_right);
+   left.value = chunksted_left;
+   right.value = chunksted_right;
 }
-// Load the preview with example at page load
-if(window.addEventListener)
-   window.addEventListener('load', twext_text, false);
-else if(window.attachEvent)
-   window.attachEvent('onload',twext_text);
-else
-window.onload = twext_text();
+// // Load the preview with example at page load
+// if(window.addEventListener)
+//    window.addEventListener('load', twext_text, false);
+// else if(window.attachEvent)
+//    window.attachEvent('onload',twext_text);
+// else
+// window.onload = twext_text();
