@@ -1,21 +1,66 @@
+/**
+ * @var Object The html object of the left text area
+ */
 var left = document.getElementById('xscroll-left');
+/**
+ * @var Object The html object of the right text area
+ */
 var right = document.getElementById('xscroll-right');
+/**
+ * @var Object The html object of the preview div area
+ */
 var preview = document.getElementById('preview');
+/**
+ * @var String The variable to store the twexted text
+ */
 var twexted = '';
+
 left.value = process_chunkster(text1);
 right.value = process_chunkster(text2);
 
 left.style.height = left.scrollHeight + 25 + 'px';
 right.style.height = right.scrollHeight +25 + 'px';
 
-// befo filter list
+/**
+ * @var Array befo filter list
+ */
 var befo = ['(','a', 'are','as','at','be','by','can','could','eight'];
-// afte filter list
+/**
+ * @var Array afte filter list
+ */
 var afte = [')',',',';'];
-// both filter list
+/**
+ * @var Array both filter list
+ */
 var both = ['after', 'and', 'based on', 'before', 'but', 'for', 'if', 'or', 'that', 'with'];
-// exceptions filter list
+/**
+ * @var Array exceptions filter list
+ */
 var exceptions_befo = ['as a', 'as the', 'ave.', 'dr.', 'in effect', 'mr.', 'mrs.'];
+//------------
+// Google API
+//------------
+// Load Google translate API
+google.load("language", "1");
+/**
+ * Translate text
+ *
+ * @param string text The text to translate
+ * @param string origin_language The origin language
+ * @param string desired_language The desired language wanted
+ */
+function translate(text, origin_language, desired_language)
+{
+   var translated = '';
+google.language.translate(text, origin_language, desired_language, function(result) {
+  if (!result.error) {
+    var container = document.getElementById("translation");
+    translated = result.translation;
+  }
+});
+   return translated;
+}
+
 
 //----------
 // Chunkster
@@ -27,7 +72,11 @@ function process_chunkster(text)
    chunked = filter_both(chunked);
    return chunked;
 }
-// apply befo filters and exceptions
+/**
+ *  Apply befo filters and exceptions
+ *
+ * @param String The text
+ */
 function filter_befo(text)
 {
    for(var i in befo)
@@ -39,7 +88,11 @@ function filter_befo(text)
    }
    return text;
 }
-// apply afte filters and exceptions
+/**
+ *  Apply afte filters and exceptions
+ *
+ * @param String The text
+ */
 function filter_afte(text)
 {
    for(var i in afte)
@@ -51,7 +104,11 @@ function filter_afte(text)
    }
    return text;
 }
-// apply both filters and exceptions
+/**
+ * Apply both filters and exceptions
+ *
+ * @param String The text
+ */
 function filter_both(text)
 {
    for(var i in both)
@@ -62,14 +119,24 @@ function filter_both(text)
    }
    return text;
 }
-//write twexted text in json format
+/**
+ * Write twexted text in json format
+ *
+ * @param String The twexted text
+ * @return String A JSON formatted string ready to be saved
+ */
 function saveTwext(twexted_text)
 {
    // parse twexted text string to json
    var saved = JSON.stringify(twexted_text);
    return saved;
 }
-//dynamically grow both textareas depending on content
+/**
+ * Dynamically grow both textareas depending on content
+ *
+ * @param String The textarea id currently editing
+ * @param String The textarea id of the other textarea not being edited
+ */
 function growTextAreas(thistextarea,othertextarea)
 {
   var thistext = document.getElementById(thistextarea);
@@ -79,8 +146,13 @@ function growTextAreas(thistextarea,othertextarea)
   other.style.height = thistext.style.height;
 }
 
-// better and faster trim function
-// taken from http://blog.stevenlevithan.com/archives/faster-trim-javascript
+/**
+ *  better and faster trim function
+ *  taken from http://blog.stevenlevithan.com/archives/faster-trim-javascript
+ *
+ * @param String string The string of text to trim
+ * @return String the trimmed text
+ */
 function trim(string) {
   var str = string.replace(/^\s\s*/, ''),
     ws = /\s/,
@@ -88,7 +160,13 @@ function trim(string) {
   while (ws.test(str.charAt(--i)));
   return str.slice(0, i + 1);
 }
-// parses twext into a tree
+/**
+ * Parses twext into a tree
+ *
+ * @param String left The left side text
+ * @param String right The right side text
+ * @return Array Twexted text: An array of arrays with the text separated in paragraphs, lines and chunks
+ */
 function twext_parse(left, right) {
   var text_left = left.split("\n");
   var text_right = right.split("\n");
@@ -118,7 +196,11 @@ function twext_parse(left, right) {
   }
   return paragraphs;
 }
-// takes twext, and generates html for preview
+/**
+ * Takes twext, and generates html for preview
+ *
+ * @param Array The array of twexted text
+ */
 function twext_html(twext) {
   var span = document.createElement("span");
   var html = "<div class='twext-box'>\n";
@@ -144,17 +226,23 @@ function twext_html(twext) {
   html += "</div>\n";
   return html;
 }
-// scrolls preview according to text/twxt scroll position
+/**
+ * Scrolls preview according to text/twext scroll position
+ */
 function scrollTo(to, from) {
   var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
   to.style.top = (percent * (from.clientHeight - to.clientHeight) / 100) + "px";
 }
-// scrolls twxt/text according to text/twxt scroll position
+/**
+ * Scrolls twxt/text according to text/twxt scroll position
+ */
 function _scrollTo(to, from) {
   var percent = (from.scrollHeight == from.clientHeight) ? 0 : from.scrollTop * 100 / (from.scrollHeight - from.clientHeight);
   return to.scrollTop = percent * (to.scrollHeight - to.clientHeight) / 100;
 }
-// Present twexted text into preview area
+/**
+ * Present twexted text into preview area
+ */
 function twext_text()
 {
    var chunksted_left = process_chunkster(left.value);
@@ -164,7 +252,7 @@ function twext_text()
    left.value(chunksted_left);
    right.value(chunksted_right);
 }
-// Load the preview with example at startup
+// Load the preview with example at page load
 if(window.addEventListener)
    window.addEventListener('load', twext_text, false);
 else if(window.attachEvent)
