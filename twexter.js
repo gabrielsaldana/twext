@@ -65,6 +65,12 @@ google.language.translate(text, origin_language, desired_language, function(resu
 //----------
 // Chunkster
 //----------
+/**
+ * Process all the chunkster filters
+ *
+ * @param String text The text to parse
+ * @return String The chunked text
+ */
 function process_chunkster(text)
 {
    var chunked = filter_befo(text);
