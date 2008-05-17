@@ -55,6 +55,7 @@ function translate(text, origin_language, desired_language)
    translated = google.language.translate(text, origin_language, desired_language, function(result) {
   if (!result.error) {
      translated = result.translation;
+     return translated;
   }
 });
    alert(translated);
