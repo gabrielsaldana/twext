@@ -1,11 +1,11 @@
 /**
  * @var Object The html object of the left text area
  */
-var left = document.getElementById('xscroll-left');
+var txtleft = document.getElementById('xscroll-left');
 /**
  * @var Object The html object of the right text area
  */
-var right = document.getElementById('xscroll-right');
+var txtright = document.getElementById('xscroll-right');
 /**
  * @var Object The html object of the preview div area
  */
@@ -14,12 +14,16 @@ var preview = document.getElementById('preview');
  * @var String The variable to store the twexted text
  */
 var twexted = '';
+/**
+ * @var String The translated text
+ */
+var translated = '';
 
 // left.value = process_chunkster(text1);
 // right.value = process_chunkster(text2);
 
-left.style.height = left.scrollHeight + 25 + 'px';
-right.style.height = right.scrollHeight +25 + 'px';
+txtleft.style.height = txtleft.scrollHeight + 25 + 'px';
+txtright.style.height = txtright.scrollHeight +25 + 'px';
 
 /**
  * @var Array befo filter list
@@ -42,6 +46,8 @@ var exceptions_befo = ['as a', 'as the', 'ave.', 'dr.', 'in effect', 'mr.', 'mrs
 //------------
 // Load Google translate API
 google.load("language", "1");
+
+
 /**
  * Translate text
  *
@@ -51,15 +57,11 @@ google.load("language", "1");
  */
 function translate(text, origin_language, desired_language)
 {
-   var translated = 'haa';
-   translated = google.language.translate(text, origin_language, desired_language, function(result) {
+   google.language.translate(text, origin_language, desired_language, function(result) {
   if (!result.error) {
      translated = result.translation;
-     return translated;
   }
 });
-   alert(translated);
-   return translated;
 }
 //----------
 // Chunkster
@@ -185,18 +187,23 @@ function twext_parse(left, right) {
     var chunk_left = i < total_lines_text_left ? trim(text_left[i]) : '';
     var chunk_right = i < total_lines_text_right ? trim(text_right[i]) : '';
     if (!chunk_left && !chunk_right) { // if its a blank line on both sides
-      if (line) {
-	if (!para) para = [];
-	para[para.length] = line;
-	line = false;
-      } else if (para) {
-	paragraphs[paragraphs.length] = para;
-	para = false;
-      }
-    } else {
-      if (!line) line = [];
-      line[line.length] = [chunk_left, chunk_right];
+       if (line)
+       {
+	  if (!para) para = [];
+	  para[para.length] = line;
+	  line = false;
+       }
+       if (para)
+       {
+	  paragraphs[paragraphs.length] = para;
+	  para = false;
+       }
     }
+    else
+     {
+	if (!line) line = [];
+	line[line.length] = [chunk_left, chunk_right];
+     }
   }
   return paragraphs;
 }
@@ -251,17 +258,18 @@ function twext_text()
 {
 //    var chunksted_left = process_chunkster(left.value);
 //    var chunksted_right = process_chunkster(translate(chunksted_left));
-   var chunksted_left = left.value;
-   var chunksted_right = translate(chunksted_left, "es","en");
+   var chunksted_left = txtleft.value;
+   translate(chunksted_left, "es","en");
+   var chunksted_right = translated;//txtright.value;
    twexted = twext_parse(chunksted_left,chunksted_right);
    preview.innerHTML = twext_html(twexted);
-   left.value = chunksted_left;
-   right.value = chunksted_right;
+   txtleft.value = chunksted_left;
+   txtright.value = chunksted_right;
 }
-// // Load the preview with example at page load
-// if(window.addEventListener)
-//    window.addEventListener('load', twext_text, false);
-// else if(window.attachEvent)
-//    window.attachEvent('onload',twext_text);
-// else
-// window.onload = twext_text();
+//  // Load the preview with example at page load
+//  if(window.addEventListener)
+//     window.addEventListener('load', google.load("language", "1"), false);
+//  else if(window.attachEvent)
+//     window.attachEvent('onload',google.load("language", "1"));
+//  else
+//  window.onload = google.load("language", "1");
