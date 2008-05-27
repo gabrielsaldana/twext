@@ -19,8 +19,8 @@ var twexted = '';
  */
 var translated = '';
 
-// left.value = process_chunkster(text1);
-// right.value = process_chunkster(text2);
+//txtleft.value = process_chunkster(text1);
+//txtright.value = process_chunkster(text2);
 
 txtleft.style.height = txtleft.scrollHeight + 25 + 'px';
 txtright.style.height = txtright.scrollHeight +25 + 'px';
@@ -256,7 +256,7 @@ function _scrollTo(to, from) {
  */
 function twext_text()
 {
-//    var chunksted_left = process_chunkster(left.value);
+//    var chunksted_left = process_chunkster(txtleft.value);
 //    var chunksted_right = process_chunkster(translate(chunksted_left));
    var chunksted_left = txtleft.value;
 //   translate(chunksted_left, "es","en");
