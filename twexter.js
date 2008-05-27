@@ -259,8 +259,8 @@ function twext_text()
 //    var chunksted_left = process_chunkster(left.value);
 //    var chunksted_right = process_chunkster(translate(chunksted_left));
    var chunksted_left = txtleft.value;
-   translate(chunksted_left, "es","en");
-   var chunksted_right = translated;//txtright.value;
+//   translate(chunksted_left, "es","en");
+   var chunksted_right = txtright.value;
    twexted = twext_parse(chunksted_left,chunksted_right);
    preview.innerHTML = twext_html(twexted);
    txtleft.value = chunksted_left;
