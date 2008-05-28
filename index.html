@@ -6,12 +6,20 @@
 
   </head>
   <body>
+<h1>Twext</h1>
+
+<p>Enter a phrase on the black box, enter the equivalent translated text on the
+  white box. Click the &quot;Twext me&quot; button and start learning.</p>
     <div id='preview'></div>
     <form action="javscript:void(0)" method="post" accept-encoding="utf-8">
     <textarea name='text1' id='xscroll-left' onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
-    <textarea name='text2' id='xscroll-right' onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
+    <textarea name='text2' id='xscroll-right'
+  onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
+    <div id="buttons">
     <input type='button' value='twext me' onclick="javascript:twext_text();"/>
-    <input type='button' value='save' onclick="javascript:alert(saveTwext(twext_parse(left.value,right.value)));"/>
+    <input type='button' value='save'
+  onclick="javascript:alert(saveTwext(twext_parse(left.value,right.value)));"/>
+      </div>
   </body>
     <script src="json2.js" language="javascript" type="text/javascript"></script>
     <script src="twexter.js" language="javascript" type="text/javascript"></script>

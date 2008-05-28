@@ -2,7 +2,18 @@ textarea {
     width: 49.8%;
     height: 20%;
     overflow: hidden;
-    border: none;
+    border: 1px #ccc solid;
+}
+p {
+    color: #333;
+}
+h1 {
+    color: #999;
+    text-align: center;
+}
+#buttons {
+    width: 180px;
+    margin: 0 auto;
 }
 #xscroll-left {
     text-align: right;
