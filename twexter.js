@@ -45,7 +45,7 @@ var exceptions_befo = ['as a', 'as the', 'ave.', 'dr.', 'in effect', 'mr.', 'mrs
 // Google API
 //------------
 // Load Google translate API
-google.load("language", "1");
+//google.load("language", "1");
 
 
 /**
