@@ -1,14 +1,23 @@
+* {
+    font-family: Verdana, Helvetica, "Bitstream Vera Sans", sans-serif;
+}
 textarea {
     width: 49.8%;
-    height: 20%;
+    height: 150px;
     overflow: hidden;
     border: 1px #ccc solid;
 }
 p {
-    color: #333;
+    color: #000033;
+    text-align: center;
 }
 h1 {
-    color: #999;
+    color: #cccc99;
+    text-align: center;
+}
+h6 {
+    color: #cccc99;
+    font-weight: normal;
     text-align: center;
 }
 #buttons {
