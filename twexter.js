@@ -149,7 +149,7 @@ function growTextAreas(thistextarea,othertextarea)
   var thistext = document.getElementById(thistextarea);
   var other = document.getElementById(othertextarea);
 
-   if(thistext.scrollHeight > 180)
+   if(thistext.clientHeight < thistext.scrollHeight)
    {
       thistext.style.height = thistext.scrollHeight + 'px';
       other.style.height = thistext.style.height;
