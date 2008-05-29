@@ -7,7 +7,7 @@ textarea {
     overflow: hidden;
     border: 1px #ccc solid;
 }
-p {
+p, label {
     color: #000033;
     text-align: center;
 }
@@ -18,6 +18,17 @@ h1 {
 h6 {
     color: #cccc99;
     font-weight: normal;
+    text-align: center;
+}
+#preview {
+    margin-bottom: 20px;
+}
+#title {
+    width: 70%;
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+#titlediv {
     text-align: center;
 }
 #buttons {
@@ -38,9 +49,7 @@ h6 {
     color: black;
 }
 .twext-para {
-	margin:10px;
-	margin-bottom:20px;
-	margin-top:20px;
+	margin: 10px;
 	text-align: center;
 }
 .twext-line {
