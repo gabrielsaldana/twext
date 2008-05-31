@@ -19,9 +19,6 @@ var twexted = '';
  */
 var translated = '';
 
-//txtleft.value = process_chunkster(text1);
-//txtright.value = process_chunkster(text2);
-
 txtleft.style.height = txtleft.scrollHeight + 25 + 'px';
 txtright.style.height = txtright.scrollHeight +25 + 'px';
 
@@ -271,10 +268,3 @@ function twext_text()
    txtleft.value = chunksted_left;
    txtright.value = chunksted_right;
 }
-//  // Load the preview with example at page load
-//  if(window.addEventListener)
-//     window.addEventListener('load', google.load("language", "1"), false);
-//  else if(window.attachEvent)
-//     window.attachEvent('onload',google.load("language", "1"));
-//  else
-//  window.onload = google.load("language", "1");
