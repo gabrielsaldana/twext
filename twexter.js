@@ -265,7 +265,9 @@ function twext_text()
 //   translate(chunksted_left, "es","en");
    var chunksted_right = txtright.value;
    twexted = twext_parse(chunksted_left,chunksted_right);
-   preview.innerHTML = twext_html(twexted);
+   var title = document.getElementById('title');
+   var previewtext = "<h1 class=\"title\">" + title.value + "</h1>\n";
+   preview.innerHTML = previewtext + twext_html(twexted);
    txtleft.value = chunksted_left;
    txtright.value = chunksted_right;
 }

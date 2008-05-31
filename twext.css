@@ -7,7 +7,7 @@ textarea {
     overflow: hidden;
     border: 1px #ccc solid;
 }
-p, label {
+p, label, .title {
     color: #000033;
     text-align: center;
 }
