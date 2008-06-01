@@ -1,3 +1,4 @@
+/* This file contains the styles for the twexter interface */
 * {
     font-family: Verdana, Helvetica, "Bitstream Vera Sans", sans-serif;
 }
@@ -35,17 +36,33 @@ h6 {
 #preview {
     margin-bottom: 20px;
 }
-#title {
-    width: 50%;
-    margin: 5px;
-    border: 1px solid #ccc;
-}
 #titlediv {
     text-align: center;
 }
 #buttons {
     width: 180px;
     margin: 0 auto;
+}
+#style-controls {
+    margin: 10px auto;
+    border: 1px dashed #ccc;
+    width: 350px;
+    padding: 10px;
+}
+#style-controls table {
+    margin: 0 auto;
+}
+.normal-control {
+    color: gray;
+}
+.twext-control {
+    color: silver;
+}
+.normal-control-title {
+    color: #000033;
+}
+.twext-control-title {
+    color: #cccc99;
 }
 #xscroll-left {
     text-align: right;
@@ -60,38 +77,4 @@ h6 {
     background: white;
     color: black;
 }
-.twext-para {
-	margin: 10px;
-	text-align: center;
-}
-.twext-line {
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	width:auto;
-	text-align: center;
-	clear:both;
-	position: relative;
-	height:26px; /* this can be changed to modify the spacing between lines*/
-}
-.twext-chunk { /* chunks should have been inline blocks or tables, but firefox doesn't support that :( */
-	display: inline;
-	text-align:center;
-}
-.twext-chunk span {
-	padding:0px;
-	display:table-row;
-	text-align:center;
-}
-span.twext-text {
-	display:inline;
-	font: normal bolder 14pt Arial;
-	color: #000033;
-}
-span.twext-twxt {
-	display:inline;
-	font: normal 10pt Arial;
-	color: #cccc99;
-	position:relative;
-	top:-8px; /* this can be change to modify the spacing between text/twxt */
-}
+
