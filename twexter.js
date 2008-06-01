@@ -263,7 +263,7 @@ function twext_text()
    var chunksted_right = txtright.value;
    twexted = twext_parse(chunksted_left,chunksted_right);
    var title = document.getElementById('title');
-   var previewtext = "<h1 class=\"title\">" + title.value + "</h1>\n";
+   var previewtext = "<h1 class=\"title\">" + title.value.toUpperCase() + "</h1>\n";
    preview.innerHTML = previewtext + twext_html(twexted);
    txtleft.value = chunksted_left;
    txtright.value = chunksted_right;
