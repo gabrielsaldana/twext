@@ -267,4 +267,5 @@ function twext_text()
    preview.innerHTML = previewtext + twext_html(twexted);
    txtleft.value = chunksted_left;
    txtright.value = chunksted_right;
+   scroll(0,0);
 }
