@@ -19,8 +19,27 @@ var twexted = '';
  */
 var translated = '';
 
+var twext_box = '';
+var twext_para = '';
+var twext_chunk = '';
+var twext_line = '';
+var twext_txt = '';
+var twext_twxt = '';
+
+function setStyle(style,attribute)
+{
+   switch(style)
+   {
+      case 'normal-color':
+	 twext_txt = 'color: ' + attribute + '; ';
+      break;
+      case 'twxt-color':
+	 twext_twxt = "color: " + attribute + "; ";
+      break;
+   }
+}
 txtleft.style.height = txtleft.scrollHeight + 25 + 'px';
-txtright.style.height = txtright.scrollHeight +25 + 'px';
+txtright.style.height = txtright.scrollHeight + 25 + 'px';
 
 /**
  * @var Array befo filter list
@@ -207,6 +226,7 @@ function twext_parse(left, right) {
   }
   return paragraphs;
 }
+
 /**
  * Takes twext, and generates html for preview
  *
@@ -214,20 +234,20 @@ function twext_parse(left, right) {
  */
 function twext_html(twext) {
   var span = document.createElement("span");
-  var html = "<div class='twext-box'>\n";
+  var html = "<div " + ((twext_box) ? "style=\"" + twext_box + "\">\n" : "class='twext-box'>\n");
   for (var i = 0; i < twext.length; i++) {
     var para = twext[i];
-    html += "  <div class='twext-para'>\n";
+    html += "  <div " + ((twext_para) ? "style=\"" + twext_para + "\">\n" : "class='twext-para'>\n");
     for (var j = 0; j < para.length; j++) {
       var line = para[j];
-      html += "    <div class='twext-line'>\n";
+      html += "    <div " + ((twext_line) ? "style=\"" + twext_line + "\">\n" : "class='twext-line'>\n");
       for (var k = 0; k < line.length; k++) {
 	var chunk = line[k];
-	html += "      <span class='twext-chunk'>\n";
+	html += "      <span " + ((twext_chunk) ? "style=\"" + twext_chunk + "\">\n" : "class='twext-chunk'>\n");
 	span.textContent = chunk[0];
-	html += "        <span><span class='twext-text'>"+span.innerHTML+"</span></span>\n";
+	html += "        <span><span " + ((twext_txt) ? "style=\"" + twext_txt + "\">" : "class='twext-text'>") +span.innerHTML+"</span></span>\n";
 	span.textContent = chunk[1];
-	html += "        <span><span class='twext-twxt'>"+span.innerHTML+"</span></span>\n";
+	html += "        <span><span " + ((twext_twxt) ? "style=\"" + twext_twxt + "\">" : "class='twext-twxt'>")+span.innerHTML+"</span></span>\n";
 	html += "      </span>\n";
       }
       html += "    </div>\n";

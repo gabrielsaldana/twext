@@ -44,7 +44,7 @@ Twexter</h1>
 	  <tr>
 	    <td class="normal-control">Color</td>
 	    <td>
-	      <select name="normal-color-control">
+	      <select name="normal-color-control" onchange="javascript:setStyle('normal-color', this.value)">
 		<option value="#000033">Default</option>
 		<option value="blue">Blue</option>
 		<option value="red">Red</option>
@@ -52,7 +52,7 @@ Twexter</h1>
 	    </td>
 	    <td class="twext-control">color</td>
 	    <td>
-	      <select name="twext-color-control">
+	      <select name="twext-color-control" onchange="javascript:setStyle('twxt-color', this.value)">
 		<option value="#cccc99">Default</option>
 		<option value="blue">Blue</option>
 		<option value="red">Red</option>
