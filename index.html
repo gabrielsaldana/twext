@@ -1,9 +1,10 @@
+<!-- Twexter interface -->
 <html>
   <head>
     <title>Twexter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="twext.css" type="text/css">
-
+    <link rel="stylesheet" href="twexter.css" type="text/css">
   </head>
   <body>
 <h1>
@@ -29,8 +30,107 @@ Twexter</h1>
     <input type="button" value="save"
   onclick="javascript:alert(saveTwext(twext_parse(txtleft.value,txtright.value)));"/>
       </div>
-  </body>
-    <script src="json2.js" language="javascript" type="text/javascript"></script>
-    <script src="twexter.js" language="javascript" type="text/javascript"></script>
 
+      <div id="style-controls">
+	<table>
+	  <tr>
+	    <th>&nbsp;</th>
+	    <th class="normal-control-title">Text</th>
+	    <th>&nbsp;</th>
+	    <th class="twext-control-title">Twext</th>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Color</td>
+	    <td>
+	      <select>
+		<option value="#000033">Default</option>
+		<option value="blue">Blue</option>
+		<option value="red">Red</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">color</td>
+	    <td>
+	      <select>
+		<option value="#cccc99">Default</option>
+		<option value="blue">Blue</option>
+		<option value="red">Red</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Font</td>
+	    <td>
+	      <select>
+		<option value="Verdana">Default</option>
+		<option value="Arial">Arial</option>
+		<option value="Times New Roman">Times</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">font</td>
+	    <td>
+	      <select>
+		<option value="Verdana">Default</option>
+		<option value="Arial">Arial</option>
+		<option value="Times New Roman">Times</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Bold</td>
+	    <td>
+	      <select>
+		<option value="normal">Default</option>
+		<option value="bold">Bold</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">bold</td>
+	    <td>
+	      <select>
+		<option value="normal">Default</option>
+		<option value="bold">Bold</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Size</td>
+	    <td>
+	      <select>
+		<option value="12">Default</option>
+		<option value="14">14</option>
+		<option value="16">16</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">size</td>
+	    <td>
+	      <select>
+		<option value="6">Default</option>
+		<option value="8">8</option>
+		<option value="10">10</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Space</td>
+	    <td>
+	      <select>
+		<option value="1em">Default</option>
+		<option value="1.5em">1.5em</option>
+		<option value="2em">2em</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">space</td>
+	    <td>
+	      <select>
+		<option value="1em">Default</option>
+		<option value="1.5em">1.5em</option>
+		<option value="2em">2em</option>
+	      </select>
+	    </td>
+	  </tr>
+	</table>
+      </div>
+
+      <script src="json2.js" language="javascript" type="text/javascript"></script>
+      <script src="twexter.js" language="javascript" type="text/javascript"></script>
+   </body>
 </html>
