@@ -28,12 +28,12 @@
 	display:table-row;
 	text-align:center;
 }
-span.twext-text {
+.twext-text {
 	display:inline;
 	font: normal bolder 14pt Arial;
 	color: #000033;
 }
-span.twext-twxt {
+.twext-twxt {
 	display:inline;
 	font: normal 10pt Arial;
 	color: #cccc99;
