@@ -1,18 +1,139 @@
+<!-- Twexter interface -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
     <title>Twexter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="twext.css" type="text/css">
+    <link rel="stylesheet" href="twexter.css" type="text/css">
   </head>
   <body>
+<h1>
+<img src="xx.gif"><br>
+Twexter</h1>
+
+<p><http://mozilla.org/firefox>test</a>
+<a href=http://twext.com/faq>twext</a>
+<a href=http://twext.com/method>method</a></p>
+<p style="font-weight:bold;color:orange">TEST WITH FIREFOX</font></p>
+
     <div id='preview'></div>
     <form action="javscript:void(0)" method="post" accept-encoding="utf-8">
-    <textarea name='text1' id='xscroll-left' onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
-    <textarea name='text2' id='xscroll-right' onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
-    <input type='button' value='twext me' onclick="javascript:twext_text();"/>
-    <input type='button' value='save' onclick="javascript:alert(saveTwext(twext_parse(left.value,right.value)));"/>
-  </body>
-    <script src="example.js" charset="utf-8" language="javascript" type="text/javascript"></script>
-    <script src="twexter.js" language="javascript" type="text/javascript"></script>
-    <script src="json2.js" language="javascript" type="text/javascript"></script>
+    <div id="titlediv">
+      <label>Title/T&iacute;tulo </label>
+      <input type="text" name="title" id="title" />
+    </div>
+    <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
+    <textarea name="text2" id="xscroll-right"
+  onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
+    <div id="buttons">
+    <input type="button" value="twext me" onclick="javascript:twext_text();"/>
+    <input type="button" value="save"
+  onclick="javascript:alert(saveTwext(twext_parse(txtleft.value,txtright.value)));"/>
+      </div>
+      <!-- begin style controls -->
+      <div id="style-controls">
+	<form id="styles-form" action="javascript:void(0)" method="post">
+	<table>
+	  <tr>
+	    <th>&nbsp;</th>
+	    <th class="normal-control-title">Text</th>
+	    <th>&nbsp;</th>
+	    <th class="twext-control-title">Twext</th>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Color</td>
+	    <td>
+	      <select name="normal-color-control">
+		<option value="#000033">Default</option>
+		<option value="blue">Blue</option>
+		<option value="red">Red</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">color</td>
+	    <td>
+	      <select name="twext-color-control">
+		<option value="#cccc99">Default</option>
+		<option value="blue">Blue</option>
+		<option value="red">Red</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Font</td>
+	    <td>
+	      <select name="normal-font-control">
+		<option value="Verdana">Default</option>
+		<option value="Arial">Arial</option>
+		<option value="Times New Roman">Times</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">font</td>
+	    <td>
+	      <select name="twext-font-control">
+		<option value="Verdana">Default</option>
+		<option value="Arial">Arial</option>
+		<option value="Times New Roman">Times</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Bold</td>
+	    <td>
+	      <select name="normal-bold-control">
+		<option value="normal">Default</option>
+		<option value="bold">Bold</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">bold</td>
+	    <td>
+	      <select name="twext-bold-control">
+		<option value="normal">Default</option>
+		<option value="bold">Bold</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Size</td>
+	    <td>
+	      <select name="normal-size-control">
+		<option value="12">Default</option>
+		<option value="14">14</option>
+		<option value="16">16</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">size</td>
+	    <td>
+	      <select name="twext-size-control">
+		<option value="6">Default</option>
+		<option value="8">8</option>
+		<option value="10">10</option>
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="normal-control">Space</td>
+	    <td>
+	      <select name="normal-space-control">
+		<option value="1em">Default</option>
+		<option value="1.5em">1.5em</option>
+		<option value="2em">2em</option>
+	      </select>
+	    </td>
+	    <td class="twext-control">space</td>
+	    <td>
+	      <select name="twext-space-control">
+		<option value="1em">Default</option>
+		<option value="1.5em">1.5em</option>
+		<option value="2em">2em</option>
+	      </select>
+	    </td>
+	  </tr>
+	</table>
+	</form>
+      </div>
+      <!-- end style controls -->
+      <script src="json2.js" language="javascript" type="text/javascript"></script>
+      <script src="twexter.js" language="javascript" type="text/javascript"></script>
+   </body>
 </html>
