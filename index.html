@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Twexter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="twext.css" type="text/css">
+  </head>
+  <body>
+    <div id='preview'></div>
+    <form action="javscript:void(0)" method="post" accept-encoding="utf-8">
+    <textarea name='text1' id='xscroll-left' onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
+    <textarea name='text2' id='xscroll-right' onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
+    <input type='button' value='twext me' onclick="javascript:twext_text();"/>
+    <input type='button' value='save' onclick="javascript:alert(saveTwext(twext_parse(left.value,right.value)));"/>
+  </body>
+    <script src="example.js" charset="utf-8" language="javascript" type="text/javascript"></script>
+    <script src="twexter.js" language="javascript" type="text/javascript"></script>
+    <script src="json2.js" language="javascript" type="text/javascript"></script>
+</html>
