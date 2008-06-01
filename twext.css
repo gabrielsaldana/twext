@@ -1,0 +1,80 @@
+/* This file contains the styles for the twexter interface */
+* {
+    font-family: Verdana, Helvetica, "Bitstream Vera Sans", sans-serif;
+}
+textarea {
+    width: 49.8%;
+    height: 150px;
+    overflow: hidden;
+    border: 1px #ccc solid;
+}
+p {
+    color: #000033;
+    text-align: center;
+}
+label {
+    color: #cccc99;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-variant: small-caps;
+}
+.title{
+    color: #330000;
+    text-align: center;
+}
+h1 {
+    color: #cccc99;
+    text-align: center;
+}
+h6 {
+    color: #cccc99;
+    font-weight: normal;
+    text-align: center;
+}
+#preview {
+    margin-bottom: 20px;
+}
+#titlediv {
+    text-align: center;
+}
+#buttons {
+    width: 180px;
+    margin: 0 auto;
+}
+#style-controls {
+    margin: 10px auto;
+    border: 1px dashed #ccc;
+    width: 350px;
+    padding: 10px;
+}
+#style-controls table {
+    margin: 0 auto;
+}
+.normal-control {
+    color: gray;
+}
+.twext-control {
+    color: silver;
+}
+.normal-control-title {
+    color: #000033;
+}
+.twext-control-title {
+    color: #cccc99;
+}
+#xscroll-left {
+    text-align: right;
+    float:left;
+    color: white;
+    background: black;
+    font-weight: bold;
+}
+#xscroll-right {
+    text-align: left;
+    float:right;
+    background: white;
+    color: black;
+}
+
