@@ -21,7 +21,7 @@ if(BrowserDetect.browser != "Firefox")
 <a href=http://twext.com/faq>Twext</a>&nbsp;<img src="xx.gif" alt="Twexter">&nbsp;<a href=http://twext.com/method>Method</a>
 </h1>
     <div id='preview'></div>
-    <form action="javscript:void(0)" method="post" accept-encoding="utf-8">
+    <form action="save.php" method="post" accept-encoding="utf-8">
     <div id="titlediv">
       <label>Title/T&iacute;tulo </label>
       <input type="text" name="title" id="title" />
@@ -30,9 +30,9 @@ if(BrowserDetect.browser != "Firefox")
     <textarea name="text2" id="xscroll-right"
   onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
     <div id="buttons">
-    <input type="button" value="twext me" onclick="javascript:twext_text();"/>
-    <input type="button" value="save"
-  onclick="javascript:alert(saveTwext(twext_parse(txtleft.value,txtright.value)));"/>
+    <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twext_parse(txtleft.value,txtright.value));"/>
+    <input type="submit" value="save" />
+      <input type="hidden" name="twexted_text" id="forsave" />
       </div>
       <!-- begin style controls -->
       <div id="style-controls">
