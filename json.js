@@ -1,16 +1,59 @@
 /*
-    http://www.JSON.org/json2.js
-    2008-03-24
+    json.js
+    2008-05-25
 
-    Public Domain.
+    Public Domain
 
-    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+    No warranty expressed or implied. Use at your own risk.
+
+    This file has been superceded by http://www.JSON.org/json2.js
 
     See http://www.JSON.org/js.html
 
-    This file creates a global JSON object containing three methods: stringify,
-    parse, and quote.
+    This file adds these methods to JavaScript:
 
+        array.toJSONString(whitelist)
+        boolean.toJSONString()
+        date.toJSONString()
+        number.toJSONString()
+        object.toJSONString(whitelist)
+        string.toJSONString()
+            These methods produce a JSON text from a JavaScript value.
+            It must not contain any cyclical references. Illegal values
+            will be excluded.
+
+            The default conversion for dates is to an ISO string. You can
+            add a toJSONString method to any date object to get a different
+            representation.
+
+            The object and array methods can take an optional whitelist
+            argument. A whitelist is an array of strings. If it is provided,
+            keys in objects not found in the whitelist are excluded.
+
+        string.parseJSON(filter)
+            This method parses a JSON text to produce an object or
+            array. It can throw a SyntaxError exception.
+
+            The optional filter parameter is a function which can filter and
+            transform the results. It receives each of the keys and values, and
+            its return value is used instead of the original value. If it
+            returns what it received, then structure is not modified. If it
+            returns undefined then the member is deleted.
+
+            Example:
+
+            // Parse the text. If a key contains the string 'date' then
+            // convert the value to a date.
+
+            myData = text.parseJSON(function (key, value) {
+                return key.indexOf('date') >= 0 ? new Date(value) : value;
+            });
+
+    This file will break programs with improper for..in loops. See
+    http://yuiblog.com/blog/2006/09/26/for-in-intrigue/
+
+    This file creates a global JSON object containing two methods: stringify
+    and parse.
 
         JSON.stringify(value, replacer, space)
             value       any JavaScript value, usually an object or array.
@@ -23,8 +66,8 @@
                         of nested structures. If it is omitted, the text will
                         be packed without extra whitespace. If it is a number,
                         it will specify the number of spaces to indent at each
-                        level. If it is a string (such as '\t'), it contains the
-                        characters used to indent at each level.
+                        level. If it is a string (such as '\t' or '&nbsp;'),
+                        it contains the characters used to indent at each level.
 
             This method produces a JSON text from a JavaScript value.
 
@@ -32,20 +75,25 @@
             method, its toJSON method will be called and the result will be
             stringified. A toJSON method does not serialize: it returns the
             value represented by the name/value pair that should be serialized,
-            or undefined if nothing should be serialized. The toJSON method will
-            be passed the key associated with the value, and this will be bound
-            to the object holding the key.
+            or undefined if nothing should be serialized. The toJSON method
+            will be passed the key associated with the value, and this will be
+            bound to the object holding the key.
 
-            This is the toJSON method added to Dates:
+            For example, this would serialize Dates as ISO strings.
 
-                function toJSON(key) {
+                Date.prototype.toJSON = function (key) {
+                    function f(n) {
+                        // Format integers to have at least two digits.
+                        return n < 10 ? '0' + n : n;
+                    }
+
                     return this.getUTCFullYear()   + '-' +
                          f(this.getUTCMonth() + 1) + '-' +
                          f(this.getUTCDate())      + 'T' +
                          f(this.getUTCHours())     + ':' +
                          f(this.getUTCMinutes())   + ':' +
                          f(this.getUTCSeconds())   + 'Z';
-                }
+                };
 
             You can provide an optional replacer method. It will be passed the
             key and value of each member, with this bound to the containing
@@ -53,35 +101,24 @@
             serialized. If your method returns undefined, then the member will
             be excluded from the serialization.
 
-            If no replacer parameter is provided, then a default replacer
-            will be used:
-
-                function replacer(key, value) {
-                    return Object.hasOwnProperty.call(this, key) ?
-                        value : undefined;
-                }
-
-            The default replacer is passed the key and value for each item in
-            the structure. It excludes inherited members.
-
             If the replacer parameter is an array, then it will be used to
             select the members to be serialized. It filters the results such
             that only members with keys listed in the replacer array are
             stringified.
 
-            Values that do not have JSON representaions, such as undefined or
+            Values that do not have JSON representations, such as undefined or
             functions, will not be serialized. Such values in objects will be
             dropped; in arrays they will be replaced with null. You can use
             a replacer function to replace those with JSON values.
             JSON.stringify(undefined) returns undefined.
 
-            The optional space parameter produces a stringification of the value
-            that is filled with line breaks and indentation to make it easier to
-            read.
+            The optional space parameter produces a stringification of the
+            value that is filled with line breaks and indentation to make it
+            easier to read.
 
             If the space parameter is a non-empty string, then that string will
             be used for indentation. If the space parameter is a number, then
-            then indentation will be that many spaces.
+            the indentation will be that many spaces.
 
             Example:
 
@@ -91,6 +128,12 @@
 
             text = JSON.stringify(['e', {pluribus: 'unum'}], null, '\t');
             // text is '[\n\t"e",\n\t{\n\t\t"pluribus": "unum"\n\t}\n]'
+
+            text = JSON.stringify([new Date()], function (key, value) {
+                return this[key] instanceof Date ?
+                    'Date(' + this[key] + ')' : value;
+            });
+            // text is '["Date(---current time---)"]'
 
 
         JSON.parse(text, reviver)
@@ -121,28 +164,43 @@
                 return value;
             });
 
+            myData = JSON.parse('["Date(09/09/2001)"]', function (key, value) {
+                var d;
+                if (typeof value === 'string' &&
+                        value.slice(0, 5) === 'Date(' &&
+                        value.slice(-1) === ')') {
+                    d = new Date(value.slice(5, -1));
+                    if (d) {
+                        return d;
+                    }
+                }
+                return value;
+            });
 
-        JSON.quote(text)
-            This method wraps a string in quotes, escaping some characters
-            as needed.
 
+    It is expected that these methods will formally become part of the
+    JavaScript Programming Language in the Fourth Edition of the
+    ECMAScript standard in 2008.
 
     This is a reference implementation. You are free to copy, modify, or
     redistribute.
 
-    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD THIRD PARTY
-    CODE INTO YOUR PAGES.
+    This code should be minified before deployment.
+    See http://javascript.crockford.com/jsmin.html
+
+    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU
+    DO NOT CONTROL.
 */
 
-/*jslint regexp: true, forin: true, evil: true */
+/*jslint evil: true */
 
 /*global JSON */
 
-/*members "", "\b", "\t", "\n", "\f", "\r", "\"", JSON, "\\", apply,
-    call, charCodeAt, floor, getUTCDate, getUTCFullYear, getUTCHours,
-    getUTCMinutes, getUTCMonth, getUTCSeconds, hasOwnProperty, join, length,
-    parse, propertyIsEnumerable, prototype, push, quote, replace, stringify,
-    test, toJSON, toString
+/*members "", "\b", "\t", "\n", "\f", "\r", "\"", JSON, "\\", call,
+    charCodeAt, getUTCDate, getUTCFullYear, getUTCHours, getUTCMinutes,
+    getUTCMonth, getUTCSeconds, hasOwnProperty, join, lastIndex, length,
+    parse, parseJSON, propertyIsEnumerable, prototype, push, replace, slice,
+    stringify, test, toJSON, toJSONString, toString
 */
 
 if (!this.JSON) {
@@ -152,13 +210,12 @@ if (!this.JSON) {
 
     JSON = function () {
 
-        function f(n) {    // Format integers to have at least two digits.
+        function f(n) {
+            // Format integers to have at least two digits.
             return n < 10 ? '0' + n : n;
         }
 
-        Date.prototype.toJSON = function () {
-
-// Eventually, this method will be based on the date.toISOString method.
+        Date.prototype.toJSON = function (key) {
 
             return this.getUTCFullYear()   + '-' +
                  f(this.getUTCMonth() + 1) + '-' +
@@ -168,8 +225,8 @@ if (!this.JSON) {
                  f(this.getUTCSeconds())   + 'Z';
         };
 
-
-        var escapeable = /["\\\x00-\x1f\x7f-\x9f]/g,
+        var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+            escapeable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
             gap,
             indent,
             meta = {    // table of character substitutions
@@ -191,15 +248,15 @@ if (!this.JSON) {
 // Otherwise we must also replace the offending characters with safe escape
 // sequences.
 
+            escapeable.lastIndex = 0;
             return escapeable.test(string) ?
                 '"' + string.replace(escapeable, function (a) {
                     var c = meta[a];
                     if (typeof c === 'string') {
                         return c;
                     }
-                    c = a.charCodeAt();
-                    return '\\u00' + Math.floor(c / 16).toString(16) +
-                                               (c % 16).toString(16);
+                    return '\\u' + ('0000' +
+                            (+(a.charCodeAt(0))).toString(16)).slice(-4);
                 }) + '"' :
                 '"' + string + '"';
         }
@@ -286,8 +343,9 @@ if (!this.JSON) {
 // brackets.
 
                     v = partial.length === 0 ? '[]' :
-                        gap ? '[\n' + gap + partial.join(',\n' + gap) +
-                                  '\n' + mind + ']' :
+                        gap ? '[\n' + gap +
+                                partial.join(',\n' + gap) + '\n' +
+                                    mind + ']' :
                               '[' + partial.join(',') + ']';
                     gap = mind;
                     return v;
@@ -295,7 +353,7 @@ if (!this.JSON) {
 
 // If the replacer is an array, use it to select the members to be stringified.
 
-                if (typeof rep === 'object') {
+                if (rep && typeof rep === 'object') {
                     length = rep.length;
                     for (i = 0; i < length; i += 1) {
                         k = rep[i];
@@ -311,9 +369,11 @@ if (!this.JSON) {
 // Otherwise, iterate through all of the keys in the object.
 
                     for (k in value) {
-                        v = str(k, value, rep);
-                        if (v) {
-                            partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                        if (Object.hasOwnProperty.call(value, k)) {
+                            v = str(k, value, rep);
+                            if (v) {
+                                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                            }
                         }
                     }
                 }
@@ -322,8 +382,9 @@ if (!this.JSON) {
 // and wrap them in braces.
 
                 v = partial.length === 0 ? '{}' :
-                    gap ? '{\n' + gap + partial.join(',\n' + gap) +
-                              '\n' + mind + '}' :
+                    gap ? '{\n' + gap +
+                            partial.join(',\n' + gap) + '\n' +
+                            mind + '}' :
                           '{' + partial.join(',') + '}';
                 gap = mind;
                 return v;
@@ -331,7 +392,7 @@ if (!this.JSON) {
         }
 
 
-// Return the JSON object containing the stringify, parse, and quote methods.
+// Return the JSON object containing the stringify and parse methods.
 
         return {
             stringify: function (value, replacer, space) {
@@ -345,40 +406,28 @@ if (!this.JSON) {
                 var i;
                 gap = '';
                 indent = '';
-                if (space) {
 
 // If the space parameter is a number, make an indent string containing that
 // many spaces.
 
-                    if (typeof space === 'number') {
-                        for (i = 0; i < space; i += 1) {
-                            indent += ' ';
-                        }
+                if (typeof space === 'number') {
+                    for (i = 0; i < space; i += 1) {
+                        indent += ' ';
+                    }
 
 // If the space parameter is a string, it will be used as the indent string.
 
-                    } else if (typeof space === 'string') {
-                        indent = space;
-                    }
+                } else if (typeof space === 'string') {
+                    indent = space;
                 }
 
-// If there is no replacer parameter, use the default replacer.
+// If there is a replacer, it must be a function or an array.
+// Otherwise, throw an error.
 
-                if (!replacer) {
-                    rep = function (key, value) {
-                        if (!Object.hasOwnProperty.call(this, key)) {
-                            return undefined;
-                        }
-                        return value;
-                    };
-
-// The replacer can be a function or an array. Otherwise, throw an error.
-
-                } else if (typeof replacer === 'function' ||
-                        (typeof replacer === 'object' &&
-                         typeof replacer.length === 'number')) {
-                    rep = replacer;
-                } else {
+                rep = replacer;
+                if (replacer && typeof replacer !== 'function' &&
+                        (typeof replacer !== 'object' ||
+                         typeof replacer.length !== 'number')) {
                     throw new Error('JSON.stringify');
                 }
 
@@ -418,32 +467,44 @@ if (!this.JSON) {
                 }
 
 
-// Parsing happens in three stages. In the first stage, we run the text against
-// regular expressions that look for non-JSON patterns. We are especially
-// concerned with '()' and 'new' because they can cause invocation, and '='
-// because it can cause mutation. But just to be safe, we want to reject all
-// unexpected forms.
+// Parsing happens in four stages. In the first stage, we replace certain
+// Unicode characters with escape sequences. JavaScript handles many characters
+// incorrectly, either silently deleting them, or treating them as line endings.
 
-// We split the first stage into 4 regexp operations in order to work around
+                cx.lastIndex = 0;
+                if (cx.test(text)) {
+                    text = text.replace(cx, function (a) {
+                        return '\\u' + ('0000' +
+                                (+(a.charCodeAt(0))).toString(16)).slice(-4);
+                    });
+                }
+
+// In the second stage, we run the text against regular expressions that look
+// for non-JSON patterns. We are especially concerned with '()' and 'new'
+// because they can cause invocation, and '=' because it can cause mutation.
+// But just to be safe, we want to reject all unexpected forms.
+
+// We split the second stage into 4 regexp operations in order to work around
 // crippling inefficiencies in IE's and Safari's regexp engines. First we
-// replace all backslash pairs with '@' (a non-JSON character). Second, we
+// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
 // replace all simple value tokens with ']' characters. Third, we delete all
 // open brackets that follow a colon or comma or that begin the text. Finally,
 // we look to see that the remaining characters are only whitespace or ']' or
 // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
-                if (/^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
+                if (/^[\],:{}\s]*$/.
+test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
 replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
 replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
-// In the second stage we use the eval function to compile the text into a
+// In the third stage we use the eval function to compile the text into a
 // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
 // in JavaScript: it can begin a block or an object literal. We wrap the text
 // in parens to eliminate the ambiguity.
 
                     j = eval('(' + text + ')');
 
-// In the optional third stage, we recursively walk the new structure, passing
+// In the optional fourth stage, we recursively walk the new structure, passing
 // each name/value pair to a reviver function for possible transformation.
 
                     return typeof reviver === 'function' ?
@@ -453,9 +514,21 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 // If the text is not JSON parseable, then a SyntaxError is thrown.
 
                 throw new SyntaxError('JSON.parse');
-            },
-
-            quote: quote
+            }
         };
     }();
+}
+
+
+// Augment the basic prototypes if they have not already been augmented.
+// These forms are obsolete. It is recommended that JSON.stringify and
+// JSON.parse be used instead.
+
+if (!Object.prototype.toJSONString) {
+    Object.prototype.toJSONString = function (filter) {
+        return JSON.stringify(this, filter);
+    };
+    Object.prototype.parseJSON = function (filter) {
+        return JSON.parse(this, filter);
+    };
 }
