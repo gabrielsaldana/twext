@@ -1,6 +1,18 @@
 <!-- Twexter interface -->
 <?
-$script = $_POST['script'];
+$script = 'saved/' . $_POST['script'];
+if($script)
+    {
+        /* Read file contents and load as JSON string */
+        $file = fopen($script, "r");
+        $jscript = '';
+        while(!feof($file))
+            {
+                // send the current file part to the browser
+                $jscript .= fread($file, filesize($script));
+            }
+        fclose($file);
+    }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -10,7 +22,7 @@ $script = $_POST['script'];
     <link rel="stylesheet" href="twext.css" type="text/css">
     <link rel="stylesheet" href="twexter.css" type="text/css">
 <script src="browserdetect.js" language="javascript" type="text/javascript"></script>
-<?= ($script) ? '<script src="' . $script . '.js" language="javascript" type="text/javascript"></script>' : '' ?>
+<?= ($script) ? '<script src="' . $script . '" language="javascript" type="text/javascript"></script>' : '' ?>
 <script>
 BrowserDetect.init();
 if(BrowserDetect.browser != "Firefox")
@@ -147,7 +159,13 @@ if(BrowserDetect.browser != "Firefox")
 	</form>
       </div>
       <!-- end style controls -->
-      <script src="json2.js" language="javascript" type="text/javascript"></script>
+      <script src="json.js" language="javascript" type="text/javascript"></script>
       <script src="twexter.js" language="javascript" type="text/javascript"></script>
+    <? if(isset($jscript) && $jscript): ?>
+     <script>
+          var loadedtwext = "<?= $jscript ?>";
+          loadTwext(loadedtwext);
+     </script>
+    <? endif ?>
    </body>
 </html>
