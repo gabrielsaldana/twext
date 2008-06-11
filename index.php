@@ -22,7 +22,7 @@ if($script)
     <link rel="stylesheet" href="twext.css" type="text/css">
     <link rel="stylesheet" href="twexter.css" type="text/css">
 <script src="browserdetect.js" language="javascript" type="text/javascript"></script>
-<?= ($script) ? '<script src="' . $script . '" language="javascript" type="text/javascript"></script>' : '' ?>
+
 <script>
 BrowserDetect.init();
 if(BrowserDetect.browser != "Firefox")
@@ -159,7 +159,7 @@ if(BrowserDetect.browser != "Firefox")
 	</form>
       </div>
       <!-- end style controls -->
-      <script src="json.js" language="javascript" type="text/javascript"></script>
+      <script src="json2.js" language="javascript" type="text/javascript"></script>
       <script src="twexter.js" language="javascript" type="text/javascript"></script>
     <? if(isset($jscript) && $jscript): ?>
      <script>
