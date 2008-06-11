@@ -303,26 +303,22 @@ function untwext(twext)
    for(var i = 0; i < twext.length; i++)
    {
       var para = twext[i];
-      ltxt += (ltxt.empty()) ? "\n\n" : '';
-      rtxt += (rtxt.empty()) ? "\n\n" : '';
       for(var j = 0; j < para.length; j++)
       {
 	 var line = para[j];
-	 ltxt += (ltxt) ? "\n" : '';
-	 rtxt += (rtxt) ? "\n" : '';
 	 for(var k = 0; k < line.length; k++)
 	    {
 	       var chunk = line[k];
-	       if(!chunk[0].empty()  && !chunk[1].empty())
-	       {
-		  ltxt += (ltxt) ? chunk[0] : '';
-		  rtxt += (rtxt) ? chunk[1] : '';
-	       }
+	       ltxt += chunk[0] + "\n";
+	       rtxt += chunk[1] + "\n";
 	    }
       }
+	 ltxt += "\n\n";
+	 rtxt += "\n\n";
    }
    txtleft.value = ltxt;
    txtright.value = rtxt;
+   growTextAreas('xscroll-left','xscroll-right'); // hard coded textareas. Must refactor, but works for now.
 }
 /**
  * Scrolls preview according to text/twext scroll position
