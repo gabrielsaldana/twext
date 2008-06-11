@@ -175,7 +175,7 @@ function filter_both(text)
 function saveTwext(twexted_text)
 {
    // parse twexted text string to json
-   var saved = JSON.stringify(twexted_text);
+   var saved = JSON.stringify(twexted_text,' ','\t');
    var savedtwxt = document.getElementById("forsave");
    savedtwxt.value = saved;
    return saved;
@@ -188,7 +188,8 @@ function saveTwext(twexted_text)
 function loadTwext(twexted_string)
 {
    twexted = JSON.parse(twexted_string);
-   twext_html(twexted);
+   preview.innerHTML = twext_html(twexted);
+   untwext(twexted);
 }
 /**
  * Dynamically grow both textareas depending on content
@@ -262,7 +263,6 @@ function twext_parse(left, right) {
   }
   return paragraphs;
 }
-
 /**
  * Takes twext, and generates html for preview
  *
@@ -292,6 +292,37 @@ function twext_html(twext) {
   }
   html += "</div>\n";
   return html;
+}
+/**
+ * Separates twexted text into normal text
+ */
+function untwext(twext)
+{
+   var ltxt = '';
+   var rtxt = '';
+   for(var i = 0; i < twext.length; i++)
+   {
+      var para = twext[i];
+      ltxt += (ltxt.empty()) ? "\n\n" : '';
+      rtxt += (rtxt.empty()) ? "\n\n" : '';
+      for(var j = 0; j < para.length; j++)
+      {
+	 var line = para[j];
+	 ltxt += (ltxt) ? "\n" : '';
+	 rtxt += (rtxt) ? "\n" : '';
+	 for(var k = 0; k < line.length; k++)
+	    {
+	       var chunk = line[k];
+	       if(!chunk[0].empty()  && !chunk[1].empty())
+	       {
+		  ltxt += (ltxt) ? chunk[0] : '';
+		  rtxt += (rtxt) ? chunk[1] : '';
+	       }
+	    }
+      }
+   }
+   txtleft.value = ltxt;
+   txtright.value = rtxt;
 }
 /**
  * Scrolls preview according to text/twext scroll position
