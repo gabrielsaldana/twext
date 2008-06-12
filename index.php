@@ -1,6 +1,12 @@
 <!-- Twexter interface -->
 <?
 $script = 'saved/' . $_POST['script'];
+$title = '' ;
+if($_POST['script'])
+    {
+        $title = str_replace(".js",'',$_POST['script']);
+        $title = str_replace('_', ' ',$title);
+    }
 if($script)
     {
         /* Read file contents and load as JSON string */
@@ -36,6 +42,7 @@ if(BrowserDetect.browser != "Firefox")
 <h1 id="logo">
 <a href="http://twext.com/faq">Twext</a>&nbsp;<img src="xx.gif" alt="Twexter">&nbsp;<a href="http://twext.com/method">Method</a>
 </h1>
+<?= ($title) ? '<h1 class="title">'. strtoupper($title) .'</h1>' : '' ?>
     <div id="preview"></div>
     <form action="save.php" method="post" accept-encoding="utf-8">
     <div id="titlediv">
