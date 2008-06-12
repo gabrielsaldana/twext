@@ -11,11 +11,11 @@ class Twext
      */
     function save($title, $twexted_text)
     {
-        $filename = $this->filename_safe($title) . '.txt';
+        $filename = $this->filename_safe($title) . '.js';
         $file = fopen('saved/'.$filename, 'x');
         fwrite($file,$twexted_text);
         fclose($file);
-        header('Location: saved/');
+        header('Location: load');
     }
     /**
      * Create a safe file name
