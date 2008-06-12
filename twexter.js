@@ -176,6 +176,8 @@ function saveTwext(twexted_text)
 {
    // parse twexted text string to json
    var saved = JSON.stringify(twexted_text);
+   var savedtwxt = document.getElementById("forsave");
+   savedtwxt.value = saved;
    return saved;
 }
 /**
