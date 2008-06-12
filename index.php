@@ -42,12 +42,12 @@ if(BrowserDetect.browser != "Firefox")
 <h1 id="logo">
 <a href="http://twext.com/faq">Twext</a>&nbsp;<img src="xx.gif" alt="Twexter">&nbsp;<a href="http://twext.com/method">Method</a>
 </h1>
-<?= ($title) ? '<h1 class="title">'. strtoupper($title) .'</h1>' : '' ?>
+<h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
     <div id="preview"></div>
     <form action="save.php" method="post" accept-encoding="utf-8">
     <div id="titlediv">
       <label>Title/T&iacute;tulo </label>
-      <input type="text" name="title" id="title" />
+      <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
     </div>
     <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
     <textarea name="text2" id="xscroll-right"
