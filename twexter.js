@@ -181,6 +181,16 @@ function saveTwext(twexted_text)
    return saved;
 }
 /**
+ * Load a twexted string
+ *
+ * @param String A string with JSON structured data to parse
+ */
+function loadTwext(twexted_string)
+{
+   twexted = JSON.parse(twexted_string);
+   twext_html(twexted);
+}
+/**
  * Dynamically grow both textareas depending on content
  *
  * @param String The textarea id currently editing
