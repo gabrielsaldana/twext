@@ -31,10 +31,34 @@ function setStyle(style,attribute)
    switch(style)
    {
       case 'normal-color':
-	 twext_txt = 'color: ' + attribute + '; ';
+	 twext_txt += 'color: ' + attribute + '; ';
       break;
       case 'twxt-color':
-	 twext_twxt = "color: " + attribute + "; ";
+	 twext_twxt += "color: " + attribute + "; ";
+      break;
+      case 'normal-font':
+	 twext_txt += 'font-family: ' + attribute + '; ';
+      break;
+      case 'twxt-font':
+	 twext_twxt += 'font-family: ' + attribute + '; ';
+      break;
+      case 'normal-size':
+	 twext_txt += 'font-size: ' + attribute + '; ';
+      break;
+      case 'twxt-size':
+	 twext_twxt += 'font-size: ' + attribute + '; ';
+      break;
+      case 'normal-bold':
+	 twext_txt += 'font-weight: ' + attribute + '; ';
+      break;
+      case 'twxt-bold':
+	 twext_twxt += 'font-weight: ' + attribute + '; ';
+      break;
+      case 'normal-space':
+	 twext_line += 'height: ' + attribute + '; ';
+      break;
+      case 'twxt-space':
+	 twext_twxt += 'top: ' + attribute + '; ';
       break;
    }
 }
@@ -234,20 +258,20 @@ function twext_parse(left, right) {
  */
 function twext_html(twext) {
   var span = document.createElement("span");
-  var html = "<div " + ((twext_box) ? "style=\"" + twext_box + "\">\n" : "class='twext-box'>\n");
+  var html = "<div " + ((twext_box) ? "style=\"" + twext_box + "\"" : '') + "class='twext-box'>\n";
   for (var i = 0; i < twext.length; i++) {
     var para = twext[i];
-    html += "  <div " + ((twext_para) ? "style=\"" + twext_para + "\">\n" : "class='twext-para'>\n");
+    html += "  <div " + ((twext_para) ? "style=\"" + twext_para + "\"" : '') + "class='twext-para'>\n";
     for (var j = 0; j < para.length; j++) {
       var line = para[j];
-      html += "    <div " + ((twext_line) ? "style=\"" + twext_line + "\">\n" : "class='twext-line'>\n");
+       html += "    <div " + ((twext_line) ? "style=\"" + twext_line + "\"" : '') + "class='twext-line'>\n";
       for (var k = 0; k < line.length; k++) {
 	var chunk = line[k];
-	html += "      <span " + ((twext_chunk) ? "style=\"" + twext_chunk + "\">\n" : "class='twext-chunk'>\n");
+	html += "      <span " + ((twext_chunk) ? "style=\"" + twext_chunk + "\"" : '') + "class='twext-chunk'>\n";
 	span.textContent = chunk[0];
-	html += "        <span><span " + ((twext_txt) ? "style=\"" + twext_txt + "\">" : "class='twext-text'>") +span.innerHTML+"</span></span>\n";
+	html += "        <span><span " + ((twext_txt) ? "style=\"" + twext_txt + "\"" : '') + "class='twext-text'>" +span.innerHTML+"</span></span>\n";
 	span.textContent = chunk[1];
-	html += "        <span><span " + ((twext_twxt) ? "style=\"" + twext_twxt + "\">" : "class='twext-twxt'>")+span.innerHTML+"</span></span>\n";
+	html += "        <span><span " + ((twext_twxt) ? "style=\"" + twext_twxt + "\"" : '') + "class='twext-twxt'>" +span.innerHTML+"</span></span>\n";
 	html += "      </span>\n";
       }
       html += "    </div>\n";

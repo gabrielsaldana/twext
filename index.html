@@ -62,7 +62,7 @@ Twexter</h1>
 	  <tr>
 	    <td class="normal-control">Font</td>
 	    <td>
-	      <select name="normal-font-control">
+	      <select name="normal-font-control" onchange="javascript:setStyle('normal-font', this.value)">
 		<option value="Verdana">Default</option>
 		<option value="Arial">Arial</option>
 		<option value="Times New Roman">Times</option>
@@ -70,7 +70,7 @@ Twexter</h1>
 	    </td>
 	    <td class="twext-control">font</td>
 	    <td>
-	      <select name="twext-font-control">
+	      <select name="twext-font-control" onchange="javascript:setStyle('twxt-font', this.value)">
 		<option value="Verdana">Default</option>
 		<option value="Arial">Arial</option>
 		<option value="Times New Roman">Times</option>
@@ -80,52 +80,54 @@ Twexter</h1>
 	  <tr>
 	    <td class="normal-control">Bold</td>
 	    <td>
-	      <select name="normal-bold-control">
-		<option value="normal">Default</option>
+	      <select name="normal-bold-control" onchange="javascript:setStyle('normal-bold', this.value)">
+		<option value="bolder">Default</option>
+		<option value="normal">Normal</option>
 		<option value="bold">Bold</option>
 	      </select>
 	    </td>
 	    <td class="twext-control">bold</td>
 	    <td>
-	      <select name="twext-bold-control">
+	      <select name="twext-bold-control" onchange="javascript:setStyle('twxt-bold', this.value)">
 		<option value="normal">Default</option>
 		<option value="bold">Bold</option>
+		<option value="bolder">Bolder</option>
 	      </select>
 	    </td>
 	  </tr>
 	  <tr>
 	    <td class="normal-control">Size</td>
 	    <td>
-	      <select name="normal-size-control">
-		<option value="12">Default</option>
-		<option value="14">14</option>
-		<option value="16">16</option>
+	      <select name="normal-size-control" onchange="javascript:setStyle('normal-size', this.value)">
+		<option value="12pt">Default</option>
+		<option value="14pt">14</option>
+		<option value="16pt">16</option>
 	      </select>
 	    </td>
 	    <td class="twext-control">size</td>
 	    <td>
-	      <select name="twext-size-control">
-		<option value="6">Default</option>
-		<option value="8">8</option>
-		<option value="10">10</option>
+	      <select name="twext-size-control" onchange="javascript:setStyle('twxt-size', this.value)">
+		<option value="6pt">Default</option>
+		<option value="8pt">8</option>
+		<option value="10pt">10</option>
 	      </select>
 	    </td>
 	  </tr>
 	  <tr>
 	    <td class="normal-control">Space</td>
 	    <td>
-	      <select name="normal-space-control">
-		<option value="1em">Default</option>
-		<option value="1.5em">1.5em</option>
-		<option value="2em">2em</option>
+	      <select name="normal-space-control" onchange="javascript:setStyle('normal-space', this.value)">
+		<option value="26px">Default</option>
+		<option value="15px">15px</option>
+		<option value="32px">32px</option>
 	      </select>
 	    </td>
 	    <td class="twext-control">space</td>
 	    <td>
-	      <select name="twext-space-control">
-		<option value="1em">Default</option>
-		<option value="1.5em">1.5em</option>
-		<option value="2em">2em</option>
+	      <select name="twext-space-control" onchange="javascript:setStyle('twxt-space', this.value)">
+		<option value="-8px">Default</option>
+		<option value="-5px">5px</option>
+		<option value="-2px">2px</option>
 	      </select>
 	    </td>
 	  </tr>
