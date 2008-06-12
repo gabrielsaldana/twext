@@ -1,56 +1,12 @@
 /*
-    json.js
+    http://www.JSON.org/json2.js
     2008-05-25
 
-    Public Domain
+    Public Domain.
 
-    No warranty expressed or implied. Use at your own risk.
-
-    This file has been superceded by http://www.JSON.org/json2.js
+    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
 
     See http://www.JSON.org/js.html
-
-    This file adds these methods to JavaScript:
-
-        array.toJSONString(whitelist)
-        boolean.toJSONString()
-        date.toJSONString()
-        number.toJSONString()
-        object.toJSONString(whitelist)
-        string.toJSONString()
-            These methods produce a JSON text from a JavaScript value.
-            It must not contain any cyclical references. Illegal values
-            will be excluded.
-
-            The default conversion for dates is to an ISO string. You can
-            add a toJSONString method to any date object to get a different
-            representation.
-
-            The object and array methods can take an optional whitelist
-            argument. A whitelist is an array of strings. If it is provided,
-            keys in objects not found in the whitelist are excluded.
-
-        string.parseJSON(filter)
-            This method parses a JSON text to produce an object or
-            array. It can throw a SyntaxError exception.
-
-            The optional filter parameter is a function which can filter and
-            transform the results. It receives each of the keys and values, and
-            its return value is used instead of the original value. If it
-            returns what it received, then structure is not modified. If it
-            returns undefined then the member is deleted.
-
-            Example:
-
-            // Parse the text. If a key contains the string 'date' then
-            // convert the value to a date.
-
-            myData = text.parseJSON(function (key, value) {
-                return key.indexOf('date') >= 0 ? new Date(value) : value;
-            });
-
-    This file will break programs with improper for..in loops. See
-    http://yuiblog.com/blog/2006/09/26/for-in-intrigue/
 
     This file creates a global JSON object containing two methods: stringify
     and parse.
@@ -178,18 +134,14 @@
             });
 
 
-    It is expected that these methods will formally become part of the
-    JavaScript Programming Language in the Fourth Edition of the
-    ECMAScript standard in 2008.
-
     This is a reference implementation. You are free to copy, modify, or
     redistribute.
 
     This code should be minified before deployment.
     See http://javascript.crockford.com/jsmin.html
 
-    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU
-    DO NOT CONTROL.
+    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU DO
+    NOT CONTROL.
 */
 
 /*jslint evil: true */
@@ -199,14 +151,14 @@
 /*members "", "\b", "\t", "\n", "\f", "\r", "\"", JSON, "\\", call,
     charCodeAt, getUTCDate, getUTCFullYear, getUTCHours, getUTCMinutes,
     getUTCMonth, getUTCSeconds, hasOwnProperty, join, lastIndex, length,
-    parse, parseJSON, propertyIsEnumerable, prototype, push, replace, slice,
-    stringify, test, toJSON, toJSONString, toString
+    parse, propertyIsEnumerable, prototype, push, replace, slice, stringify,
+    test, toJSON, toString
 */
 
 if (!this.JSON) {
 
 // Create a JSON object only if one does not already exist. We create the
-// object in a closure to avoid global variables.
+// object in a closure to avoid creating global variables.
 
     JSON = function () {
 
@@ -382,15 +334,12 @@ if (!this.JSON) {
 // and wrap them in braces.
 
                 v = partial.length === 0 ? '{}' :
-                    gap ? '{\n' + gap +
-                            partial.join(',\n' + gap) + '\n' +
-                            mind + '}' :
-                          '{' + partial.join(',') + '}';
+                    gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' +
+                            mind + '}' : '{' + partial.join(',') + '}';
                 gap = mind;
                 return v;
             }
         }
-
 
 // Return the JSON object containing the stringify and parse methods.
 
@@ -517,18 +466,4 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
             }
         };
     }();
-}
-
-
-// Augment the basic prototypes if they have not already been augmented.
-// These forms are obsolete. It is recommended that JSON.stringify and
-// JSON.parse be used instead.
-
-if (!Object.prototype.toJSONString) {
-    Object.prototype.toJSONString = function (filter) {
-        return JSON.stringify(this, filter);
-    };
-    Object.prototype.parseJSON = function (filter) {
-        return JSON.parse(this, filter);
-    };
 }
