@@ -1,0 +1,554 @@
+2008-06-12 05:54:43 +0000 Fixed title now updates correclty when editing a loaded twext
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@24 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:37 +0000 Title now shows when loading a saved twext file
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@23 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:35 +0000 Fixed untext function now correclty restores the text on the input boxes
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@22 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:32 +0000 Loading a saved file now shows in preview and on textboxes
+Fixed parsing of JSON on loading function
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@21 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:29 +0000 Restored json2.js, confirmed this is a better library code
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@20 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:23 +0000 Ignoring all files in /saved/ directory from the repository
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@19 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:20 +0000 Replaced json2 with json.js library, it has better and latest code
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@18 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:17 +0000 Added all the loading capabilities to index file to load the twexted text as a javascript string and file
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@17 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:14 +0000 Added the loading function that will parse the loaded text
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@16 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:09 +0000 Added a basic loading interface implemented in php
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@15 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:54:01 +0000 Changed saving extension to .js instead of txt for easier loading
+Changed redirection to load interface
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@14 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:53:57 +0000 Re implemented PHP as a glue language to perform loading tasks on index
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@13 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:53:54 +0000 Fixed margin on CSS to avoid reported bug
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@12 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:53:51 +0000 Added very basic save functionality via a small PHP script.
+The saved song will be stored as a JSON string, in chunk pairs and with TXT extension.
+Its very simple and can be improved a lot to suit user's needs.
+
+You can only save a file once. No rewrites or editing allowed yet.
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@11 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:53:47 +0000 Added browser detection to force firefox only.
+Changed interface according to specs on: http://twext.com/User_talk:Gabrielsaldana dated 080602
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@10 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:53:43 +0000 Added style controls functions to all controls.
+Fixed styles not being inherited properly
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@9 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-12 05:53:38 +0000 Style controls now work for text and twxt colors
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@8 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-01 04:52:16 +0000 Merge branch 'simple'
+Conflicts:
+
+	index.php
+	plugins/twexter/twexter.js
+	plugins/twexter/xx.gif
+	twexter/xx.gif
+	xx.gif
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@7 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-01 04:52:02 +0000 merged conflict
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@6 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-06-01 04:52:00 +0000 Adding index.html file...something went wrong..
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@5 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-05-31 23:17:25 -0500 Changed README file, renamed gpl.txt to LICENSE.txt
+
+2008-05-31 23:08:50 -0500 Removed all currently unused files
+
+2008-05-31 23:06:07 -0500 Page now scrolls to top of window on twext preview update
+
+2008-05-31 23:02:12 -0500 Added form tags and names to style controls
+
+2008-05-31 22:47:02 -0500 Added HTML DocType declaration. Set to HTML 4.01 Strict.
+
+2008-05-31 22:46:40 -0500 Added style controls
+
+2008-05-31 22:45:26 -0500 Fixed uppercase title on twext preview
+
+2008-05-31 22:45:05 -0500 Extracted twext styles from twexter interface styles in different CSS
+
+2008-05-31 20:45:37 -0500 Changed the instructions
+
+2008-05-30 22:34:19 -0500 Changed styles according to test.twext.com/simple
+
+2008-05-30 22:09:29 -0500 Removed unnecesary code
+
+2008-05-30 22:08:15 -0500 Added title to preview
+
+2008-05-29 01:01:11 -0500 Fixed auto grow textareas
+Now textareas grow correctly without reducing size when no scrolling was present.
+
+2008-05-28 23:02:32 -0500 Added title textbox
+
+2008-05-28 23:02:16 -0500 Adjusted spacing between lines
+
+2008-05-28 00:32:46 -0500 Fixed dummy save to correctly store values in json.
+
+2008-05-28 00:30:32 -0500 Added logo image
+
+2008-05-28 00:23:38 -0500 Fixed "partially" the grow text areas function.
+Still needs better algorithm. It is set to grow after a certain fixed height. It should do it under any condition.
+
+2008-05-28 00:23:32 -0500 Added credits and better colors and styles
+
+2008-05-27 23:30:46 -0500 Removed reference to load gtranslate api when not present.
+
+2008-05-27 23:30:20 -0500 Added some text and styles for demo page presentation
+
+2008-05-27 02:41:04 -0500 Cleaned google js from non gtranslate version.
+Made textareas smaller
+
+2008-05-26 23:38:54 -0500 Removed gtranslate stuff for normal twexter.
+Twexting works with any text. Just gotta be careful of line lengths.
+
+2008-05-26 23:36:17 -0500 Translation from spanish to english now works with google api.
+Needs two clicks on twext me button because of server response times.
+Gotta fix this to be accurate and also optional, in case of needing a different language translations.
+
+2008-05-17 02:36:43 -0500 This version does show the translated text, but uses an alert box.
+if i remove the alert box the translation doesnt work...for some weird reason
+
+2008-05-17 02:17:01 -0500 Added tranlation function
+Removed example text
+
+2008-05-17 01:01:02 -0500 Added more javadoc documentation
+
+2008-05-17 00:55:14 -0500 Added google tranlslate api script
+Added initializing functions for google translate
+Changed all documentation comments to javadoc style
+
+2008-05-07 01:36:32 -0500 Chunksted text should also be formatted on the textareas
+
+2008-05-07 01:33:03 -0500 added process chunkster to example text values before inserting them into textareas
+
+2008-05-07 01:15:18 -0500 Finished chunkster with a few example filter words
+
+2008-05-06 23:41:54 -0500 Added process chunkster method to start chunking text
+Implemented chunkster on page load
+
+2008-05-06 23:29:39 -0500 Added filtering methods for chunkster
+
+2008-05-06 22:02:06 -0500 Added a brief list of filter words, basically set up initial filter arrays that
+will contain the chunkster filters.
+
+2008-04-25 22:12:16 -0500 Added json parser for twexted text
+Added preview of example on page load
+Index file is now HTML, php is not used or needed
+
+The json parser is json2.js from http://json.org/js.html
+
+Javascript cannot write to file unless its a cookie, so we need to take a "smart" different approach to this
+to keep it 100% client side javascript only. Saving on server side can be possible by sending
+the contents of twexted javascript variable to a server by ajax request.
+
+2008-04-25 01:16:53 -0500 Fixed syntax error in growTextAreas function. A variable was being reassigned
+Added skeleton for saveTwext function
+
+2008-04-23 00:12:30 -0500 Removed jquery.js file, no longer needed with new code
+
+2008-04-23 00:11:31 -0500 Moved all javascript code to js file
+Removed old code from twexter.js
+
+2008-04-22 23:54:38 -0500 Implemented preview on new no sexy xscroll version of twexter.
+Clicking on the twext me button updates the view as usual.
+TODO: Major code cleanup and comments.
+
+2008-04-18 00:12:03 -0500 Finished prototype with ugly javascript functions but works.
+The two textareas are as tall as content and grows dynamically by typing on any of them.
+
+2008-04-18 00:01:57 -0500 New simple interface. Added some new colors to contrast languages and taking new approach to twexter.
+	modified:   index1.php
+	new file:   twext.css
+
+2008-04-18 00:00:30 -0500 Moved example text out of code into external js file
+
+2008-04-17 00:04:18 -0500 making a new clean copy of twexter interface to get rid of xscroll for a while
+
+2008-04-09 01:44:23 -0500 Imported twext_parse and twext_html to scrolltest
+Added twexter.css to scrolltest.html
+
+2008-04-09 01:04:49 -0500 experimenting with onscrollfix, just changed indentation for better readability
+
+2008-04-09 00:02:24 -0500 Added an extra scrolltest script without jquery
+
+2008-04-09 00:00:56 -0500 Added script to detect bubbling bug in firefox
+
+2008-04-09 00:00:29 -0500 added page to detect onscroll javascript event in textareas
+
+2008-04-01 21:16:23 -0600 Changed variable name in trim function, overwriting initial parameter and raising a warning
+
+2008-03-28 03:59:22 +0000 Squashed commit of the following:
+commit c88d6e70ea12a29498a297100030315ac68c259e
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 27 21:56:50 2008 -0600
+
+    Added more seconds to the scrolling timer. Scrolling detection is done with it.
+    Having more frequent interval will scroll better, but CPU and memory usage increases a lot.
+
+commit 9aed80b0f801120743352dcf33efba7ef64d0bb2
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 27 21:38:35 2008 -0600
+
+    Changed to mode 775 all files
+
+commit a5db89c03869f803fe200e6a3be6ee11eab136f7
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 27 20:07:09 2008 -0600
+
+    Deleting current code to prepare to import svn version
+
+commit 97b2d8e23c8aeaafb3c8f682a23d6c77370be919
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 20 00:34:53 2008 -0600
+
+    Imported gpl.txt and readme.txt from svn version
+
+commit f2cefb47574cc84721eef60fe0f00fb3283d27a1
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 20 00:31:57 2008 -0600
+
+    Moved main twexter interface as the index file
+    no need for user authentication to enter twexter
+
+commit 477a9833613112c9227a3a36de83ec35101effa5
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 20 00:21:39 2008 -0600
+
+    Added xml generating function in javascript
+    Removed php xml implementation from twexter page
+    Removed the user validation from twexter page
+    Removed trailing whitespace from other files
+
+commit 618bd2901152104519b36d85c152f0ecf3d48e86
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Tue Mar 18 01:37:41 2008 -0600
+
+    Fixed memory leak (still not perfect), reduced 60% CPU usage.
+    Changed variable names in twext_parse js function to make code more understandable.
+    Removed unused function for live preview of changed text in textareas.
+    Fixed twext_text() js function, now updates the preview with text changes.
+    Fixed twext me button not twexting new text from textareas in twexter.php
+
+commit b55aa44f3c91cd630d7e6cfd942aeef7f1acc5dd
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 19:55:31 2008 -0600
+
+    Added twexter SQL database dump file to repository
+
+commit 2870fd06009ce00c790201428d10c0b74889a5b5
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 19:54:38 2008 -0600
+
+    Added method to twext with javascript only on document load,
+    thus eliminating the need of doing it from PHP.
+
+    Fixed twext_parse algorithm, removing unnecesary steps for last paragraph and chunk.
+
+commit 3897d17b0075200ff2560027d5276f4f3390a774
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 17:59:25 2008 -0600
+
+    Changed variable names to something more understandable
+    Changed 'if's comparing with false values, with only boolean 'if' results. (faster)
+    Fixed indentation and removed whitespace
+
+commit d601fc95ec868e3c9573c16d6d382bd8985205d0
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 17:43:42 2008 -0600
+
+    Optimized twext.php algorithm, removed redundant cicles for last line and paragraph.
+
+commit 4fa5ea12454c0ae74c9d5667de5b565bee8c6f75
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 8 21:51:41 2008 -0600
+
+    Added Zura's plugin code
+    Removed all past files and replaced with new file structur from Zura
+
+commit 415b85611fe4449220fcfe4df376cb1abae3ddf9
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 8 21:46:54 2008 -0600
+
+    Added arquitecture proposal diagram and Gnome Dia source
+
+commit c195e44d3d9346ae7c2ea49571d7575a557583f4
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Fri Mar 7 23:15:32 2008 -0600
+
+    Fixing more syntax structure
+    Found possible memory leak bug on javascript timer function
+    Deleted unused xsl files
+
+    	modified:   index.php
+    	modified:   twext.php
+    	deleted:    twext.xsl.php4
+    	deleted:    twext.xsl.php5
+    	modified:   twexter.js
+
+commit 5d461e45215ef2dd5fe6517f5fef99071f07d49c
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Fri Mar 7 16:36:29 2008 -0600
+
+    Removed old commented source
+    Cleaned trailing whitespace on source
+
+    	modified:   twexter.js
+
+commit 72e69f55953bc108ebcf42d4a719704d2b8ebcd0
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 6 00:21:10 2008 -0600
+
+    House keeping tasks: cleaning code and getting an overview understanding of the current state of the code.
+
+    	modified:   index.php Cleaned a bit of HTML code, replacing font and other deprecated tags
+    	modified:   twext.php Cleaned indentation and removed some commented code
+    	modified:   twexter.js Replaced trim function with a faster one
+
+commit 728a7732164926cb6bd86723406c253009a11d7b
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Tue Mar 4 21:08:10 2008 -0600
+
+    Initializing Git repository for twexter.
+    Added all files from twexter_070416.zip
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@4 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-03-27 21:56:50 -0600 Added more seconds to the scrolling timer. Scrolling detection is done with it.
+Having more frequent interval will scroll better, but CPU and memory usage increases a lot.
+
+2008-03-27 21:38:35 -0600 Changed to mode 775 all files
+
+2008-03-28 03:00:31 +0000 Squashed commit of the following:
+commit a5db89c03869f803fe200e6a3be6ee11eab136f7
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 27 20:07:09 2008 -0600
+
+    Deleting current code to prepare to import svn version
+
+commit 97b2d8e23c8aeaafb3c8f682a23d6c77370be919
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 20 00:34:53 2008 -0600
+
+    Imported gpl.txt and readme.txt from svn version
+
+commit f2cefb47574cc84721eef60fe0f00fb3283d27a1
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 20 00:31:57 2008 -0600
+
+    Moved main twexter interface as the index file
+    no need for user authentication to enter twexter
+
+commit 477a9833613112c9227a3a36de83ec35101effa5
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 20 00:21:39 2008 -0600
+
+    Added xml generating function in javascript
+    Removed php xml implementation from twexter page
+    Removed the user validation from twexter page
+    Removed trailing whitespace from other files
+
+commit 618bd2901152104519b36d85c152f0ecf3d48e86
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Tue Mar 18 01:37:41 2008 -0600
+
+    Fixed memory leak (still not perfect), reduced 60% CPU usage.
+    Changed variable names in twext_parse js function to make code more understandable.
+    Removed unused function for live preview of changed text in textareas.
+    Fixed twext_text() js function, now updates the preview with text changes.
+    Fixed twext me button not twexting new text from textareas in twexter.php
+
+commit b55aa44f3c91cd630d7e6cfd942aeef7f1acc5dd
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 19:55:31 2008 -0600
+
+    Added twexter SQL database dump file to repository
+
+commit 2870fd06009ce00c790201428d10c0b74889a5b5
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 19:54:38 2008 -0600
+
+    Added method to twext with javascript only on document load,
+    thus eliminating the need of doing it from PHP.
+
+    Fixed twext_parse algorithm, removing unnecesary steps for last paragraph and chunk.
+
+commit 3897d17b0075200ff2560027d5276f4f3390a774
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 17:59:25 2008 -0600
+
+    Changed variable names to something more understandable
+    Changed 'if's comparing with false values, with only boolean 'if' results. (faster)
+    Fixed indentation and removed whitespace
+
+commit d601fc95ec868e3c9573c16d6d382bd8985205d0
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 15 17:43:42 2008 -0600
+
+    Optimized twext.php algorithm, removed redundant cicles for last line and paragraph.
+
+commit 4fa5ea12454c0ae74c9d5667de5b565bee8c6f75
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 8 21:51:41 2008 -0600
+
+    Added Zura's plugin code
+    Removed all past files and replaced with new file structur from Zura
+
+commit 415b85611fe4449220fcfe4df376cb1abae3ddf9
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Sat Mar 8 21:46:54 2008 -0600
+
+    Added arquitecture proposal diagram and Gnome Dia source
+
+commit c195e44d3d9346ae7c2ea49571d7575a557583f4
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Fri Mar 7 23:15:32 2008 -0600
+
+    Fixing more syntax structure
+    Found possible memory leak bug on javascript timer function
+    Deleted unused xsl files
+
+    	modified:   index.php
+    	modified:   twext.php
+    	deleted:    twext.xsl.php4
+    	deleted:    twext.xsl.php5
+    	modified:   twexter.js
+
+commit 5d461e45215ef2dd5fe6517f5fef99071f07d49c
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Fri Mar 7 16:36:29 2008 -0600
+
+    Removed old commented source
+    Cleaned trailing whitespace on source
+
+    	modified:   twexter.js
+
+commit 72e69f55953bc108ebcf42d4a719704d2b8ebcd0
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Thu Mar 6 00:21:10 2008 -0600
+
+    House keeping tasks: cleaning code and getting an overview understanding of the current state of the code.
+
+    	modified:   index.php Cleaned a bit of HTML code, replacing font and other deprecated tags
+    	modified:   twext.php Cleaned indentation and removed some commented code
+    	modified:   twexter.js Replaced trim function with a faster one
+
+commit 728a7732164926cb6bd86723406c253009a11d7b
+Author: Gabriel Saldana <gsaldana@gmail.com>
+Date:   Tue Mar 4 21:08:10 2008 -0600
+
+    Initializing Git repository for twexter.
+    Added all files from twexter_070416.zip
+
+
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@3 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-03-27 20:22:38 -0600 Merge branch 'master' into svnimport
+Conflicts:
+
+	index.php
+	plugins/twexter.php
+	plugins/twexter/twext.neutral.php
+	plugins/twexter/twext.php
+	plugins/twexter/twexter.js
+
+2008-03-27 20:11:33 -0600 Merge commit 'git-svn' into svnimport
+
+2008-03-27 20:07:09 -0600 Deleting current code to prepare to import svn version
+
+2008-03-20 00:34:53 -0600 Imported gpl.txt and readme.txt from svn version
+
+2008-03-20 00:31:57 -0600 Moved main twexter interface as the index file
+no need for user authentication to enter twexter
+
+2008-03-20 00:21:39 -0600 Added xml generating function in javascript
+Removed php xml implementation from twexter page
+Removed the user validation from twexter page
+Removed trailing whitespace from other files
+
+2008-03-18 01:37:41 -0600 Fixed memory leak (still not perfect), reduced 60% CPU usage.
+Changed variable names in twext_parse js function to make code more understandable.
+Removed unused function for live preview of changed text in textareas.
+Fixed twext_text() js function, now updates the preview with text changes.
+Fixed twext me button not twexting new text from textareas in twexter.php
+
+2008-03-16 02:37:43 +0000 Updated twexter with latest changes from Zura and optimizations from Gabriel
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@2 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
+
+2008-03-15 19:55:31 -0600 Added twexter SQL database dump file to repository
+
+2008-03-15 19:54:38 -0600 Added method to twext with javascript only on document load,
+thus eliminating the need of doing it from PHP.
+
+Fixed twext_parse algorithm, removing unnecesary steps for last paragraph and chunk.
+
+2008-03-15 17:59:25 -0600 Changed variable names to something more understandable
+Changed 'if's comparing with false values, with only boolean 'if' results. (faster)
+Fixed indentation and removed whitespace
+
+2008-03-15 17:43:42 -0600 Optimized twext.php algorithm, removed redundant cicles for last line and paragraph.
+
+2008-03-08 21:51:41 -0600 Added Zura's plugin code
+Removed all past files and replaced with new file structur from Zura
+
+2008-03-08 21:46:54 -0600 Added arquitecture proposal diagram and Gnome Dia source
+
+2008-03-07 23:15:32 -0600 Fixing more syntax structure
+Found possible memory leak bug on javascript timer function
+Deleted unused xsl files
+
+	modified:   index.php
+	modified:   twext.php
+	deleted:    twext.xsl.php4
+	deleted:    twext.xsl.php5
+	modified:   twexter.js
+
+2008-03-07 16:36:29 -0600 Removed old commented source
+Cleaned trailing whitespace on source
+
+	modified:   twexter.js
+
+2008-03-06 00:21:10 -0600 House keeping tasks: cleaning code and getting an overview understanding of the current state of the code.
+	modified:   index.php Cleaned a bit of HTML code, replacing font and other deprecated tags
+	modified:   twext.php Cleaned indentation and removed some commented code
+	modified:   twexter.js Replaced trim function with a faster one
+
+2008-03-04 21:08:10 -0600 Initializing Git repository for twexter.
+Added all files from twexter_070416.zip
+
+2007-05-14 20:47:50 +0000 Adding twexter basic.
+git-svn-id: https://twexter.svn.sourceforge.net/svnroot/twexter@1 2f62a6f2-632e-0410-acc4-be7c51fbfb5f
