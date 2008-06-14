@@ -85,7 +85,7 @@ var exceptions_befo = ['as a', 'as the', 'ave.', 'dr.', 'in effect', 'mr.', 'mrs
 // Google API
 //------------
 // Load Google translate API
-//google.load("language", "1");
+google.load("language", "1");
 
 
 /**
@@ -97,9 +97,9 @@ var exceptions_befo = ['as a', 'as the', 'ave.', 'dr.', 'in effect', 'mr.', 'mrs
  */
 function translate(text, origin_language, desired_language)
 {
-   google.language.translate(text, origin_language, desired_language, function(result) {
+   translated = google.language.translate(text, (origin_language) ? origin_language : 'es', (desired_language) ? desired_language : 'en', function(result) {
   if (!result.error) {
-     translated = result.translation;
+     return result.translation;
   }
 });
 }
