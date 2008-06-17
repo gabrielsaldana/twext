@@ -10,11 +10,11 @@ body {
     margin: 2px;
     padding: 0;
 }
-#logo a:link, a:visited {
+a:link, a:visited {
     color: #cccc99;
     text-decoration: none;
 }
-#logo a:hover {
+a:hover {
     text-decoration: underline;
 }
 textarea {
