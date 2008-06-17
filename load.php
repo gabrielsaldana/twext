@@ -14,6 +14,8 @@ if ($handle = opendir('saved')) {
             {
                 $files[] = $file;
             }
+        /* sort files alphabetically */
+        sort($files, SORT_STRING);
     }
     closedir($handle);
 }
