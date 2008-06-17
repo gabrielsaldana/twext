@@ -166,6 +166,7 @@ if(BrowserDetect.browser != "Firefox")
 	</form>
       </div>
       <!-- end style controls -->
+<!--       <script type="text/javascript" src="http://www.google.com/jsapi"></script> -->
       <script src="json2.js" language="javascript" type="text/javascript"></script>
       <script src="twexter.js" language="javascript" type="text/javascript"></script>
     <? if(isset($jscript) && $jscript): ?>
