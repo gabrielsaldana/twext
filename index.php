@@ -1,5 +1,11 @@
 <!-- Twexter interface -->
 <?
+/**
+ * The Twexter interface
+ *
+ * @author Gabriel Saldana <gsaldana@gmail.com>
+ * @license GPL v2.0
+ */
 $script = 'saved/' . $_POST['script'];
 $title = '' ;
 if($_POST['script'])

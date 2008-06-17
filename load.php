@@ -1,4 +1,10 @@
 <?
+/**
+ * This file is used to load a saved Twext from a file in filesystem
+ *
+ * @author Gabriel Saldana <gsaldana@gmail.com>
+ * @license GPL v2.0
+ */
 if ($handle = opendir('saved')) {
     $files = array();
     /* This is the correct way to loop over the directory. */

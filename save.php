@@ -1,4 +1,10 @@
 <?
+/**
+ * This file is used to save a Twext as a file in filesystem
+ *
+ * @author Gabriel Saldana <gsaldana@gmail.com>
+ * @license GPL v2.0
+ */
 if($_POST)
     {
         $tw = new Twext();
