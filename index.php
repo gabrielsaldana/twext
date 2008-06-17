@@ -62,10 +62,11 @@ if(BrowserDetect.browser != "Firefox")
     <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twext_parse(txtleft.value,txtright.value));"/>
       <input type="submit" value="save">
       <input type="hidden" name="twexted_text" id="forsave">
-      <a href="load.php">Load</a>
+      <a href="load.php">FIND</a>
+      <a href="javascript:toggle_stylecontrols()" id="stylecontrols_button">STYLE</a>
       </div>
       <!-- begin style controls -->
-      <div id="style-controls">
+      <div id="style-controls" style="display:none">
 	<form id="styles-form" action="javascript:void(0)" method="post">
 	<table summary="twext styling controls">
 	  <thead>
@@ -174,7 +175,22 @@ if(BrowserDetect.browser != "Firefox")
       <!-- end style controls -->
 <!--       <script type="text/javascript" src="http://www.google.com/jsapi"></script> -->
       <script src="json2.js" language="javascript" type="text/javascript"></script>
-      <script src="twexter.js" language="javascript" type="text/javascript"></script>
+      <script src="twexter.js" language="javascript"
+      type="text/javascript"></script>
+<script>
+  function toggle_stylecontrols()
+{
+  var ctls = document.getElementById('style-controls');
+  if(ctls.style.display == 'none')
+  {
+   ctls.style.display = 'block';
+  }
+  else
+  {
+   ctls.style.display = 'none';
+  }
+}
+</script>
     <? if(isset($jscript) && $jscript): ?>
      <script>
           var loadedtwext = "<?= $jscript ?>";
