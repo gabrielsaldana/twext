@@ -240,8 +240,9 @@ function twext_parse(left, right) {
   var para = false;
   var line = false;
   for (var i = 0; i <= max_lines; i++) {
-    var chunk_left = i < total_lines_text_left ? trim(text_left[i]) : '';
-    var chunk_right = i < total_lines_text_right ? trim(text_right[i]) : '';
+    var chunk_left = (i < total_lines_text_left) ? trim(text_left[i]) : '';
+			// insert here the gtranslate function to do it by word
+    var chunk_right = (i < total_lines_text_right) ? trim(text_right[i]) : '';
     if (!chunk_left && !chunk_right) { // if its a blank line on both sides
        if (line)
        {
