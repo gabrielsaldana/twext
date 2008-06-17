@@ -17,6 +17,7 @@ class Twext
      */
     function save($title, $twexted_text)
     {
+        $title = ($title) ? $title : date('Y_m_d');
         $filename = $this->filename_safe($title) . '.js';
         if(($file = fopen('saved/'.$filename, 'wb')) === FALSE)
             {
