@@ -15,7 +15,7 @@ class Twext
         $file = fopen('saved/'.$filename, 'x');
         fwrite($file,$twexted_text);
         fclose($file);
-        header('Location: load');
+        header('Location: load.php');
     }
     /**
      * Create a safe file name
