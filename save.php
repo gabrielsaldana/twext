@@ -12,7 +12,10 @@ class Twext
     function save($title, $twexted_text)
     {
         $filename = $this->filename_safe($title) . '.js';
-        $file = fopen('saved/'.$filename, 'x');
+        if(($file = fopen('saved/'.$filename, 'wb')) === FALSE)
+            {
+                die('Failed to open file for writing');
+            }
         fwrite($file,$twexted_text);
         fclose($file);
         header('Location: load.php');
