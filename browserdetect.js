@@ -55,6 +55,11 @@ var BrowserDetect = {
 			identity: "Firefox"
 		},
 		{
+			string: navigator.userAgent,
+			subString: "Iceweasel",
+			identity: "Iceweasel"
+		},
+		{
 			string: navigator.vendor,
 			subString: "Camino",
 			identity: "Camino"

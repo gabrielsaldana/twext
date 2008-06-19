@@ -37,7 +37,7 @@ if($script)
 
 <script>
 BrowserDetect.init();
-if(BrowserDetect.browser != "Firefox")
+if(BrowserDetect.browser != "Firefox" || BrowserDetect.browser != 'Iceweasel' )
 {
    alert("Please only test with Firefox.\n Get it at http://getfirefox.com");
    window.location = "http://getfirefox.com";
