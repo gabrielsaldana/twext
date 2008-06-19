@@ -315,8 +315,8 @@ function untwext(twext)
 	       rtxt += chunk[1] + "\n";
 	    }
       }
-	 ltxt += "\n\n";
-	 rtxt += "\n\n";
+	 ltxt += "\n";
+	 rtxt += "\n";
    }
    txtleft.value = ltxt;
    txtright.value = rtxt;
