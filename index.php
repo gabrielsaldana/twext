@@ -31,8 +31,9 @@ if($script)
   <head>
     <title>Twexter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="twext.css" type="text/css">
-    <link rel="stylesheet" href="twexter.css" type="text/css">
+    <link rel="stylesheet" href="twext.css" type="text/css" media="all">
+    <link rel="stylesheet" href="print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="twexter.css" type="text/css" media="all">
 <script src="browserdetect.js" language="javascript" type="text/javascript"></script>
 
 <script>
@@ -48,12 +49,14 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
 <h1 id="logo">
 <a href="http://twext.com/faq">Twext</a>&nbsp;<img src="xx.gif" alt="Twexter">&nbsp;<a href="http://twext.com/method">Method</a>
 </h1>
-<h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
-    <div id="preview"></div>
 <div id="toplinks">
       <a href="load.php">FIND</a>
-      <a href="javascript:toggle_stylecontrols()" id="stylecontrols_button">STYLE</a>
+      <a href="javascript:toggle_stylecontrols('style-controls')" id="stylecontrols_button">STYLE</a>
+      <a href="javascript:toggle_stylecontrols('twexter-interface')" id="stylecontrols_button">PRINT</a>
 </div>
+<h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
+    <div id="preview"></div>
+<div id="twexter-interface">
     <form action="save.php" method="post" accept-encoding="utf-8">
     <div id="titlediv">
       <label>Title/T&iacute;tulo </label>
@@ -174,15 +177,16 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
 	</table>
 	</form>
       </div>
+</div>
       <!-- end style controls -->
 <!--       <script type="text/javascript" src="http://www.google.com/jsapi"></script> -->
       <script src="json2.js" language="javascript" type="text/javascript"></script>
       <script src="twexter.js" language="javascript"
       type="text/javascript"></script>
 <script>
-  function toggle_stylecontrols()
+  function toggle_stylecontrols(controls)
 {
-  var ctls = document.getElementById('style-controls');
+  var ctls = document.getElementById(controls);
   if(ctls.style.display == 'none')
   {
    ctls.style.display = 'block';
