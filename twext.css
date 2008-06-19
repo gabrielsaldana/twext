@@ -64,6 +64,9 @@ h6 {
     width: 350px;
     padding: 10px;
 }
+#toplinks {
+    text-align: center;
+}
 #style-controls table {
     margin: 0 auto;
 }

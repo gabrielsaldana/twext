@@ -50,6 +50,10 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
 </h1>
 <h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
     <div id="preview"></div>
+<div id="toplinks">
+      <a href="load.php">FIND</a>
+      <a href="javascript:toggle_stylecontrols()" id="stylecontrols_button">STYLE</a>
+</div>
     <form action="save.php" method="post" accept-encoding="utf-8">
     <div id="titlediv">
       <label>Title/T&iacute;tulo </label>
@@ -62,8 +66,6 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
     <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twext_parse(txtleft.value,txtright.value));"/>
       <input type="submit" value="save">
       <input type="hidden" name="twexted_text" id="forsave">
-      <a href="load.php">FIND</a>
-      <a href="javascript:toggle_stylecontrols()" id="stylecontrols_button">STYLE</a>
       </div>
       <!-- begin style controls -->
       <div id="style-controls" style="display:none">
