@@ -156,7 +156,6 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
 	</table>
 	</form>
       </div>
-
 <h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
     <div id="preview"></div>
 <div id="twexter-interface">
@@ -165,23 +164,26 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
       <label>Title/T&iacute;tulo </label>
       <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
     </div>
+<div id="languages">
+<p id="first_language"><label>Type in: </label><input type="text" name="first_language" value="English"></p>
+<p id="second_language"><label>Type in: </label><input type="text" name="second_language" value="Espanol"></p>
+</div>
     <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
-    <textarea name="text2" id="xscroll-right"
-  onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
+    <textarea name="text2" id="xscroll-right" onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
     <div id="buttons">
     <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twext_parse(txtleft.value,txtright.value));"/>
       <input type="submit" value="save">
       <input type="hidden" name="twexted_text" id="forsave">
       </div>
+    </form>
       <!-- begin style controls -->
 </div>
       <!-- end style controls -->
 <!--       <script type="text/javascript" src="http://www.google.com/jsapi"></script> -->
       <script src="json2.js" language="javascript" type="text/javascript"></script>
-      <script src="twexter.js" language="javascript"
-      type="text/javascript"></script>
+      <script src="twexter.js" language="javascript" type="text/javascript"></script>
 <script>
-  function toggle_stylecontrols(controls)
+function toggle_stylecontrols(controls)
 {
   var ctls = document.getElementById(controls);
   if(ctls.style.display == 'none')

@@ -77,6 +77,17 @@ h6 {
 #style-controls table {
     margin: 0 auto;
 }
+#languages {
+    height: 4em;
+}
+#first_language {
+    float: left;
+    display: inline;
+}
+#second_language {
+    float: right;
+    display: inline;
+}
 .normal-control {
     color: gray;
 }
