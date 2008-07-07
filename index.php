@@ -47,30 +47,9 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
   </head>
   <body>
 <h1 id="logo">
-<a href="http://twext.com/faq">Twext</a>&nbsp;<img src="xx.gif" alt="Twexter">&nbsp;<a href="http://twext.com/method">Method</a>
-</h1>
-<div id="toplinks">
-      <a href="load.php">FIND</a>
-      <a href="javascript:toggle_stylecontrols('style-controls')" id="stylecontrols_button">STYLE</a>
+      <a href="load.php">FIND</a><a href="http://twext.com/method"><img src="xx.gif" alt="Twexter"></a><a href="javascript:toggle_stylecontrols('style-controls')" id="stylecontrols_button">STYLE</a>
       <a href="javascript:toggle_stylecontrols('twexter-interface')" id="stylecontrols_button">PRINT</a>
-</div>
-<h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
-    <div id="preview"></div>
-<div id="twexter-interface">
-    <form action="save.php" method="post" accept-encoding="utf-8">
-    <div id="titlediv">
-      <label>Title/T&iacute;tulo </label>
-      <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
-    </div>
-    <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
-    <textarea name="text2" id="xscroll-right"
-  onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
-    <div id="buttons">
-    <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twext_parse(txtleft.value,txtright.value));"/>
-      <input type="submit" value="save">
-      <input type="hidden" name="twexted_text" id="forsave">
-      </div>
-      <!-- begin style controls -->
+</h1>
       <div id="style-controls" style="display:none">
 	<form id="styles-form" action="javascript:void(0)" method="post">
 	<table summary="twext styling controls">
@@ -177,6 +156,24 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
 	</table>
 	</form>
       </div>
+
+<h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
+    <div id="preview"></div>
+<div id="twexter-interface">
+    <form action="save.php" method="post" accept-encoding="utf-8">
+    <div id="titlediv">
+      <label>Title/T&iacute;tulo </label>
+      <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
+    </div>
+    <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
+    <textarea name="text2" id="xscroll-right"
+  onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
+    <div id="buttons">
+    <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twext_parse(txtleft.value,txtright.value));"/>
+      <input type="submit" value="save">
+      <input type="hidden" name="twexted_text" id="forsave">
+      </div>
+      <!-- begin style controls -->
 </div>
       <!-- end style controls -->
 <!--       <script type="text/javascript" src="http://www.google.com/jsapi"></script> -->

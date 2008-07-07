@@ -7,8 +7,11 @@ body {
     padding: 0;
 }
 #logo {
-    margin: 2px;
+    margin: 4px;
     padding: 0;
+}
+#logo img {
+    border: 0px;
 }
 a:link, a:visited {
     color: #cccc99;
@@ -42,6 +45,10 @@ label {
 h1 {
     color: #cccc99;
     text-align: center;
+    font-size: 118%;
+}
+h1 a {
+    margin: 0 4pt;
 }
 h6 {
     color: #cccc99;

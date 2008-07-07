@@ -8,17 +8,17 @@
 if($_POST)
     {
         $tw = new Twext();
-        $tw->save($_POST['title'], $_POST['twexted_text']);
+        $tw->save($_POST['title'], $_POST['twexted_text'], $_POST['first_language'], $_POST['second_language']);
     }
 class Twext
 {
     /**
      * Used for saving a twexted text to a file
      */
-    function save($title, $twexted_text)
+    function save($title, $twexted_text, $first_language = 'ENGLISH', $second_language = 'ESPANOL')
     {
         $title = ($title) ? $title : date('Y_m_d');
-        $filename = $this->filename_safe($title) . '.js';
+        $filename = strtoupper($this->filename_safe($title)) . '..' . $first_language . '.' . $second_language . '.' . date("Ymd.His") . '..dod0.txt';
         if(($file = fopen('saved/'.$filename, 'wb')) === FALSE)
             {
                 die('Failed to open file for writing');
@@ -36,8 +36,8 @@ class Twext
         // Lower case
         $temp = strtolower($temp);
 
-        // Replace spaces with a '_'
-        $temp = str_replace(" ", "_", $temp);
+        // Replace spaces with a '.'
+        $temp = str_replace(" ", ".", $temp);
 
         // Loop through string
         $result = '';
