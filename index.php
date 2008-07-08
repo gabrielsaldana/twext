@@ -47,7 +47,7 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
   </head>
   <body>
 <h1 id="logo">
-      <a href="load.php">FIND</a><a href="http://twext.com/method"><img src="xx.gif" alt="Twexter"></a><a href="javascript:toggle_stylecontrols('style-controls')" id="stylecontrols_button">STYLE</a>
+      <a href="twext/">FIND</a><a href="http://twext.com/method"><img src="xx.gif" alt="Twexter"></a><a href="javascript:toggle_stylecontrols('style-controls')" id="stylecontrols_button">STYLE</a>
       <a href="javascript:toggle_stylecontrols('twexter-interface')" id="stylecontrols_button">PRINT</a>
 </h1>
       <div id="style-controls" style="display:none">

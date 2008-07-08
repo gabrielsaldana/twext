@@ -31,7 +31,7 @@ class Twext
     {
         $title = ($title) ? $title : date('Y_m_d');
         // format filename as dodo spec http://twext.com/dod0
-        $filename = strtoupper($this->filename_safe($title)) . '..' .strtoupper($first_language) . '.' . strtolower($second_language) . '..' . date("Ymd.His") . '..dod0.txt';
+        $filename = strtoupper($this->filename_safe($title)) . '..' .strtoupper($first_language) . '.' . strtolower($second_language) . '..' . date("ymd.His") . '..dod0.txt';
         //if permissions are denied, display error
         if(($file = fopen('twext/'.$filename, 'wb')) === FALSE)
             {
