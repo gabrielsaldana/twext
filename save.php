@@ -18,7 +18,7 @@ class Twext
     function save($title, $twexted_text, $first_language = 'ENGLISH', $second_language = 'ESPANOL')
     {
         $title = ($title) ? $title : date('Y_m_d');
-        $filename = strtoupper($this->filename_safe($title)) . '..' . $first_language . '.' . $second_language . '..' . date("Ymd.His") . '..dod0.txt';
+        $filename = strtoupper($this->filename_safe($title)) . '..' .strtoupper($first_language) . '.' . strtolower($second_language) . '..' . date("Ymd.His") . '..dod0.txt';
         if(($file = fopen('twext/'.$filename, 'wb')) === FALSE)
             {
                 die('Failed to open file for writing');
