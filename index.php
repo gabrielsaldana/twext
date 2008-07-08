@@ -6,11 +6,11 @@
  * @author Gabriel Saldana <gsaldana@gmail.com>
  * @license GPL v2.0
  */
-$script = 'saved/' . $_POST['script'];
+$script = 'twext/' . $_POST['script'];
 $title = '' ;
 if($_POST['script'])
     {
-        $title = str_replace(".js",'',$_POST['script']);
+        $title = str_replace(".txt",'',$_POST['script']);
         $title = str_replace('_', ' ',$title);
     }
 if($script)

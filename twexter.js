@@ -19,13 +19,19 @@ var twexted = '';
  */
 var translated = '';
 
+// Set the textareas to same height
+txtleft.style.height = txtleft.scrollHeight + 25 + 'px';
+txtright.style.height = txtright.scrollHeight + 25 + 'px';
+
 var twext_box = '';
 var twext_para = '';
 var twext_chunk = '';
 var twext_line = '';
 var twext_txt = '';
 var twext_twxt = '';
-
+/**
+ * Sets CSS styles to elements
+ */
 function setStyle(style,attribute)
 {
    switch(style)
@@ -62,8 +68,6 @@ function setStyle(style,attribute)
       break;
    }
 }
-txtleft.style.height = txtleft.scrollHeight + 25 + 'px';
-txtright.style.height = txtright.scrollHeight + 25 + 'px';
 
 /**
  * @var Array befo filter list

@@ -19,7 +19,7 @@ class Twext
     {
         $title = ($title) ? $title : date('Y_m_d');
         $filename = strtoupper($this->filename_safe($title)) . '..' . $first_language . '.' . $second_language . '..' . date("Ymd.His") . '..dod0.txt';
-        if(($file = fopen('saved/'.$filename, 'wb')) === FALSE)
+        if(($file = fopen('twext/'.$filename, 'wb')) === FALSE)
             {
                 die('Failed to open file for writing');
             }

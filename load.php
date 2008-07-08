@@ -5,7 +5,7 @@
  * @author Gabriel Saldana <gsaldana@gmail.com>
  * @license GPL v2.0
  */
-if ($handle = opendir('saved')) {
+if ($handle = opendir('twext')) {
     $files = array();
     /* This is the correct way to loop over the directory. */
     while (false !== ($file = readdir($handle))) {
