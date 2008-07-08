@@ -18,6 +18,14 @@ class Twext
 {
     /**
      * Used for saving a twexted text to a file
+     *
+     * @author Gabriel Saldana <gsaldana@gmail.com>
+     *
+     * @var string $title The title of the file
+     * @var string $twexted_text The parsed string of twexted text to save
+     * @var string $first_language The name of the first language
+     * @var string $second_language The name of the second language
+     * @var boolean $dodo 1 for saving file contents in dodo format, 0 for JSON format
      */
     function save($title, $twexted_text, $first_language = 'ENGLISH', $second_language = 'ESPANOL', $dodo = 0)
     {
@@ -43,6 +51,11 @@ class Twext
     }
     /**
      * Create a safe file name
+     *
+     * @author Gabriel Saldana <gsaldana@gmail.com>
+     *
+     * @var string $filename The string to be the name of the file
+     * @return string $result The name of the file without illegal chars
      */
     function filename_safe($filename) {
         $temp = $filename;
