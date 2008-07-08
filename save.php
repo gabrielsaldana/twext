@@ -8,9 +8,7 @@
 if($_POST)
     {
         $tw = new Twext();
-        //$tw->save($_POST['title'], $_POST['twexted_text'],
-        //$_POST['first_language'], $_POST['second_language'], $_POST['dodo']);
-        $tw->format_dodo($_POST['twexted_text']);
+        $tw->save($_POST['title'], $_POST['twexted_text'], $_POST['first_language'], $_POST['second_language'], 1);
     }
 /**
  * Class Twext
