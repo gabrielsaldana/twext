@@ -8,23 +8,39 @@
 if($_POST)
     {
         $tw = new Twext();
-        $tw->save($_POST['title'], $_POST['twexted_text'], $_POST['first_language'], $_POST['second_language']);
+        //$tw->save($_POST['title'], $_POST['twexted_text'],
+        //$_POST['first_language'], $_POST['second_language'], $_POST['dodo']);
+        $tw->format_dodo($_POST['twexted_text']);
     }
+/**
+ * Class Twext
+ * @todo Must pack all functionality here for portability and mantainability
+ */
 class Twext
 {
     /**
      * Used for saving a twexted text to a file
      */
-    function save($title, $twexted_text, $first_language = 'ENGLISH', $second_language = 'ESPANOL')
+    function save($title, $twexted_text, $first_language = 'ENGLISH', $second_language = 'ESPANOL', $dodo = 0)
     {
         $title = ($title) ? $title : date('Y_m_d');
+        // format filename as dodo spec http://twext.com/dod0
         $filename = strtoupper($this->filename_safe($title)) . '..' .strtoupper($first_language) . '.' . strtolower($second_language) . '..' . date("Ymd.His") . '..dod0.txt';
+        //if permissions are denied, display error
         if(($file = fopen('twext/'.$filename, 'wb')) === FALSE)
             {
                 die('Failed to open file for writing');
             }
-        fwrite($file,$twexted_text);
+        if(!$dodo) //if set to save contents as json format
+            {
+                fwrite($file,$twexted_text);
+            }
+        else // if its set to save contents as dod0 spec
+            {
+                fwrite($file,$this->format_dodo($twexted_text));
+            }
         fclose($file);
+        // redirect to index
         header('Location: load.php');
     }
     /**
@@ -46,8 +62,61 @@ class Twext
                 $result = $result . $temp[$i];
             }
         }
-
         // Return filename
         return $result;
+    }
+    /**
+     * Parse twexted text to dodo format
+     *
+     * @TODO: Must find a way to improve this horrible algorithm, but works
+     *
+     * @var string $twexted_text JSON twexted text
+     * @return sting $lines Formatted strings to save
+     */
+    function format_dodo($twexted_text)
+    {
+        $tmp = str_replace("\\",'', $twexted_text);
+        $twext = json_decode($tmp);
+        $lines = '';
+        //get widest line
+        $widest = 0;
+        for($i = 0; $i < count($twext); $i++)
+            {
+                //parse lines
+                for($j = 0; $j < count($twext[$i]); $j++)
+                {
+                    //parse chunks
+                    for($k = 0; $k < count($twext[$i][$j]); $k++)
+                        {
+                            // check for widest string in first column
+                            if($widest < strlen($twext[$i][$j][$k][0]))
+                                {
+                                    $widest = strlen($twext[$i][$j][$k][0]);
+                                }
+                        }
+                }
+            }
+        //parse paragraphs
+        for($i = 0; $i < count($twext); $i++)
+            {
+                //parse lines
+                for($j = 0; $j < count($twext[$i]); $j++)
+                {
+                    //parse chunks
+                    for($k = 0; $k < count($twext[$i][$j]); $k++)
+                        {
+                            // set amount of spaces between columns
+                            $spaces = $widest + 3 - strlen($twext[$i][$j][$k][0]);
+                            // write first column with spaces
+                            $lines .= $twext[$i][$j][$k][0] . str_repeat(' ',$spaces);
+                            // write second column and append newline
+                            $lines .= $twext[$i][$j][$k][1];
+                            $lines .= "\n";
+                        }
+                }
+                // write a new line after each paragraph
+                $lines .= "\n";
+            }
+        return $lines;
     }
 }
