@@ -359,3 +359,65 @@ function twext_text()
    txtright.value = chunksted_right;
    scroll(0,0);
 }
+
+function twexterize(left,right) {
+  // first separate by paragraphs
+  var filter = new RegExp("\\n{3}","i"); // two blank lines is a new paragraph
+  var left_paragraphs = left.split(filter);
+  var right_paragraphs = right.split(filter);
+  // then separate by lines
+  filter = new RegExp("\\n{2}","i"); // one blank lines are a new line
+  var left_lines = [];
+  var right_lines = [];
+  for(lline in left_paragraphs)
+    {
+      left_lines.push(left_paragraphs[lline].split(filter));
+    }
+  for(rline in right_paragraphs)
+    {
+      right_lines.push(right_paragraphs[rline].split(filter));
+    }
+  // finally separate by chunks
+  filter = new RegExp("\\n{1}","i"); // one chunk on each line
+  var left_chunks = [];
+  var right_chunks = [];
+  for(lchunk in left_lines)
+    {
+      for(lch in left_lines[lchunk])
+	{
+	  left_chunks.push(left_lines[lchunk][lch].split(filter));
+	}
+    }
+  for(rchunk in right_lines)
+    {
+      for(rch in right_lines[rchunk])
+	{
+	  right_chunks.push(right_lines[rchunk][rch].split(filter));
+	}
+    }
+  //max numbers
+  var max_chunks = Math.max(left_chunks.length,right_chunks.length);
+  var max_lines = Math.max(left_lines.length,right_lines.length);
+  var max_paragraphs = Math.max(left_paragraphs.length,right_paragraphs.length);
+  // mix chunks
+  var chunks = [];
+  var i = 0;
+  for(i = 0;i < max_chunks; i++)
+    {
+	  chunks[i] = [left_chunks[i],right_chunks[i]];
+    }
+  // mix lines
+  var lines = [];
+  for(i = 0;i < max_lines; i++)
+    {
+      lines[i] = [left_lines[i],right_lines[i]];
+    }
+  // mix paragraphs
+  var paragraphs = [];
+  for(i = 0;i < max_paragraphs; i++)
+    {
+      paragraphs[i] = [left_paragraphs[i],right_paragraphs[i]];
+    }
+
+  return paragraphs;
+}

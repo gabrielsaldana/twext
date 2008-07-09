@@ -8,7 +8,8 @@
 if($_POST)
     {
         $tw = new Twext();
-        $tw->save($_POST['title'], $_POST['twexted_text'], $_POST['first_language'], $_POST['second_language'], 1);
+/*         $tw->save($_POST['title'], $_POST['twexted_text'], $_POST['first_language'], $_POST['second_language'], 1); */
+        $tw->format_dodo( $_POST['twexted_text']);
     }
 /**
  * Class Twext
@@ -47,7 +48,7 @@ class Twext
             }
         fclose($file);
         // redirect to index
-        header('Location: load.php');
+        //        header('Location: load.php');
     }
     /**
      * Create a safe file name
@@ -89,6 +90,7 @@ class Twext
         $tmp = str_replace("\\",'', $twexted_text);
         $twext = json_decode($tmp);
         $lines = '';
+        var_dump($twext);
         //get widest line
         $widest = 0;
         for($i = 0; $i < count($twext); $i++)
