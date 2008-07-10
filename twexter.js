@@ -371,28 +371,28 @@ function twexterize(left,right) {
   var right_lines = [];
   for(lline in left_paragraphs)
     {
-      left_lines.push(left_paragraphs[lline].split(filter));
+      left_paragraphs[lline] = left_paragraphs[lline].split(filter);
     }
   for(rline in right_paragraphs)
     {
-      right_lines.push(right_paragraphs[rline].split(filter));
+      right_paragraphs[rline] = right_paragraphs[rline].split(filter);
     }
   // finally separate by chunks
   filter = new RegExp("\\n{1}","i"); // one chunk on each line
   var left_chunks = [];
   var right_chunks = [];
-  for(lchunk in left_lines)
+  for(lchunk in left_paragraphs)
     {
-      for(lch in left_lines[lchunk])
+      for(lch in left_paragraphs[lchunk])
 	{
-	  left_chunks.push(left_lines[lchunk][lch].split(filter));
+	  left_paragraphs[lchunk][lch] = left_paragraphs[lchunk][lch].split(filter);
 	}
     }
-  for(rchunk in right_lines)
+  for(rchunk in right_paragraphs)
     {
-      for(rch in right_lines[rchunk])
+      for(rch in right_paragraphs[rchunk])
 	{
-	  right_chunks.push(right_lines[rchunk][rch].split(filter));
+	  right_paragraphs[rchunk][rch] = right_paragraphs[rchunk][rch].split(filter);
 	}
     }
   //max numbers
