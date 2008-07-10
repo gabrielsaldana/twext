@@ -171,7 +171,7 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
     <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
     <textarea name="text2" id="xscroll-right" onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
     <div id="buttons">
-    <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twext_parse(txtleft.value,txtright.value));"/>
+    <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twexterize(txtleft.value,txtright.value));"/>
       <input type="submit" value="save">
       <input type="hidden" name="twexted_text" id="forsave">
       </div>
