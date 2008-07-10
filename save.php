@@ -8,7 +8,7 @@
 if($_POST)
     {
         $tw = new Twext();
-        $tw->save($_POST['title'], $_POST['twexted_text'], $_POST['first_language'], $_POST['second_language'], 1);
+        $tw->save($_POST['title'], $_POST['twexted_text'], 1,$_POST['first_language'], $_POST['second_language']);
         //        $tw->format_dodo( $_POST['twexted_text']);
     }
 /**
@@ -28,11 +28,21 @@ class Twext
      * @var string $second_language The name of the second language
      * @var boolean $dodo 1 for saving file contents in dodo format, 0 for JSON format
      */
-    function save($title, $twexted_text, $first_language = 'ENGLISH', $second_language = 'ESPANOL', $dodo = 0)
+    function save($title, $twexted_text, $dodo = 0, $first_language, $second_language)
     {
         $title = ($title) ? $title : date('Y_m_d');
         // format filename as dodo spec http://twext.com/dod0
-        $filename = strtoupper($this->filename_safe($title)) . '..' .strtoupper($first_language) . '.' . strtolower($second_language) . '..' . date("ymd.His") . '..dod0.txt';
+        if($second_language)
+            {
+                $filename = strtoupper($this->filename_safe($title)) . '..'
+                    .strtoupper($first_language) . '.' . strtolower($second_language) . '..'
+                    . date("ymd.His") . '..dod0.txt';
+            }
+        else
+            {
+                $filename = strtoupper($this->filename_safe($title)) . '..'
+                    .$first_language . '..' . date("ymd.His") . '..dod0.txt';
+            }
         //if permissions are denied, display error
         if(($file = fopen('twext/'.$filename, 'wb')) === FALSE)
             {

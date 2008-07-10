@@ -159,20 +159,22 @@ if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"
 <h1 id="preview_title"><?= ($title) ? strtoupper($title) : '' ?></h1>
     <div id="preview"></div>
 <div id="twexter-interface">
-    <form action="save.php" method="post" accept-encoding="utf-8">
+    <form name="twext_form" action="save.php" method="post" accept-encoding="utf-8">
     <div id="titlediv">
       <label>Title/T&iacute;tulo </label>
       <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
     </div>
 <div id="languages">
-<p id="first_language"><label>Type in: </label><input type="text" name="first_language" value="English"></p>
-<p id="second_language"><label>Type in: </label><input type="text" name="second_language" value="Espanol"></p>
+<p id="first_language"><label>Type in: </label><select name="first_language">
+<option value="ENGLISH.espanol">ENGLISHespanol</option>
+<option value="ESPANOL.english">ESPANOLenglish</option>
+<option value="SPANGLISH.spanglish">SPANGLISHspanglish</option>
+</select></p>
 </div>
     <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
     <textarea name="text2" id="xscroll-right" onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
     <div id="buttons">
-    <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twexterize(txtleft.value,txtright.value));"/>
-      <input type="submit" value="save">
+    <input type="button" value="twext me" onclick="javascript:twext_text();saveTwext(twexterize(txtleft.value,txtright.value));document.twext_form.submit()"/>
       <input type="hidden" name="twexted_text" id="forsave">
       </div>
     </form>
