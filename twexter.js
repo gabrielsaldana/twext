@@ -367,23 +367,16 @@ function twexterize(left,right) {
   var right_paragraphs = right.split(filter);
   // then separate by lines
   filter = new RegExp("\\n{2}","i"); // one blank lines are a new line
-  var left_lines = [];
-  var right_lines = [];
-  var maxlines = 0; // store max number of lines
   for(lline in left_paragraphs)
     {
       left_paragraphs[lline] = left_paragraphs[lline].split(filter);
-      maxlines = (lline > maxlines)? lline : maxlines;
     }
   for(rline in right_paragraphs)
     {
       right_paragraphs[rline] = right_paragraphs[rline].split(filter);
-      maxlines = (rline > maxlines)? rline : maxlines;
     }
   // finally separate by chunks
   filter = new RegExp("\\n{1}","i"); // one chunk on each line
-  var left_chunks = [];
-  var right_chunks = [];
   for(lchunk in left_paragraphs)
     {
       for(lch in left_paragraphs[lchunk])
@@ -398,25 +391,19 @@ function twexterize(left,right) {
 	  right_paragraphs[rchunk][rch] = right_paragraphs[rchunk][rch].split(filter);
 	}
     }
-  // mix chunks
-  var chunks = [];
-  var i = 0;
-  for(i = 0;i < max_chunks; i++)
+  var paragraphs = (left_paragraphs.length)? left_paragraphs : right_paragraphs;
+  for(var i = 0; i < (Math.max(right_paragraphs.length,left_paragraphs.length));i++)
     {
-	  chunks[i] = [left_chunks[i],right_chunks[i]];
+      for(var j = 0; j < (Math.max(right_paragraphs[i].length,left_paragraphs[i].length));j++)
+	{
+	  for(var k = 0; k < (Math.max(right_paragraphs[i][j].length,left_paragraphs[i][j].length));k++)
+	    {
+	      var tmp = left_paragraphs[i][j][k];
+	      paragraphs[i][j][k] = [];
+	      paragraphs[i][j][k].push(tmp);
+	      paragraphs[i][j][k].push(right_paragraphs[i][j][k]);
+	    }
+	}
     }
-  // mix lines
-  var lines = [];
-  for(i = 0;i < max_lines; i++)
-    {
-      lines[i] = [left_lines[i],right_lines[i]];
-    }
-  // mix paragraphs
-  var paragraphs = [];
-  for(i = 0;i < max_paragraphs; i++)
-    {
-      paragraphs[i] = [left_paragraphs[i],right_paragraphs[i]];
-    }
-
   return paragraphs;
 }
