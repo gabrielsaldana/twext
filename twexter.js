@@ -369,13 +369,16 @@ function twexterize(left,right) {
   filter = new RegExp("\\n{2}","i"); // one blank lines are a new line
   var left_lines = [];
   var right_lines = [];
+  var maxlines = 0; // store max number of lines
   for(lline in left_paragraphs)
     {
       left_paragraphs[lline] = left_paragraphs[lline].split(filter);
+      maxlines = (lline > maxlines)? lline : maxlines;
     }
   for(rline in right_paragraphs)
     {
       right_paragraphs[rline] = right_paragraphs[rline].split(filter);
+      maxlines = (rline > maxlines)? rline : maxlines;
     }
   // finally separate by chunks
   filter = new RegExp("\\n{1}","i"); // one chunk on each line
@@ -395,10 +398,6 @@ function twexterize(left,right) {
 	  right_paragraphs[rchunk][rch] = right_paragraphs[rchunk][rch].split(filter);
 	}
     }
-  //max numbers
-  var max_chunks = Math.max(left_chunks.length,right_chunks.length);
-  var max_lines = Math.max(left_lines.length,right_lines.length);
-  var max_paragraphs = Math.max(left_paragraphs.length,right_paragraphs.length);
   // mix chunks
   var chunks = [];
   var i = 0;
