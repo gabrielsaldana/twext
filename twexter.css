@@ -6,7 +6,7 @@
 }
 
 .twext-para {
-	margin: 10px;
+	margin-bottom: 40px;
 	text-align: center;
 }
 .twext-line {
@@ -17,7 +17,7 @@
 	text-align: center;
 	clear:both;
 	position: relative;
-	height:26px; /* this can be changed to modify the spacing between lines*/
+	height:34px; /* this can be changed to modify the spacing between lines*/
 }
 .twext-chunk { /* chunks should have been inline blocks or tables, but firefox doesn't support that :( */
 	display: inline;

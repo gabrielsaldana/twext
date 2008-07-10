@@ -350,7 +350,7 @@ function twext_text()
    var chunksted_left = txtleft.value;
 //   translate(chunksted_left, "es","en");
    var chunksted_right = txtright.value;
-   twexted = twext_parse(chunksted_left,chunksted_right);
+   twexted = twexterize(chunksted_left,chunksted_right);
    var title = document.getElementById('title');
    var preview_title = document.getElementById('preview_title');
    preview_title.innerHTML =  title.value.toUpperCase();
@@ -391,6 +391,7 @@ function twexterize(left,right) {
 	  right_paragraphs[rchunk][rch] = right_paragraphs[rchunk][rch].split(filter);
 	}
     }
+  // put it all back together in one object with both texts
   var paragraphs = (left_paragraphs.length)? left_paragraphs : right_paragraphs;
   for(var i = 0; i < (Math.max(right_paragraphs.length,left_paragraphs.length));i++)
     {
