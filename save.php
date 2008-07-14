@@ -44,10 +44,21 @@ class Twext
             }
         else // if its set to save contents as dod0 spec
             {
-                fwrite($file,$this->format_dodo($twexted_text));
+                $all_data = $title . "\n";
+                $data = $this->format_dodo($twexted_text); //get all twexted info
+                  /* prepare dodo data format */
+                $all_data = $data["dodo"] . str_repeat("TEXT",10) . "\n\n";
+                /* prepare first language */
+                $all_data .= $data["first_lang"] . str_repeat("twxt",10) . "\n\n";
+                /* prepare second language */
+                $all_data .= $data["second_lang"] . str_repeat("PREVIEW",6) . "\n\n";
+                $all_data .= strtoupper($title) . "\n\n";
+                $all_data .= $data["preview"];
+                /* write everything to file */
+                fwrite($file,$all_data);
             }
         fclose($file);
-        // redirect to index
+        /* redirect to index */
         header('Location: twext/');
     }
     /**
@@ -120,16 +131,51 @@ class Twext
                             // set amount of spaces between columns
                             $spaces = $widest + 3 - strlen($twext[$i][$j][$k][0]);
                             // write first column with spaces
-                            $lines .= $twext[$i][$j][$k][0] . str_repeat(' ',$spaces);
+                              $lines["dodo"] .= strtoupper( $twext[$i][$j][$k][0] ) . str_repeat(' ',$spaces);
+                            $lines["first_lang"] .= strtoupper( $twext[$i][$j][$k][0] ) . "\n";
+                            $lines["preview"] .= $this->parse_dodo_preview( strtoupper( $twext[$i][$j][$k][0] ) ) . "\n";
                             // write second column and append newline
-                            $lines .= $twext[$i][$j][$k][1];
-                            $lines .= "\n";
+                            $lines["dodo"] .= strtolower( $twext[$i][$j][$k][1] );
+                            $lines["second_lang"] .= strtolower( $twext[$i][$j][$k][1] ) . "\n";
+                            $lines["preview"] .= strtolower( $twext[$i][$j][$k][1] ) . "\n\n";
+                            $lines["dodo"] .= "\n";
                         }
-                $lines .= "\n";
+                $lines["dodo"] .= "\n";
+                $lines["first_lang"] .= "\n";
+                $lines["second_lang"] .= "\n";
+                $lines["preview"] .= "\n";
                 }
                 // write a new line after each paragraph
-                $lines .= "\n";
+                $lines["dodo"] .= "\n";
+                $lines["first_lang"] .= "\n";
+                $lines["second_lang"] .= "\n";
+                $lines["preview"] .= "\n";
             }
         return $lines;
     }
+
+/**
+  *Format the preview section of dodo file
+  *
+  * @param string $text The string of text to parse
+  * @return string
+  */
+    public function parse_dodo_preview ( $text )
+      {
+        $preview = "";
+        for($i = 0;$i < strlen($text); $i++)
+          {
+            if($text[$i] != "\n" && $text[$i] != " ")
+              {
+                $preview .= $text[$i] . " ";
+              }
+            else if($text[$i] == " "){
+              $preview .= str_repeat(" ",3);
+            }
+            else if($text[$i] == "\n"){
+              $preview .= "\n";
+            }
+          }
+        return $preview;
+      }
 }

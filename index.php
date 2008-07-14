@@ -34,16 +34,7 @@ if($script)
     <link rel="stylesheet" href="twext.css" type="text/css" media="all">
     <link rel="stylesheet" href="print.css" type="text/css" media="print">
     <link rel="stylesheet" href="twexter.css" type="text/css" media="all">
-<script src="browserdetect.js" language="javascript" type="text/javascript"></script>
 
-<script>
-BrowserDetect.init();
-if((BrowserDetect.browser != "Firefox") && (BrowserDetect.browser != "Iceweasel"))
-{
-   alert("Please only test with Firefox.\n Get it at http://getfirefox.com");
-   window.location = "http://getfirefox.com";
-}
-</script>
   </head>
   <body>
 <h1 id="logo">
