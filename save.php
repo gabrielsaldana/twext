@@ -130,30 +130,36 @@ class Twext
                 }
             }
         //parse paragraphs
+
         for($i = 0; $i < count($twext); $i++)
             {
                 //parse lines
                 for($j = 0; $j < count($twext[$i]); $j++)
                 {
+                  $fl = ""; // tmp first language for preview
+                  $sl = ""; // tmp second language for preview
                     //parse chunks
                     for($k = 0; $k < count($twext[$i][$j]); $k++)
                         {
                             // set amount of spaces between columns
                             $spaces = $widest + 3 - strlen($twext[$i][$j][$k][0]);
+
+                            $ftmp = (strlen($twext[$i][$j][$k][0])*2) - 1;
+                            $stmp = strlen($twext[$i][$j][$k][1]);
                             // write first column with spaces
-                              $lines["dodo"] .= strtoupper( $twext[$i][$j][$k][0] ) . str_repeat(' ',$spaces);
+                            $lines["dodo"] .= strtoupper( $twext[$i][$j][$k][0] ) . str_repeat(' ',$spaces);
                             $lines["first_lang"] .= strtoupper( $twext[$i][$j][$k][0] ) . "\n";
-                            $lines["preview"] .= $this->parse_dodo_preview( strtoupper( $twext[$i][$j][$k][0] ) ) . "\n";
+                            $fl .= $this->parse_dodo_preview(strtoupper( $twext[$i][$j][$k][0] ) ) . str_repeat(' ', $this->set_alignment_spaces($ftmp,$stmp)+2);
                             // write second column and append newline
                             $lines["dodo"] .= strtolower( $twext[$i][$j][$k][1] );
                             $lines["second_lang"] .= strtolower( $twext[$i][$j][$k][1] ) . "\n";
-                            $lines["preview"] .= strtolower( $twext[$i][$j][$k][1] ) . "\n\n";
+                            $sl .= strtolower( $twext[$i][$j][$k][1] ) . str_repeat(' ', $this->set_alignment_spaces($stmp,$ftmp)+2);
                             $lines["dodo"] .= "\n";
                         }
                 $lines["dodo"] .= "\n";
                 $lines["first_lang"] .= "\n";
                 $lines["second_lang"] .= "\n";
-                $lines["preview"] .= "\n";
+                $lines["preview"] .= $fl . "\n" . $sl . "\n";
                 }
                 // write a new line after each paragraph
                 $lines["dodo"] .= "\n";
@@ -163,6 +169,25 @@ class Twext
             }
         return $lines;
     }
+
+/**
+  *Measures two words and determines how many spaces must be to both be aligned
+  *
+  * @param integer $first_word
+  * @param integer $second_word
+  * @return integer
+  */
+    public function set_alignment_spaces( $first_word, $second_word )
+      {
+        $total = $first_word - $second_word;
+        if ( $total >= 0 ) {
+          return 0;
+        }
+        else {
+          return abs($total)-1;
+        }
+      }
+
 
 /**
   *Format the preview section of dodo file
@@ -180,7 +205,7 @@ class Twext
                 $preview .= $text[$i] . " ";
               }
             else if($text[$i] == " "){
-              $preview .= str_repeat(" ",3);
+              $preview .= str_repeat(" ",2);
             }
             else if($text[$i] == "\n"){
               $preview .= "\n";
