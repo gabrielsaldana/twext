@@ -88,20 +88,16 @@ class Twext
         // Return filename
         return $result;
     }
-    /**
-     * Parse twexted text to dodo format
+
+
+   /**
+     *Get the size of the widest chunk
      *
-     * @TODO: Must find a way to improve this horrible algorithm, but works
-     *
-     * @var string $twexted_text JSON twexted text
-     * @return sting $lines Formatted strings to save
+     * @param array $twext The twexted text array
+     * @return integer
      */
-    function format_dodo($twexted_text)
-    {
-        $tmp = str_replace("\\",'', $twexted_text);
-        $twext = json_decode($tmp);
-        $lines = '';
-        //get widest line
+    private function get_widest_chunk_size ( $twext )
+      {
         $widest = 0;
         for($i = 0; $i < count($twext); $i++)
             {
@@ -119,6 +115,23 @@ class Twext
                         }
                 }
             }
+        return $widest;
+      }
+    /**
+     * Parse twexted text to dodo format
+     *
+     * @TODO: Must find a way to improve this horrible algorithm, but works
+     *
+     * @var string $twexted_text JSON twexted text
+     * @return sting $lines Formatted strings to save
+     */
+    function format_dodo($twexted_text)
+    {
+        $tmp = str_replace("\\",'', $twexted_text);
+        $twext = json_decode($tmp);
+        $lines = '';
+        //get widest line
+        $widest = $this->get_widest_chunk_size($twext);
         //parse paragraphs
 
         for($i = 0; $i < count($twext); $i++)
@@ -167,7 +180,7 @@ class Twext
   * @param integer $second_word
   * @return integer
   */
-    public function set_alignment_spaces( $first_word, $second_word )
+    private function set_alignment_spaces( $first_word, $second_word )
       {
         $total = $first_word - $second_word;
         if ( $total >= 0 ) {
@@ -185,7 +198,7 @@ class Twext
   * @param string $text The string of text to parse
   * @return string
   */
-    public function parse_dodo_preview ( $text )
+    private function parse_dodo_preview ( $text )
       {
         $preview = "";
         for($i = 0;$i < strlen($text); $i++)
