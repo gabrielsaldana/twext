@@ -156,7 +156,7 @@ class Twext
                             // write second column and append newline
                             $lines["dodo"] .= strtolower( $twext[$i][$j][$k][1] );
                             $lines["second_lang"] .= strtolower( $twext[$i][$j][$k][1] ) . "\n";
-                            $sl .= strtolower( $twext[$i][$j][$k][1] ) . str_repeat(' ', $this->set_alignment_spaces($stmp,$ftmp)+2);
+                            $sl .= strtolower( $twext[$i][$j][$k][1] ) . str_repeat(' ', $this->second_language_align($ftmp,$stmp)+3);
                             $lines["dodo"] .= "\n";
                         }
                 $lines["dodo"] .= "\n";
@@ -187,10 +187,27 @@ class Twext
           return 0;
         }
         else {
-          return abs($total)-1;
+          return abs($total);
         }
       }
+/**
+  * Measures the two words for second language alignment
+  *
+  * @param integer $flang The size of first lang chunk
+  * @param integer $slang the size of second language chunk
+  * @return integer
+  */
 
+    private function second_language_align ( $flang, $slang )
+      {
+        $total = $flang - $slang;
+        if($total > 0) {
+          return $total;
+          }
+        else {
+          return 0;
+        }
+      }
 
 /**
   *Format the preview section of dodo file
