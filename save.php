@@ -162,7 +162,7 @@ class Twext
                 $lines["dodo"] .= "\n";
                 $lines["first_lang"] .= "\n";
                 $lines["second_lang"] .= "\n";
-                $lines["preview"] .= $fl . "\n" . $sl . "\n";
+                $lines["preview"] .= $fl . "\n" . $sl . "\n\n";
                 }
                 // write a new line after each paragraph
                 $lines["dodo"] .= "\n";
