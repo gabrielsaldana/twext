@@ -57,7 +57,7 @@ class Twext
                 $all_data = strtoupper($title) . "\n\n";
                 $data = $this->format_dodo($twexted_text); //get all twexted info
                   /* prepare dodo data format */
-                $all_data = $data["dodo"] . str_repeat("preview",6) . "\n\n";
+                $all_data .= $data["dodo"] . str_repeat("preview",6) . "\n\n";
                 /* prepare preview */
                 $all_data .= $data["preview"] . str_repeat("twxt",10) . "\n\n";
                 /* prepare first language */

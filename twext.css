@@ -6,6 +6,7 @@ body {
     margin: 0px;
     padding: 0;
 }
+
 #logo {
     margin: 4px;
     padding: 0;
@@ -58,9 +59,6 @@ h6 {
 #preview {
     margin-bottom: 20px;
 }
-#titlediv {
-    text-align: center;
-}
 #buttons {
     width: 180px;
     margin: 0 auto;
@@ -81,7 +79,6 @@ h6 {
     height: 4em;
 }
 #first_language {
-    float: left;
     display: inline;
 }
 #second_language {
