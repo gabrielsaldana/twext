@@ -54,16 +54,17 @@ class Twext
             }
         else // if its set to save contents as dod0 spec
             {
-                $all_data = $title . "\n";
+                $all_data = strtoupper($title) . "\n\n";
                 $data = $this->format_dodo($twexted_text); //get all twexted info
                   /* prepare dodo data format */
-                $all_data = $data["dodo"] . str_repeat("TEXT",10) . "\n\n";
+                $all_data = $data["dodo"] . str_repeat("preview",6) . "\n\n";
+                /* prepare preview */
+                $all_data .= $data["preview"] . str_repeat("twxt",10) . "\n\n";
                 /* prepare first language */
-                $all_data .= $data["first_lang"] . str_repeat("twxt",10) . "\n\n";
+                $all_data .= $data["first_lang"] . str_repeat("TEXT",10) . "\n\n";
                 /* prepare second language */
-                $all_data .= $data["second_lang"] . str_repeat("PREVIEW",6) . "\n\n";
-                $all_data .= strtoupper($title) . "\n\n";
-                $all_data .= $data["preview"];
+                $all_data .= $data["second_lang"] . str_repeat('- ', 20) . '+';
+
                 /* write everything to file */
                 fwrite($file,$all_data);
             }
