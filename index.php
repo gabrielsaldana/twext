@@ -151,21 +151,19 @@ if($script)
 <div id="languages">
 <p id="first_language">
 <a id="logo" href="http://twext.com/help"><img src="xx.gif" alt="Twexter"></a>
-<label>Type in: </label>
 <select name="first_language">
 <option value="ENGLISH.espanol">ENGLISH.espanol</option>
 <option value="ESPANOL.english">ESPANOL.english</option>
 <option value="SPANGLISH.spanglish">SPANGLISH.spanglish</option>
 </select></p>
 
-<label>Title/T&iacute;tulo </label>
+<label>TITLE</label>
 <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
-
 </div>
     <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
     <textarea name="text2" id="xscroll-right" onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
     <div id="buttons">
-    <input type="button" value="dodo" onclick="javascript:saveTwext(twexterize(txtleft.value,txtright.value));document.twext_form.submit()"/>
+   <p><input type="button" value="dodo" onclick="javascript:saveTwext(twexterize(txtleft.value,txtright.value));document.twext_form.submit()"/></p>
       <input type="hidden" name="twexted_text" id="forsave">
       </div>
     </form>
