@@ -151,8 +151,8 @@ class Twext
                             $ftmp = (strlen($twext[$i][$j][$k][0])*2) - 1;
                             $stmp = strlen($twext[$i][$j][$k][1]);
                             // write first column with spaces
-                            $lines["dodo"] .= strtoupper( $twext[$i][$j][$k][0] ) . str_repeat(' ',$spaces);
-                            $lines["first_lang"] .= strtoupper( $twext[$i][$j][$k][0] ) . "\n";
+                            $lines["dodo"] .= strtolower( $twext[$i][$j][$k][0] ) . str_repeat(' ',$spaces);
+                            $lines["first_lang"] .= strtolower( $twext[$i][$j][$k][0] ) . "\n";
                             $fl .= $this->parse_dodo_preview(strtoupper( $twext[$i][$j][$k][0] ) ) . str_repeat(' ', $this->set_alignment_spaces($ftmp,$stmp)+2);
                             // write second column and append newline
                             $lines["dodo"] .= strtolower( $twext[$i][$j][$k][1] );
