@@ -63,7 +63,7 @@ class Twext
                 /* prepare first language */
                 $all_data .= $data["first_lang"] . str_repeat("TEXT",10) . "\n\n";
                 /* prepare second language */
-                $all_data .= $data["second_lang"] . str_repeat('- ', 20) . '+';
+                $all_data .= $data["second_lang"];
 
                 /* write everything to file */
                 fwrite($file,$all_data);
@@ -162,7 +162,7 @@ class Twext
                             $stmp = strlen($twext[$i][$j][$k][1]);
                             // write first column with spaces
                             $lines["dodo"] .= strtoupper( $twext[$i][$j][$k][0] ) . str_repeat(' ',$spaces);
-                            $lines["first_lang"] .= strtoupper( $twext[$i][$j][$k][0] ) . "\n";
+                            $lines["first_lang"] .= strtolower( $twext[$i][$j][$k][0] ) . "\n";
                             $fl .= $this->parse_dodo_preview(strtoupper( $twext[$i][$j][$k][0] ) ) . str_repeat(' ', $this->set_alignment_spaces($ftmp,$stmp)+2);
                             // write second column and append newline
                             $lines["dodo"] .= strtolower( $twext[$i][$j][$k][1] );

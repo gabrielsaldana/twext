@@ -149,20 +149,23 @@ if($script)
     <form name="twext_form" action="save.php" method="post" accept-encoding="utf-8">
 
 <div id="languages">
-<p id="first_language">      <a id="logo" href="http://twext.com/method"><img src="xx.gif" alt="Twexter"></a><label>Type in: </label><select name="first_language">
-<option value="ENGLISH.espanol">ENGLISHespanol</option>
-<option value="ESPANOL.english">ESPANOLenglish</option>
-<option value="SPANGLISH.spanglish">SPANGLISHspanglish</option>
+<p id="first_language">
+<a id="logo" href="http://twext.com/help"><img src="xx.gif" alt="Twexter"></a>
+<label>Type in: </label>
+<select name="first_language">
+<option value="ENGLISH.espanol">ENGLISH.espanol</option>
+<option value="ESPANOL.english">ESPANOL.english</option>
+<option value="SPANGLISH.spanglish">SPANGLISH.spanglish</option>
 </select></p>
 
-      <label>Title/T&iacute;tulo </label>
-      <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
+<label>Title/T&iacute;tulo </label>
+<input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
 
 </div>
     <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
     <textarea name="text2" id="xscroll-right" onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
     <div id="buttons">
-    <input type="button" value="dodo" onclick="javascript:twext_text();saveTwext(twexterize(txtleft.value,txtright.value));document.twext_form.submit()"/>
+    <input type="button" value="dodo" onclick="javascript:saveTwext(twexterize(txtleft.value,txtright.value));document.twext_form.submit()"/>
       <input type="hidden" name="twexted_text" id="forsave">
       </div>
     </form>
