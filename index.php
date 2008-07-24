@@ -152,7 +152,9 @@ if($script)
 <p id="first_language">
 <a id="logo" href="http://twext.com/help"><img src="xx.gif" alt="Twexter"></a>
 <select name="first_language">
+<option value="ENGLISH.english">ENGLISH.english</option>
 <option value="ENGLISH.espanol">ENGLISH.espanol</option>
+<option value="ESPANOL.espanol">ESPANOL.espanol</option>
 <option value="ESPANOL.english">ESPANOL.english</option>
 <option value="SPANGLISH.spanglish">SPANGLISH.spanglish</option>
 </select></p>
