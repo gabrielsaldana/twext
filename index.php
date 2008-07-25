@@ -162,8 +162,16 @@ if($script)
 <label>TITLE</label>
 <input type="text" name="title" id="title" value="<?= strtoupper($title) ?>" />
 </div>
+<table>
+<tr>
+<td>
     <textarea name="text1" id="xscroll-left" onkeyup="javascript:growTextAreas('xscroll-left','xscroll-right')"></textarea>
+</td>
+<td>
     <textarea name="text2" id="xscroll-right" onkeyup="javascript:growTextAreas('xscroll-right','xscroll-left')"></textarea>
+</td>
+</tr>
+</table>
     <div id="buttons">
    <p><input type="button" value="dodo" onclick="javascript:saveTwext(twexterize(txtleft.value,txtright.value));document.twext_form.submit()"/></p>
       <input type="hidden" name="twexted_text" id="forsave">
