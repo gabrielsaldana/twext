@@ -161,12 +161,12 @@ class Twext
                             $ftmp = (strlen($twext[$i][$j][$k][0])*2) - 1;
                             $stmp = strlen($twext[$i][$j][$k][1]);
                             // write first column with spaces
-                            $lines["dodo"] .= strtolower( $twext[$i][$j][$k][0] ) . str_repeat(' ',$spaces);
-                            $lines["first_lang"] .= strtolower( $twext[$i][$j][$k][0] ) . "\n";
+                            $lines["dodo"] .= $twext[$i][$j][$k][0] . str_repeat(' ',$spaces);
+                            $lines["first_lang"] .= $twext[$i][$j][$k][0] . "\n";
                             $fl .= $this->parse_dodo_preview(strtoupper( $twext[$i][$j][$k][0] ) ) . str_repeat(' ', $this->set_alignment_spaces($ftmp,$stmp)+2);
                             // write second column and append newline
-                            $lines["dodo"] .= strtolower( $twext[$i][$j][$k][1] );
-                            $lines["second_lang"] .= strtolower( $twext[$i][$j][$k][1] ) . "\n";
+                            $lines["dodo"] .= $twext[$i][$j][$k][1];
+                            $lines["second_lang"] .= $twext[$i][$j][$k][1] . "\n";
                             $sl .= strtolower( $twext[$i][$j][$k][1] ) . str_repeat(' ', $this->second_language_align($ftmp,$stmp)+3);
                             $lines["dodo"] .= "\n";
                         }
