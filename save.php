@@ -59,9 +59,9 @@ class Twext
                   /* prepare dodo data format */
                 $all_data .= $data["dodo"] . str_repeat("preview",6) . "\n\n";
                 /* prepare preview */
-                $all_data .= $data["preview"] . str_repeat("twxt",10) . "\n\n";
+                $all_data .= $data["preview"] . str_repeat("TEXT",10) . "\n\n";
                 /* prepare first language */
-                $all_data .= $data["first_lang"] . str_repeat("TEXT",10) . "\n\n";
+                $all_data .= $data["first_lang"] . str_repeat("twxt",10) . "\n\n";
                 /* prepare second language */
                 $all_data .= $data["second_lang"];
 
