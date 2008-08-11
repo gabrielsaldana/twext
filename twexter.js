@@ -227,48 +227,7 @@ function trim(string) {
   while (ws.test(str.charAt(--i)));
   return str.slice(0, i + 1);
 }
-/**
- * Parses twext into a tree
- *
- * @param String left The left side text
- * @param String right The right side text
- * @return Array Twexted text: An array of arrays with the text separated in paragraphs, lines and chunks
- */
-function twext_parse(left, right) {
-  var text_left = left.split("\n");
-  var text_right = right.split("\n");
-  var total_lines_text_left = text_left.length;
-  var total_lines_text_right = text_right.length;
-  var max_lines = Math.max(total_lines_text_left, total_lines_text_right);
 
-  var paragraphs = [];
-  var para = false;
-  var line = false;
-  for (var i = 0; i <= max_lines; i++) {
-    var chunk_left = (i < total_lines_text_left) ? trim(text_left[i]) : '';
-			// insert here the gtranslate function to do it by word
-    var chunk_right = (i < total_lines_text_right) ? trim(text_right[i]) : '';
-    if (!chunk_left && !chunk_right) { // if its a blank line on both sides
-       if (line)
-       {
-	  if (!para) para = [];
-	  para[para.length] = line;
-	  line = false;
-       }
-       if (para)
-       {
-	  paragraphs[paragraphs.length] = para;
-	  para = false;
-       }
-    }
-    else
-     {
-	if (!line) line = [];
-	line[line.length] = [chunk_left, chunk_right];
-     }
-  }
-  return paragraphs;
-}
 /**
  * Takes twext, and generates html for preview
  *
@@ -359,7 +318,16 @@ function twext_text()
    txtright.value = chunksted_right;
    scroll(0,0);
 }
-
+/**
+ * Parses twext into a tree
+ *
+ * This is the main twexting algorithm that parses the two texts and makes the
+ * pairing and chunking
+ *
+ * @param String left The left side text
+ * @param String right The right side text
+ * @return Array Twexted text: An array of arrays with the text separated in paragraphs, lines and chunks
+ */
 function twexterize(left,right) {
   // first separate by paragraphs
   var filter = new RegExp("\\n{3}","i"); // two blank lines is a new paragraph
