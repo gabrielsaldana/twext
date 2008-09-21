@@ -53,7 +53,7 @@ class Twext
                 /* prepare first language */
                 $all_data .= $data["first_lang"] . str_repeat("TEXT",10) . "\n\n";
                 /* prepare second language */
-                $all_data .= $data["second_lang"] . str_repeat('- ', 20) . '+';
+                $all_data .= $data["second_lang"];
 
                 /* write everything to file */
                 fwrite($file,$all_data);
